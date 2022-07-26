@@ -1,1 +1,1 @@
-# nest-hr
+# Pinecone HR management project
