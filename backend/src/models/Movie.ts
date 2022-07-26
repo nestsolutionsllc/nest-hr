@@ -9,5 +9,7 @@ const movieSchema = new Schema({
   year: { type: Number, required: true },
   createdAt: { type: Date, default: Date.now },
 });
+
 const Movie = mongoose.model("movies", movieSchema);
+
 export default Movie;
