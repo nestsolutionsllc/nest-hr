@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Movie from "../../src/models/movie";
+import Movie from "../../src/models/Movie";
 
 const setupEnvironment = async () => {
   /* istanbul ignore next */
