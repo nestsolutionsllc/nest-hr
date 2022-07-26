@@ -2,14 +2,14 @@
 
 ## Setup
 
-1. Install Node version `^14.15.4` (via nvm or other) and ensure the project uses one a compatible version locally
+1. Install Node version `16.x` (via nvm or other) and ensure the project uses one a compatible version locally
 
 2. Run `yarn` to install dependencies
 
 3. Create `.env` file with following content:
 
 ```
-MONGODB_HOST=mongodb://localhost:27017/todo
+MONGODB_URL=mongodb://localhost:27017/nest_hr # or Atlas url
 ```
 
 (MongoDB atlas connection string can be used)
@@ -20,8 +20,9 @@ MONGODB_HOST=mongodb://localhost:27017/todo
 
 ```
 http://localhost:5000/movies (GET)
-http://localhost:5000/title (POST)
 http://localhost:5000/movie (POST)
+http://localhost:5000/movie/:id (GET)
+http://localhost:5000/movie/:id (PATCH)
 http://localhost:5000/movie (DELETE)
 ```
 
