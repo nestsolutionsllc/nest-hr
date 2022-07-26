@@ -1,24 +1,27 @@
 import {
-  getMovieByTitleService,
-  getMoviesService,
-  addMovieService,
-  deleteMovieService,
-  updateMovieByTitleService,
-} from "../services/movieService";
+  getMovie,
+  getMovies,
+  addMovie,
+  deleteMovie,
+  updateMovie,
+} from "../queries/movieService";
 import { Request, Response } from "express";
 
-export const getMovies = async (request: Request, response: Response) => {
+export const getMoviesService = async (
+  request: Request,
+  response: Response
+) => {
   try {
-    response.send(await getMoviesService());
+    response.send(await getMovies());
   } catch (error) {
     /* istanbul ignore next */
     response.status(500).send(error);
   }
 };
 
-export const getMovie = async (request: Request, response: Response) => {
+export const getMovieService = async (request: Request, response: Response) => {
   try {
-    const result = await getMovieByTitleService(request);
+    const result = await getMovie(request);
     response.status(200).send(result);
   } catch (error) {
     /* istanbul ignore next */
@@ -26,9 +29,12 @@ export const getMovie = async (request: Request, response: Response) => {
   }
 };
 
-export const updateMovie = async (request: Request, response: Response) => {
+export const updateMovieService = async (
+  request: Request,
+  response: Response
+) => {
   try {
-    const result = await updateMovieByTitleService(request);
+    const result = await updateMovie(request);
     response.status(200).send(result);
   } catch (error) {
     /* istanbul ignore next */
@@ -36,9 +42,12 @@ export const updateMovie = async (request: Request, response: Response) => {
   }
 };
 
-export const createMovie = async (request: Request, response: Response) => {
+export const createMovieService = async (
+  request: Request,
+  response: Response
+) => {
   try {
-    const result = await addMovieService(request);
+    const result = await addMovie(request);
     response.status(201).send(result);
   } catch (error) {
     /* istanbul ignore next */
@@ -46,9 +55,12 @@ export const createMovie = async (request: Request, response: Response) => {
   }
 };
 
-export const deleteMovie = async (request: Request, response: Response) => {
+export const deleteMovieService = async (
+  request: Request,
+  response: Response
+) => {
   try {
-    const result = await deleteMovieService(request);
+    const result = await deleteMovie(request);
     response.status(200).send({
       message: "Deleted successfully",
     });
