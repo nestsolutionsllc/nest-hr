@@ -35,3 +35,5 @@ $ npx cz
 ```
 
 command would be helpful to create commit messages with CLI dialogue.
+
+![A test image](docs/images/commitizen.png)
