@@ -1,6 +1,6 @@
-import { app } from "./app";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import app from "./app";
 
 dotenv.config();
 
@@ -10,7 +10,8 @@ const uri: string =
 
 mongoose.connect(uri);
 
-const connection = mongoose.connection;
+const { connection } = mongoose;
+
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });

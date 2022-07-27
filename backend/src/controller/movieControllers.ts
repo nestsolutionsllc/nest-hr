@@ -60,7 +60,7 @@ export const deleteMovieService = async (
   response: Response
 ) => {
   try {
-    const result = await deleteMovie(request);
+    await deleteMovie(request);
     response.status(200).send({
       message: "Deleted successfully",
     });

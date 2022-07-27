@@ -1,5 +1,5 @@
-import Movie from "../models/Movie";
 import { Request } from "express";
+import Movie from "../models/Movie";
 
 export const getMovies = () => {
   return Movie.find({});
