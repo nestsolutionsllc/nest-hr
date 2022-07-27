@@ -7,4 +7,8 @@ if [ "$branch" = "main" ]; then
   echo "You can't commit directly to main branch"
   exit 1
 fi
+
+valid_chars="^([0-9]+)-([a-z0-9-]+)$"
+message='Your branch must be created from issue. e.g. 12-branch-name'
+
 npx --no-install lint-staged --allow-empty
