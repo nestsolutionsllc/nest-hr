@@ -1,0 +1,12 @@
+{
+  "name": "nest-hr",
+  "version": "1.0.0",
+  "description": "Nest HR project",
+  "main": "index.js",
+  "repository": "git@github.com:nestsolutionsllc/nest-hr.git",
+  "author": "Pinecone developers",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^8.0.1"
+  }
+}
