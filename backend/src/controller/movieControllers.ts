@@ -1,4 +1,3 @@
-import { Request, Response } from "express";
 import {
   getMovie,
   getMovies,
@@ -6,6 +5,7 @@ import {
   deleteMovie,
   updateMovie,
 } from "../queries/movieService";
+import { Request, Response } from "express";
 
 export const getMoviesService = async (
   request: Request,

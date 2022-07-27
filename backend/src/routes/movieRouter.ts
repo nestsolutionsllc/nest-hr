@@ -1,4 +1,4 @@
-import express from "express";
+
 import {
   getMoviesService,
   getMovieService,
@@ -6,6 +6,8 @@ import {
   deleteMovieService,
   updateMovieService,
 } from "../controller/movieControllers";
+
+import express from "express";
 
 const movieRouter = express.Router();
 
