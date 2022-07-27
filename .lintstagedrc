@@ -5,4 +5,4 @@
   "**/*.{md,yml,json,babelrc,eslintrc,prettierrc}": [
     "prettier"
   ]
-}
+} 
