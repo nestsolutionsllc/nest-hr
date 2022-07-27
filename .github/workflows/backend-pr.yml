@@ -1,4 +1,5 @@
-name: Pinecone HR system API pull request
+name: API pull request
+
 "on":
   pull_request:
     paths:
