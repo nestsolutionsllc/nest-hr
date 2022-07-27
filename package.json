@@ -1,0 +1,22 @@
+{
+  "name": "nest-hr",
+  "version": "1.0.0",
+  "description": "Nest HR project",
+  "main": "index.js",
+  "repository": "git@github.com:nestsolutionsllc/nest-hr.git",
+  "author": "Pinecone developers",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "3.3.0",
+    "husky": "^8.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
