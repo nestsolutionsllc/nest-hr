@@ -6,6 +6,7 @@ import {
   deleteMovieService,
   updateMovieService,
 } from "../controller/movieControllers";
+
 const movieRouter = express.Router();
 
 movieRouter.get("/movies", getMoviesService);

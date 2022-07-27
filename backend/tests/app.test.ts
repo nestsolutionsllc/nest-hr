@@ -1,6 +1,6 @@
 import request from "supertest";
 import "babel-polyfill";
-import { app } from "../src/app";
+import app from "../src/app";
 import { setupEnvironment, tearDown } from "./utils/setupEnvironment";
 
 beforeAll(async () => {

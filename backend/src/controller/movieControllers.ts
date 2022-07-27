@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import {
   getMovie,
   getMovies,
@@ -5,7 +6,6 @@ import {
   deleteMovie,
   updateMovie,
 } from "../queries/movieService";
-import { Request, Response } from "express";
 
 export const getMoviesService = async (
   request: Request,
@@ -60,7 +60,7 @@ export const deleteMovieService = async (
   response: Response
 ) => {
   try {
-    const result = await deleteMovie(request);
+    await deleteMovie(request);
     response.status(200).send({
       message: "Deleted successfully",
     });

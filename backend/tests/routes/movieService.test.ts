@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app } from "../../src/app";
+import app from "../../src/app";
 import { setupEnvironment, tearDown } from "../utils/setupEnvironment";
 
 beforeAll(async () => {
@@ -10,7 +10,7 @@ afterAll(async () => {
   await tearDown();
 });
 
-var movieId: String;
+let movieId: string;
 describe("Testing movie CRUD", () => {
   it("It should be empty list before saving objects", async () => {
     const res = await request(app).get("/movies");
@@ -50,7 +50,7 @@ describe("Testing movie CRUD", () => {
   });
 
   it("It should respond a movie object by id", async () => {
-    const res = await request(app).get("/movie/" + movieId);
+    const res = await request(app).get(`/movie/${movieId}`);
     expect(res.statusCode).toBe(200);
     const data = JSON.parse(res.text);
     expect(data.title).toBe("Movie name 1");
@@ -65,11 +65,9 @@ describe("Testing movie CRUD", () => {
   });
 
   it("Inserting data with invalid body and it should return 400", async () => {
-    const res = await request(app)
-      .patch("/movie/" + movieId)
-      .send({
-        title: "newTitle",
-      });
+    const res = await request(app).patch(`/movie/${movieId}`).send({
+      title: "newTitle",
+    });
     expect(res.statusCode).toBe(200);
     const data = JSON.parse(res.text);
     expect(data.title).toBe("newTitle");
@@ -89,7 +87,7 @@ describe("Testing movie CRUD", () => {
     const data = JSON.parse(res.text);
     expect(data._id).toBeDefined();
 
-    const _id = data._id;
+    const { _id } = data;
     const deleteResponse = await request(app).delete("/movie").send({ _id });
 
     expect(deleteResponse.statusCode).toBe(200);

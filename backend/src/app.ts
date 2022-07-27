@@ -4,17 +4,17 @@ import movieRouter from "./routes/movieRouter";
 
 const app = express();
 
-//CORS Policy configuration
+// CORS Policy configuration
 app.use(cors());
 
-//Use Express
+// Use Express
 app.use(express.json());
 
-//router
+// Routers
 app.use(movieRouter);
 
 app.get("/", (req, res) => {
   res.send("SERVICE RUNNING");
 });
 
-export { app };
+export default app;
