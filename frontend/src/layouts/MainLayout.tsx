@@ -1,4 +1,4 @@
-import { useState, FC, useCallback } from 'react';
+import { useState, useCallback, ReactNode } from 'react';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -12,8 +12,8 @@ import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { SideBar } from '../components';
 import { Button } from '@mui/material';
+import SideBar from '../components/Sidebar';
 import { useAuth } from '../providers';
 
 const drawerWidth = 240;
@@ -22,8 +22,8 @@ interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (property) => property !== 'open',
+export const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: property => property !== 'open',
 })<AppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
@@ -40,7 +40,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (property) => property !== 'open' })(({ theme, open }) => ({
+export const Drawer = styled(MuiDrawer, { shouldForwardProp: property => property !== 'open' })(({ theme, open }) => ({
   '& .MuiDrawer-paper': {
     position: 'relative',
     whiteSpace: 'nowrap',
@@ -64,12 +64,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (property) => property !==
   },
 }));
 
-export const MainLayout: FC = ({ children }) => {
+const MainLayout = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false);
   const toggleDrawer = useCallback(() => {
     setOpen(!open);
   }, [open]);
-  const { setUser } = useAuth()
+  const { setUser } = useAuth();
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -95,7 +95,9 @@ export const MainLayout: FC = ({ children }) => {
           <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
             HR System
           </Typography>
-          <Button color='error' onClick={() => setUser("")} >garah</Button>
+          <Button color="error" onClick={() => setUser('')}>
+            garah
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -119,7 +121,7 @@ export const MainLayout: FC = ({ children }) => {
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
+          backgroundColor: theme =>
             theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
           flexGrow: 1,
           height: '100vh',
@@ -135,3 +137,5 @@ export const MainLayout: FC = ({ children }) => {
     </Box>
   );
 };
+
+export default MainLayout;

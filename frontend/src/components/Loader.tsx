@@ -8,3 +8,5 @@ export const Loader: FC = () => {
     </Box>
   );
 };
+
+export default Loader;

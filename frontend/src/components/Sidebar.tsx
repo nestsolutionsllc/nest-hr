@@ -1,13 +1,10 @@
 import { FC, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PeopleIcon from '@mui/icons-material/People';
-import CategoryIcon from '@mui/icons-material/Category';
 
-const menuItems = [
-  // Sample Sidebar menu items -> 
+type IProps = { open: boolean };
+
+export const menuItems = [
   // {
   //   href: '/',
   //   title: 'Хянах самбар',
@@ -15,11 +12,14 @@ const menuItems = [
   // },
 ];
 
-export const SideBar: FC<IProps> = ({ open }) => {
+const SideBar: FC<IProps> = ({ open }) => {
   const { push } = useRouter();
-  const changePage = useCallback((href) => {
-    return () => push(href as string);
-  }, []);
+  const changePage = useCallback(
+    (href: string) => {
+      return () => push(href);
+    },
+    [push]
+  );
 
   return (
     <>
@@ -37,4 +37,4 @@ export const SideBar: FC<IProps> = ({ open }) => {
   );
 };
 
-type IProps = { open: boolean };
+export default SideBar;
