@@ -94,9 +94,7 @@ describe("Testing movie CRUD", () => {
   });
 
   it("Try to delete not existing data and it should respond 404", async () => {
-    const deleteResponse = await request(app)
-      .delete("/movie")
-      .send({ _id: "Doesn't exist" });
+    const deleteResponse = await request(app).delete("/movie").send({ _id: "Doesn't exist" });
 
     expect(deleteResponse.statusCode).toBe(500);
   });
