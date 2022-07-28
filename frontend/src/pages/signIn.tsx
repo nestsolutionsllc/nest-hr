@@ -1,14 +1,14 @@
-import { NextPage } from 'next';
-import { Container, CssBaseline, Typography, Button, Avatar, Box, TextField } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { useCallback } from 'react';
-import { useRouter } from 'next/router';
+import { NextPage } from "next";
+import { Container, CssBaseline, Typography, Button, Avatar, Box, TextField } from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { useCallback } from "react";
+import { useRouter } from "next/router";
 
 const SigninPage: NextPage = () => {
   const router = useRouter();
 
   const submit = useCallback(async () => {
-    router.push('/');
+    router.push("/");
   }, []);
 
   return (
@@ -17,12 +17,12 @@ const SigninPage: NextPage = () => {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography mb={2} component="h1" variant="h5">
