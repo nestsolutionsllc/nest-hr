@@ -1,6 +1,6 @@
-import { FC, useCallback } from 'react';
-import { useRouter } from 'next/router';
-import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material';
+import { FC, useCallback } from "react";
+import { useRouter } from "next/router";
+import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
 
 type IProps = { open: boolean };
 
@@ -25,7 +25,7 @@ const SideBar: FC<IProps> = ({ open }) => {
     <>
       {menuItems.map(({ href, title, icon }, index) => {
         return (
-          <Tooltip key={index} title={open ? '' : title} placement="right">
+          <Tooltip key={index} title={open ? "" : title} placement="right">
             <ListItemButton onClick={changePage(href)}>
               <ListItemIcon>{icon}</ListItemIcon>
               <ListItemText primary={title} />

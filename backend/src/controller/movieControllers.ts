@@ -1,16 +1,7 @@
-import {
-  getMovie,
-  getMovies,
-  addMovie,
-  deleteMovie,
-  updateMovie,
-} from "../queries/movieService";
 import { Request, Response } from "express";
+import { getMovie, getMovies, addMovie, deleteMovie, updateMovie } from "../queries/movieService";
 
-export const getMoviesService = async (
-  request: Request,
-  response: Response
-) => {
+export const getMoviesService = async (request: Request, response: Response) => {
   try {
     response.send(await getMovies());
   } catch (error) {
@@ -29,10 +20,7 @@ export const getMovieService = async (request: Request, response: Response) => {
   }
 };
 
-export const updateMovieService = async (
-  request: Request,
-  response: Response
-) => {
+export const updateMovieService = async (request: Request, response: Response) => {
   try {
     const result = await updateMovie(request);
     response.status(200).send(result);
@@ -42,10 +30,7 @@ export const updateMovieService = async (
   }
 };
 
-export const createMovieService = async (
-  request: Request,
-  response: Response
-) => {
+export const createMovieService = async (request: Request, response: Response) => {
   try {
     const result = await addMovie(request);
     response.status(201).send(result);
@@ -55,10 +40,7 @@ export const createMovieService = async (
   }
 };
 
-export const deleteMovieService = async (
-  request: Request,
-  response: Response
-) => {
+export const deleteMovieService = async (request: Request, response: Response) => {
   try {
     await deleteMovie(request);
     response.status(200).send({
