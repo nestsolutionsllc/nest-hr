@@ -1,0 +1,13 @@
+- name: Preview version on Web API servers
+  hosts: test-staging
+  roles:
+    - role: stephdewit.nvm
+      nvm_version: "latest"
+      nvm_node_version: "16"
+  vars:
+    # Obtain a name for this preview from the environment.
+    preview: "{{ lookup('env', 'PREVIEW_SLUG')|default('test', true) }}"
+    project_root: "/home/hr/branch"
+  tasks:
+  pre_tasks:
+    - import_tasks: tasks/code.yml
