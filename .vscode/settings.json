@@ -19,5 +19,8 @@
     "editor.formatOnSave": true
   },
   "javascript.preferences.importModuleSpecifier": "shortest",
-  "typescript.preferences.importModuleSpecifier": "shortest"
+  "typescript.preferences.importModuleSpecifier": "shortest",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  }
 }

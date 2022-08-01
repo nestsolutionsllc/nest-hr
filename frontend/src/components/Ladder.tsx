@@ -1,7 +1,7 @@
 import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from "chart.js";
 import { Radar } from "react-chartjs-2";
 import { FC } from "react";
-import LadderDescriptions from "./LadderDescriptions";
+import LadderDescriptions, { Information } from "./LadderInformation";
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
@@ -9,16 +9,18 @@ const userData = {
   technology: 2,
   system: 2,
   people: 4,
-  process: 3,
-  influence: 1,
+  process: 4,
+  influence: 3,
 };
 
-const Ladder: FC<{ height: string; width: string }> = ({ height, width }) => {
+const Ladder: FC<{ width: string }> = ({ width }) => {
+  // const [windowSize, setWindowSize] = useState<{ height: number; width: number }>({ height: 0, width: 0 });
+
   const data = {
     labels: ["Technology", "System", "People", "Process", "Influence"],
     datasets: [
       {
-        label: "d1",
+        label: "Current",
         data: [userData.technology, userData.system, userData.people, userData.process, userData.influence],
         backgroundColor: "transparent",
         borderColor: "#0070c0",
@@ -27,7 +29,10 @@ const Ladder: FC<{ height: string; width: string }> = ({ height, width }) => {
   };
 
   const options = {
-    maintainAspectRatio: false,
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 1 / 1,
+    plugins: { tooltip: { callbacks: { label: a => `${a.raw}.${Information[a.label][a.raw - 1][0]}` } } },
     scales: {
       r: {
         grid: {
@@ -57,9 +62,21 @@ const Ladder: FC<{ height: string; width: string }> = ({ height, width }) => {
   };
 
   return (
-    <div style={{ height, width, display: "flex", flexDirection: "row" }}>
-      <Radar data={data} options={options} />
-      <LadderDescriptions />
+    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", height: "100%" }}>
+      <div style={{ width }}>
+        <Radar data={data} options={options} />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          width: "45%",
+        }}
+      >
+        <LadderDescriptions type={"description"} />
+        <LadderDescriptions type={"level"} />
+      </div>
     </div>
   );
 };

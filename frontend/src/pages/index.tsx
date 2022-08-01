@@ -5,9 +5,7 @@ import Ladder from "../components/Ladder";
 const HomePage: NextPage = () => {
   return (
     <MainLayout>
-      <div>
-        <Ladder height={"80vh"} width={"80vh"} />
-      </div>
+      <Ladder width={"50%"} />
     </MainLayout>
   );
 };
