@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,4 +13,29 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.sideBarItem {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  height: 40px;
+  border-radius: 3px;
+  /* margin-top: 10px;
+  margin-bottom: 10px; */
+  background: #fafbfc;
+  transition: all 0.1s ease-in-out;
+  color: #42526e;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 40px;
+  margin-bottom: 4px;
+}
+.sideBarItem:hover {
+  background: #ebecf0;
+}
+.activeSideBarItem {
+  background: #ebecf0;
+  color: #0052cc;
 }

@@ -1,11 +1,10 @@
 import type { NextPage } from "next";
-import MainLayout from "../layouts/MainLayout";
 
 const HomePage: NextPage = () => {
   return (
-    <MainLayout>
+    <div>
       <div>home page</div>
-    </MainLayout>
+    </div>
   );
 };
 

@@ -5,11 +5,11 @@ import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/materi
 type IProps = { open: boolean };
 
 export const menuItems = [
-  // {
-  //   href: '/',
-  //   title: 'Хянах самбар',
-  //   icon: <DashboardIcon />,
-  // },
+  {
+    href: "/",
+    title: "Хянах самбар",
+    // icon: <DashboardIcon />,
+  },
 ];
 
 const SideBar: FC<IProps> = ({ open }) => {
