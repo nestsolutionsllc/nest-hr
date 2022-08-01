@@ -1,39 +1,200 @@
-import { FC, useCallback } from "react";
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
+import { Button, styled } from "@mui/material";
+import CalendarIcon from "@mui/icons-material/CalendarToday";
+import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 
-type IProps = { open: boolean };
+type IProps = { open: boolean; setOpen: Dispatch<SetStateAction<boolean>> };
+
+type tabType = {
+  title: string;
+  href: string;
+};
+
+type MenuItemType = {
+  title: string;
+  children: tabType[];
+  icon: React.ReactElement;
+};
+
+const StyledButton = styled(Button)`
+  background: transparent;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px;
+  color: #42526e;
+  borderradius: 4px;
+  justify-content: flex-start;
+  text-transform: capitalize;
+  :hover {
+    background: transparent;
+    color: #019aff;
+  }
+`;
+const StyledListItemButton = styled(Button)`
+  background: transparent;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px;
+  color: #42526e;
+  text-transform: capitalize;
+  borderradius: 4px;
+  justify-content: flex-start;
+  margin-left: 8px;
+  :hover {
+    background: transparent;
+    color: #019aff;
+  }
+`;
 
 export const menuItems = [
-  // {
-  //   href: '/',
-  //   title: 'Хянах самбар',
-  //   icon: <DashboardIcon />,
-  // },
+  {
+    title: "Ticketing",
+    icon: <ConfirmationNumberIcon />,
+    children: [
+      {
+        title: "Daily",
+        href: "/ticketing/daily",
+      },
+      {
+        title: "Ticketing Request",
+        href: "/ticketing/request",
+      },
+      {
+        title: "Ticketing Report",
+        href: "/ticketing/report",
+      },
+    ],
+  },
+  {
+    title: "Leave",
+    icon: <CalendarIcon />,
+
+    children: [
+      {
+        title: "Leave Request",
+        href: "/leave/request",
+      },
+      {
+        title: "Leave Status",
+        href: "/leave/status",
+      },
+      {
+        title: "Calendar",
+        href: "/leave/calendar",
+      },
+      {
+        title: "Summary",
+        href: "/leave/summary",
+      },
+    ],
+  },
 ];
 
-const SideBar: FC<IProps> = ({ open }) => {
-  const { push } = useRouter();
-  const changePage = useCallback(
-    (href: string) => {
-      return () => push(href);
-    },
-    [push]
-  );
+const styles = {
+  sideBar: {
+    display: "flex",
+    flexDirection: "column" as const,
+    padding: "0px 8px",
+  },
+  sideBarItemContainer: {
+    display: "flex",
+    flexDirection: "column" as const,
+  },
+  sideBarItemContainerTitle: {
+    fontSize: "14px",
+    fontWeight: "bold",
+    cursor: "pointer",
+    padding: "8px",
+    color: "#42526E",
+    borderRadius: "4px",
+  },
+  sideBarItemIcon: {
+    minWidth: "40px",
+    minHeight: "40px",
+    marginRight: "16px",
+    borderRadius: "2px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#F5F5F5",
+  },
+};
 
+const SideBarItemContainer = ({
+  menuItem,
+  openTab,
+  setOpenTab,
+  setOpen,
+}: {
+  menuItem: MenuItemType;
+  openTab: string;
+  setOpenTab: Dispatch<SetStateAction<string>>;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const router = useRouter();
   return (
-    <>
-      {menuItems.map(({ href, title, icon }, index) => {
+    <div style={styles.sideBarItemContainer}>
+      <StyledButton
+        disableElevation
+        disableRipple
+        onClick={() => {
+          if (openTab !== menuItem.title) {
+            setOpenTab(menuItem.title);
+          } else {
+            setOpenTab("");
+          }
+          setOpen(true);
+        }}
+      >
+        <div style={styles.sideBarItemIcon}>{menuItem.icon}</div>
+        {menuItem.title}
+      </StyledButton>
+      <div
+        style={{
+          display: openTab === menuItem.title ? "flex" : "none",
+          flexDirection: "column" as const,
+        }}
+      >
+        {menuItem.children.map(tab => (
+          <StyledListItemButton
+            disableElevation
+            disableRipple
+            onClick={() => {
+              router.push(tab.href);
+            }}
+          >
+            {tab.title}
+          </StyledListItemButton>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const SideBar: FC<IProps> = ({ open, setOpen }) => {
+  const [openTab, setOpenTab] = useState<string>("");
+  useEffect(() => {
+    if (!open) {
+      setOpenTab("");
+    }
+  }, [open]);
+  return (
+    <div style={styles.sideBar}>
+      {menuItems.map(({ title, children, icon }, index) => {
         return (
-          <Tooltip key={index} title={open ? "" : title} placement="right">
-            <ListItemButton onClick={changePage(href)}>
-              <ListItemIcon>{icon}</ListItemIcon>
-              <ListItemText primary={title} />
-            </ListItemButton>
-          </Tooltip>
+          <SideBarItemContainer
+            key={index}
+            menuItem={{ title, children, icon }}
+            setOpenTab={setOpenTab}
+            openTab={openTab}
+            setOpen={setOpen}
+          />
         );
       })}
-    </>
+    </div>
   );
 };
 
