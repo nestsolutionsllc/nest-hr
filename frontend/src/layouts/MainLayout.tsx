@@ -114,7 +114,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
         </Toolbar>
         <Divider />
         <List component="nav">
-          <SideBar open={open} />
+          <SideBar open={open} setOpen={setOpen} />
         </List>
       </Drawer>
       <Box
