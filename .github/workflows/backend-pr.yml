@@ -24,6 +24,20 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.9
+
+      # - name: Play Ansible Playbook
+      #   uses: arillso/action.playbook@master
+      #   with:
+      #     playbook: preview.yml
+      #     inventory: hosts/staging
+      #     private_key: ${{ secrets.OPEN_SSH_KEY }}
+      #     user: root
+      #     connection: ssh
+      #     timeout: 30
+      #   env:
+      #     ANSIBLE_HOST_KEY_CHECKING: "false"
+      #     ANSIBLE_DEPRECATION_WARNINGS: "false"
+
       - name: Install Ansible dependencies
         run: |
           python -m pip install --upgrade pip
@@ -34,7 +48,11 @@ jobs:
         env:
           OPEN_SSH_KEY: ${{ secrets.OPEN_SSH_KEY }}
         run: |
+          echo "path 1"
+          pwd
+          echo "path 2"
           cd ..
+          pwd
           echo "$OPEN_SSH_KEY" > id_rsa
           echo "test" > test
           chmod 600 id_rsa
@@ -45,13 +63,17 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
+          echo "path 3"
+          pwd
           cd ..
+          echo "path 4"
+          pwd
           echo "$SSH_KEY" > priv.key
           chmod 600 priv.key
           cat priv.key
           export ANSIBLE_HOST_KEY_CHECKING=False
           ansible-galaxy install stephdewit.nvm
-          ansible-playbook --private-key=id_rsa -i hosts/staging --diff preview.yml -u root -c paramiko
+          ansible-playbook --private-key=priv.key -i hosts/staging --diff preview.yml -u root
 
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.7.0
