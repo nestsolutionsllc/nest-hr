@@ -4,12 +4,15 @@ import type { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material";
 import { AuthProvider } from "../providers";
 import { theme } from "../theme";
+import MainLayout from "../layouts/MainLayout";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <Component {...pageProps} />
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
       </AuthProvider>
     </ThemeProvider>
   );
