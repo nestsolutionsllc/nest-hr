@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import { Box } from "@mui/material";
-import VerticalTabs from "../components/userprofile/VerticalTabs";
+import VerticalTabs from "../components/profile/VerticalTabs";
+import PersonalInfo from "../components/profile/PersonalInfo";
 
 const styles = {
   profileContainer: {
@@ -13,8 +14,16 @@ const styles = {
 
 const ProfilePage: NextPage = () => {
   return (
-    <Box sx={styles.profileContainer}>
-      <VerticalTabs />
+    <Box>
+      {/* Personal information section */}
+
+      <PersonalInfo />
+
+      <Box sx={styles.profileContainer}>
+        {/* Profile vertical tab menu sesction */}
+
+        <VerticalTabs />
+      </Box>
     </Box>
   );
 };
