@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
-import MainLayout from "../layouts/MainLayout";
+import { Container } from "@mui/material";
 
 const HomePage: NextPage = () => {
   return (
-    <MainLayout>
+    <Container>
       <div>home page</div>
-    </MainLayout>
+    </Container>
   );
 };
 
