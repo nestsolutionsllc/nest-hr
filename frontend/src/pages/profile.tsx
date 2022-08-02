@@ -1,19 +1,21 @@
 import { NextPage } from "next";
-import { Box, styled } from "@mui/material";
+import { Box } from "@mui/material";
 import VerticalTabs from "../components/userprofile/VerticalTabs";
 
-const ProfileContainer = styled(Box)`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-`;
+const styles = {
+  profileContainer: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    flexDirection: "column",
+  },
+};
 
 const ProfilePage: NextPage = () => {
   return (
-    <ProfileContainer>
+    <Box sx={styles.profileContainer}>
       <VerticalTabs />
-    </ProfileContainer>
+    </Box>
   );
 };
 
