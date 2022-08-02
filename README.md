@@ -12,6 +12,12 @@ Before starting to contribute, in project root directory:
 yarn
 ```
 
+After fulfilled `setup` section of both backend and frontend README.md: 
+
+```
+Run yarn dev to run.
+```
+
 This mono repo has two projects including:
 
 ```
