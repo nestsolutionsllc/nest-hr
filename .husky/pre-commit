@@ -9,6 +9,11 @@ if [ "$branch" = "main" ]; then
   exit 1
 fi
 
+if [ "$branch" = "develop" ]; then
+  echo "You can't commit directly to develop branch"
+  exit 1
+fi
+
 # Disable commit to branch created locally
 valid_chars="^([0-9]+)-([a-z0-9-]+)$"
 message='Your branch must be created from issue. e.g. 12-branch-name'
