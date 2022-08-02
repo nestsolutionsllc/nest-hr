@@ -1,11 +1,23 @@
 import type { NextPage } from "next";
+import { Box } from "@mui/material";
 import MainLayout from "../layouts/MainLayout";
-import Ladder from "../components/Ladder";
+import LadderInformation from "../components/LadderInformation";
+
+const styles = {
+  container: {
+    display: "flex",
+    FlexDirection: "row",
+    justifyContent: "space-between",
+  },
+};
 
 const HomePage: NextPage = () => {
   return (
     <MainLayout>
-      <Ladder width={"50%"} />
+      <Box sx={styles.container}>
+        <LadderInformation type={"level"} />
+        <LadderInformation type={"description"} />
+      </Box>
     </MainLayout>
   );
 };
