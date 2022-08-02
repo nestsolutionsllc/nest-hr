@@ -29,8 +29,6 @@ const SigninPage: NextPage = () => {
           Нэвтрэх
         </Typography>
         <Box component="form" onSubmit={submit} noValidate sx={{ mt: 1 }}>
-          {/* Fields */}
-
           <TextField
             variant="standard"
             margin="normal"
@@ -52,20 +50,9 @@ const SigninPage: NextPage = () => {
             id="password"
             autoComplete="current-password"
           />
-
-          {/* Button */}
-
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, borderRadius: 0 }}>
             Нэвтрэх
           </Button>
-
-          {/* Forgot Password */}
-
-          {/* <Box sx={{ textAlign: 'right' }}>
-            <Link href="#" variant="body2">
-              Мартчихсан уу :)
-            </Link>
-          </Box> */}
         </Box>
       </Box>
     </Container>
