@@ -1,5 +1,5 @@
 import { ReactNode, SyntheticEvent, useState } from "react";
-import { Tabs, Tab, Box, styled, Stack } from "@mui/material";
+import { Tabs, Tab, Box, Stack } from "@mui/material";
 import Ladder from "./Ladder";
 import Salary from "./Salary";
 import Onboard from "./Onboard";
@@ -29,53 +29,54 @@ interface TabPanelProps {
   index: number;
   value: number;
 }
-const TabPanelContainer = styled(Box)`
-  margin-left: 20px;
-  box-shadow: "0px 0px 8px 0px rgba(0,0,0,0.1);";
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-`;
 
-const TabContainer = styled(Box)`
-  display: flex;
-  min-height: 700px;
-`;
-
-const TabHeader = styled(Stack)`
-  justify-content: center;
-  align-items: center;
-  background-color: #fbfcff;
-  height: 10%;
-  box-shadow: "0px 0px 8px 0px rgba(0,0,0,0.1);";
-`;
-
-const IconWrapper = styled(Box)`
-  width: 35;
-  height: 35;
-  border-radius: 50%;
-  background-color: #fff;
-  text-align: center;
-  padding: 8px;
-`;
-
-const StyledTab = styled(Tab)`
-  align-items: flex-start;
-  text-transform: capitalize;
-`;
-
-const StyledTabs = styled(Tabs)`
-  background-color: #fff;
-  min-width: 250px;
-  box-shadow: "0px 0px 8px 0px rgba(0,0,0,0.1);";
-  height: 90%;
-`;
+const styles = {
+  tabPanelContainer: {
+    marginLeft: "20px",
+    boxShadow: "0px 0px 8px 0px rgba(0,0,0,0.1)",
+    backgroundColor: "#fff",
+    borderRadius: "5px",
+    padding: "20px",
+  },
+  tabContainer: {
+    display: "flex",
+    minHeight: "700px",
+  },
+  tabList: {
+    boxShadow: "0px 0px 8px 0px rgba(0,0,0,0.1)",
+  },
+  tabHeader: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fbfcff",
+    height: "10%",
+    borderBottom: 1,
+    borderColor: "#f0f2f5",
+  },
+  iconWrapper: {
+    width: 35,
+    height: 35,
+    borderRadius: "50%",
+    backgroundColor: "#fff",
+    textAlign: "center",
+    paddingTop: "5px",
+  },
+  tabs: {
+    backgroundColor: "#fff",
+    minWidth: 250,
+    height: "90%",
+  },
+  tab: {
+    alignItems: "flex-start",
+    textTransform: "capitalize",
+  },
+};
 
 const TabPanel = (props: TabPanelProps) => {
   const { children, index, value, ...other } = props;
   return (
     <Box role="tabpanel" hidden={value !== index} id={`vertical-tabpanel-${index}`} {...other}>
-      {index === value && <TabPanelContainer>{children}</TabPanelContainer>}
+      {index === value && <Box sx={styles.tabPanelContainer}>{children}</Box>}
     </Box>
   );
 };
@@ -88,18 +89,18 @@ const VerticalTabs = () => {
   };
 
   return (
-    <TabContainer>
-      <Box>
-        <TabHeader>
-          <IconWrapper>
+    <Box sx={styles.tabContainer}>
+      <Box sx={styles.tabList}>
+        <Stack sx={styles.tabHeader}>
+          <Box sx={styles.iconWrapper}>
             <img src="/assets/userprofile/person.svg" alt="person" />
-          </IconWrapper>
-        </TabHeader>
-        <StyledTabs orientation="vertical" value={value} onChange={handleChange}>
+          </Box>
+        </Stack>
+        <Tabs orientation="vertical" value={value} onChange={handleChange} sx={styles.tabs}>
           {tabItems.map((item, index) => (
-            <StyledTab label={item.title} key={index} disableRipple />
+            <Tab label={item.title} key={index} disableRipple sx={styles.tab} />
           ))}
-        </StyledTabs>
+        </Tabs>
       </Box>
       <Box>
         {tabItems.map((item, index) => (
@@ -108,7 +109,7 @@ const VerticalTabs = () => {
           </TabPanel>
         ))}
       </Box>
-    </TabContainer>
+    </Box>
   );
 };
 
