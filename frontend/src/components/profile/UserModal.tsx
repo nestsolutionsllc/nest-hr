@@ -22,9 +22,6 @@ const styles = {
   edit: {
     height: 25,
     width: 25,
-    // "&:hover": {
-    //   backgroundColor: "#cfcfcf",
-    // },
   },
   buttons: {
     display: "flex",
@@ -73,59 +70,57 @@ export const UserModal: FC = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const UModal = () => {
-    return (
-      <Stack>
-        <Button sx={styles.edit} onClick={handleOpen}>
-          <EditIcon sx={styles.icon} />
-        </Button>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open}>
-            <Box sx={styles.container}>
-              <Typography fontWeight={"bold"} color={"black"} margin={1} variant="h5">
-                Edit User Info
-              </Typography>
-              <Box sx={styles.inputContainer}>
-                <Box sx={styles.inputStyle}>
-                  <Input sx={styles.input} placeholder="Job Title"></Input>
-                </Box>
-                <Box sx={styles.inputStyle}>
-                  <Input sx={styles.input} placeholder="Company Name"></Input>
-                </Box>
-                <Box sx={styles.inputStyle}>
-                  <Input sx={styles.input} placeholder="Location"></Input>
-                </Box>
-                <Box sx={styles.inputStyle}>
-                  <Input sx={styles.input} placeholder="Job Title"></Input>
-                </Box>
+
+  return (
+    <Stack>
+      <Button sx={styles.edit} onClick={handleOpen}>
+        <EditIcon sx={styles.icon} />
+      </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={styles.container}>
+            <Typography fontWeight={"bold"} color={"black"} margin={1} variant="h5">
+              Edit User Info
+            </Typography>
+            <Box sx={styles.inputContainer}>
+              <Box sx={styles.inputStyle}>
+                <Input sx={styles.input} placeholder="Job Title"></Input>
               </Box>
-              <Box sx={styles.buttons}>
-                <Button onClick={handleClose} sx={styles.cancelButton}>
-                  <Typography fontSize={14} color={"#444444"}>
-                    Cancel
-                  </Typography>
-                </Button>
-                <Button sx={styles.confirmButton}>
-                  <Typography fontSize={14} color={"White"}>
-                    Save
-                  </Typography>
-                </Button>
+              <Box sx={styles.inputStyle}>
+                <Input sx={styles.input} placeholder="Company Name"></Input>
+              </Box>
+              <Box sx={styles.inputStyle}>
+                <Input sx={styles.input} placeholder="Location"></Input>
+              </Box>
+              <Box sx={styles.inputStyle}>
+                <Input sx={styles.input} placeholder="Job Title"></Input>
               </Box>
             </Box>
-          </Fade>
-        </Modal>
-      </Stack>
-    );
-  };
-  return <UModal />;
+            <Box sx={styles.buttons}>
+              <Button onClick={handleClose} sx={styles.cancelButton}>
+                <Typography fontSize={14} color={"#444444"}>
+                  Cancel
+                </Typography>
+              </Button>
+              <Button sx={styles.confirmButton}>
+                <Typography fontSize={14} color={"White"}>
+                  Save
+                </Typography>
+              </Button>
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
+    </Stack>
+  );
 };
 
 export default UserModal;
