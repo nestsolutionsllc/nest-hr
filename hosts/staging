@@ -1,0 +1,2 @@
+[apiservers]
+test-staging        ansible_host=128.199.244.42
