@@ -1,13 +1,9 @@
 import { useState, FC } from "react";
-import { Typography, Button, Fade, Modal, Box, Backdrop, Input } from "@mui/material";
+import { Typography, Button, Fade, Modal, Box, Backdrop, Input, Stack } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-export const UserModal: FC = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const style = {
+const styles = {
+  container: {
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -18,23 +14,33 @@ export const UserModal: FC = () => {
     borderRadius: 2,
     boxShadow: 24,
     p: 4,
-  };
-
-  const style2 = {
+  },
+  icon: {
+    width: 25,
+    color: "black",
+  },
+  edit: {
+    height: 25,
+    width: 25,
+    // "&:hover": {
+    //   backgroundColor: "#cfcfcf",
+    // },
+  },
+  buttons: {
     display: "flex",
-    p: 1,
-    flexDirection: "column",
-    justifyContent: "space-around",
-  };
-
-  const inputStyle = {
-    display: "flex",
+    justifyContent: "flex-end",
+  },
+  confirmButton: {
+    width: 100,
+    height: 40,
+    borderRadius: 5,
+    backgroundColor: "#63B6E5",
     marginTop: 3,
-    flexDirection: "column",
-    justifyContent: "space-around",
-  };
-
-  const cancelButton = {
+    "&:hover": {
+      backgroundColor: "#2F86D9",
+    },
+  },
+  cancelButton: {
     width: 100,
     height: 40,
     borderRadius: 5,
@@ -44,41 +50,33 @@ export const UserModal: FC = () => {
     "&:hover": {
       backgroundColor: "#D1D1D1",
     },
-  };
-
-  const confirmButton = {
-    width: 100,
-    height: 40,
-    borderRadius: 5,
-    backgroundColor: "#63B6E5",
-    marginTop: 3,
-    "&:hover": {
-      backgroundColor: "#2F86D9",
-    },
-  };
-
-  const buttons = {
+  },
+  inputStyle: {
     display: "flex",
-    justifyContent: "flex-end",
-  };
+    marginTop: 3,
+    flexDirection: "column",
+    justifyContent: "space-around",
+  },
+  inputContainer: {
+    display: "flex",
+    p: 1,
+    flexDirection: "column",
+    justifyContent: "space-around",
+  },
+  input: {
+    opacity: 0.6,
+    marginBottom: 2,
+  },
+};
 
-  const edit = {
-    height: 25,
-    width: 25,
-    // "&:hover": {
-    //   backgroundColor: "#cfcfcf",
-    // },
-  };
-
-  const icon = {
-    width: 25,
-    color: "black",
-  };
-
+export const UserModal: FC = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
-    <div>
-      <Button sx={edit} onClick={handleOpen}>
-        <EditIcon sx={icon} />
+    <Stack>
+      <Button sx={styles.edit} onClick={handleOpen}>
+        <EditIcon sx={styles.icon} />
       </Button>
       <Modal
         open={open}
@@ -90,31 +88,31 @@ export const UserModal: FC = () => {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box sx={styles.container}>
             <Typography color={"navy"} margin={1} variant="h5">
               Edit User Info
             </Typography>
-            <Box sx={style2}>
-              <Box sx={inputStyle}>
-                <Input sx={{ opacity: 0.6, marginBottom: 2 }} placeholder="Job Title"></Input>
+            <Box sx={styles.inputContainer}>
+              <Box sx={styles.inputStyle}>
+                <Input sx={styles.input} placeholder="Job Title"></Input>
               </Box>
-              <Box sx={inputStyle}>
-                <Input sx={{ opacity: 0.6, marginBottom: 2 }} placeholder="Company Name"></Input>
+              <Box sx={styles.inputStyle}>
+                <Input sx={styles.input} placeholder="Company Name"></Input>
               </Box>
-              <Box sx={inputStyle}>
-                <Input sx={{ opacity: 0.6, marginBottom: 2 }} placeholder="Location"></Input>
+              <Box sx={styles.inputStyle}>
+                <Input sx={styles.input} placeholder="Location"></Input>
               </Box>
-              <Box sx={inputStyle}>
-                <Input sx={{ opacity: 0.6, marginBottom: 2 }} placeholder="Job Title"></Input>
+              <Box sx={styles.inputStyle}>
+                <Input sx={styles.input} placeholder="Job Title"></Input>
               </Box>
             </Box>
-            <Box sx={buttons}>
-              <Button onClick={handleClose} sx={cancelButton}>
+            <Box sx={styles.buttons}>
+              <Button onClick={handleClose} sx={styles.cancelButton}>
                 <Typography fontSize={14} color={"#444444"}>
                   Cancel
                 </Typography>
               </Button>
-              <Button sx={confirmButton}>
+              <Button sx={styles.confirmButton}>
                 <Typography fontSize={14} color={"White"}>
                   Save
                 </Typography>
@@ -123,7 +121,7 @@ export const UserModal: FC = () => {
           </Box>
         </Fade>
       </Modal>
-    </div>
+    </Stack>
   );
 };
 
