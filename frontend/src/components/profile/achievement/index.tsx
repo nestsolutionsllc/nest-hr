@@ -15,17 +15,14 @@ const Achievement = () => {
       <Typography variant="h4" sx={styles.title}>
         Achievements
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={4}>
         <Grid item md={5}>
           <Skill />
         </Grid>
-        <Grid item md={7}>
+        <Grid item md={6}>
           <Certificate />
         </Grid>
         <Grid item md={5}>
-          <Awards />
-        </Grid>
-        <Grid item md={6}>
           <Awards />
         </Grid>
       </Grid>
