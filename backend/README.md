@@ -9,7 +9,7 @@
 3. Create `.env` file with following content:
 
 ```
-MONGODB_URL=mongodb://localhost:27017/nest_hr # or Atlas url
+MONGODB_URL=mongodb://localhost:27017/nest_hr # or Mongodb Atlas connection string
 ```
 
 (MongoDB atlas connection string can be used)
