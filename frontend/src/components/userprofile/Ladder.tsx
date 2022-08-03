@@ -8,7 +8,7 @@ const styles = {
   },
 };
 
-const Ladder = () => {
+export const Ladder = () => {
   return (
     <Stack>
       <Typography variant="h4" sx={styles.title}>

@@ -8,7 +8,7 @@ const styles = {
   },
 };
 
-const Achievement = () => {
+export const Achievement = () => {
   return (
     <Stack>
       <Typography variant="h4" sx={styles.title}>

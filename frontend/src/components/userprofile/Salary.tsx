@@ -8,7 +8,7 @@ const styles = {
   },
 };
 
-const Salary = () => {
+export const Salary = () => {
   return (
     <Stack>
       <Typography variant="h4" sx={styles.title}>

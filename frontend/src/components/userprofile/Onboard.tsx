@@ -8,7 +8,7 @@ const styles = {
   },
 };
 
-const Onboard = () => {
+export const Onboard = () => {
   return (
     <Stack>
       <Typography variant="h4" sx={styles.title}>

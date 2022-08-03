@@ -81,7 +81,7 @@ const TabPanel = (props: TabPanelProps) => {
   );
 };
 
-const VerticalTabs = () => {
+export const VerticalTabs = () => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
