@@ -4,11 +4,9 @@ import VerticalTabs from "../components/profile/VerticalTabs";
 import PersonalInfo from "../components/profile/PersonalInfo";
 
 const styles = {
-  profileContainer: {
-    display: "flex",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    flexDirection: "column",
+  tabContainer: {
+    marginRight: 2,
+    marginBottom: 2,
   },
 };
 
@@ -18,10 +16,8 @@ const ProfilePage: NextPage = () => {
       {/* Personal information section */}
 
       <PersonalInfo />
-
-      <Box sx={styles.profileContainer}>
+      <Box sx={styles.tabContainer}>
         {/* Profile vertical tab menu sesction */}
-
         <VerticalTabs />
       </Box>
     </Box>
