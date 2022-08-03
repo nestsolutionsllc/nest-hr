@@ -1,4 +1,4 @@
-import { ReactNode, SyntheticEvent, useState } from "react";
+import { FC, ReactNode, SyntheticEvent, useState } from "react";
 import { Tabs, Tab, Box, Stack } from "@mui/material";
 import Ladder from "./Ladder";
 import Salary from "./Salary";
@@ -72,7 +72,7 @@ const styles = {
   },
 };
 
-const TabPanel = (props: TabPanelProps) => {
+const TabPanel: FC<TabPanelProps> = props => {
   const { children, index, value, ...other } = props;
   return (
     <Box role="tabpanel" hidden={value !== index} id={`vertical-tabpanel-${index}`} {...other}>
@@ -81,7 +81,7 @@ const TabPanel = (props: TabPanelProps) => {
   );
 };
 
-const VerticalTabs = () => {
+const VerticalTabs: FC = () => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
