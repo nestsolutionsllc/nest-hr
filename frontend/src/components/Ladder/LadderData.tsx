@@ -1,11 +1,4 @@
-import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from "chart.js";
-import { Radar } from "react-chartjs-2";
-import { FC } from "react";
-import { Box } from "@mui/material";
-
-ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
-
-const levelData = {
+export const levelData = {
   Current: {
     technology: 2,
     system: 2,
@@ -101,119 +94,62 @@ export const Information = {
     ["Community", "Makes an impact on the tech community"],
   ],
   d1: [
-    ["Technology", "Adopts"],
-    ["System", "Enhances"],
-    ["People", "Learns"],
-    ["Process", "Follows"],
-    ["Influence", "Subsystem"],
+    ["Technology", 1],
+    ["System", 1],
+    ["People", 1],
+    ["Process", 1],
+    ["Influence", 1],
   ],
   d2: [
-    ["Technology", "Adopts"],
-    ["System", "Designs"],
-    ["People", "Supports"],
-    ["Process", "Enforces"],
-    ["Influence", "Subsystem"],
+    ["Technology", 1],
+    ["System", 2],
+    ["People", 2],
+    ["Process", 2],
+    ["Influence", 1],
   ],
   d3: [
-    ["Technology", "Specializes"],
-    ["System", "Designs"],
-    ["People", "Supports"],
-    ["Process", "Challenges"],
-    ["Influence", "Team"],
+    ["Technology", 2],
+    ["System", 2],
+    ["People", 2],
+    ["Process", 3],
+    ["Influence", 2],
   ],
   d4: [
-    ["Technology", "Evangelizes"],
-    ["System", "Owns"],
-    ["People", "Mentors"],
-    ["Process", "Challenges"],
-    ["Influence", "Team"],
+    ["Technology", 3],
+    ["System", 3],
+    ["People", 3],
+    ["Process", 3],
+    ["Influence", 2],
   ],
   d5: [
-    ["Technology", "Masters"],
-    ["System", "Evolves"],
-    ["People", "Mentors"],
-    ["Process", "Adjusts"],
-    ["Influence", "Multuple Teams"],
+    ["Technology", 4],
+    ["System", 4],
+    ["People", 3],
+    ["Process", 4],
+    ["Influence", 3],
   ],
   d6: [
-    ["Technology", "Creates"],
-    ["System", "Leads"],
-    ["People", "Mentors"],
-    ["Process", "Adjusts"],
-    ["Influence", "Company"],
+    ["Technology", 5],
+    ["System", 5],
+    ["People", 3],
+    ["Process", 4],
+    ["Influence", 4],
   ],
   d7: [
-    ["Technology", "Creates"],
-    ["System", "Leads"],
-    ["People", "Mentors"],
-    ["Process", "Adjusts"],
-    ["Influence", "Community"],
+    ["Technology", 5],
+    ["System", 5],
+    ["People", 3],
+    ["Process", 4],
+    ["Influence", 5],
+  ],
+  Current: [
+    ["Technology", 2],
+    ["System", 2],
+    ["People", 2],
+    ["Process", 2],
+    ["Influence", 2],
   ],
 };
 
 export type levelsType = "Current" | "d1" | "d2" | "d3" | "d4" | "d5" | "d6" | "d7";
-
-export const Ladder: FC<{ width: string; label: levelsType }> = ({ width, label }) => {
-  console.log(label);
-  const data = {
-    labels: ["Technology", "System", "People", "Process", "Influence"],
-    datasets: [
-      {
-        label,
-        data: [
-          levelData[label].technology,
-          levelData[label].system,
-          levelData[label].people,
-          levelData[label].process,
-          levelData[label].influence,
-        ],
-        backgroundColor: "transparent",
-        borderColor: "#0070c0",
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 1 / 1,
-    plugins: {
-      tooltip: { callbacks: { label: a => `${a.raw}.${Information[a.label][a.raw - 1][0]}` } },
-      legend: {
-        display: false,
-      },
-    },
-    scales: {
-      r: {
-        grid: {
-          color: ["#cccccc", "#cccccc", "#cccccc", "#cccccc", "#cccccc", "black"],
-        },
-        angleLines: {
-          color: "#cccccc",
-        },
-        ticks: {
-          color: ["none", "black", "black", "black", "black", "black"],
-          font: {
-            size: 20,
-          },
-          backdropColor: "transparent",
-        },
-        beginAtZero: true,
-        min: 0,
-        max: 6,
-        pointLabels: {
-          font: {
-            size: 20,
-          },
-          color: "black",
-        },
-      },
-    },
-  };
-
-  return (
-    <Box style={{ width }}>
-      <Radar data={data} options={options} />
-    </Box>
-  );
-};
+export type descriptionType = "Technology" | "System" | "People" | "Process" | "Influence" | levelsType;

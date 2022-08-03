@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { Box } from "@mui/material";
 import MainLayout from "../layouts/MainLayout";
-import LadderInformation from "../components/LadderInformation";
+import LadderInformation from "../components/Ladder/LadderInformation";
 
 const styles = {
   container: {
@@ -16,7 +16,7 @@ const HomePage: NextPage = () => {
     <MainLayout>
       <Box sx={styles.container}>
         <LadderInformation type={"level"} />
-        <LadderInformation type={"description"} />
+        {/* <LadderInformation type={"description"} /> */}
       </Box>
     </MainLayout>
   );
