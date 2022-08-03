@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-const Daily = () => {
+const Request = () => {
   return (
     <Box>
-      <Typography>Daily sample page</Typography>
+      <Typography>Request</Typography>
     </Box>
   );
 };
-export default Daily;
+export default Request;

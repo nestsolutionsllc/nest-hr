@@ -1,6 +1,6 @@
 import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Button, styled } from "@mui/material";
+import { Box, Button, styled } from "@mui/material";
 import CalendarIcon from "@mui/icons-material/CalendarToday";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 
@@ -121,6 +121,9 @@ const styles = {
     alignItems: "center",
     background: "#F5F5F5",
   },
+  sideBarIconButton: {
+    px: 0,
+  },
 };
 
 const SideBarItemContainer = ({
@@ -136,7 +139,7 @@ const SideBarItemContainer = ({
 }) => {
   const router = useRouter();
   return (
-    <div style={styles.sideBarItemContainer}>
+    <Box sx={styles.sideBarItemContainer}>
       <StyledButton
         disableElevation
         disableRipple
@@ -148,12 +151,13 @@ const SideBarItemContainer = ({
           }
           setOpen(true);
         }}
+        sx={styles.sideBarIconButton}
       >
-        <div style={styles.sideBarItemIcon}>{menuItem.icon}</div>
+        <Box sx={styles.sideBarItemIcon}>{menuItem.icon}</Box>
         {menuItem.title}
       </StyledButton>
-      <div
-        style={{
+      <Box
+        sx={{
           display: openTab === menuItem.title ? "flex" : "none",
           flexDirection: "column" as const,
         }}
@@ -169,8 +173,8 @@ const SideBarItemContainer = ({
             {tab.title}
           </StyledListItemButton>
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
@@ -182,7 +186,7 @@ const SideBar: FC<IProps> = ({ open, setOpen }) => {
     }
   }, [open]);
   return (
-    <div style={styles.sideBar}>
+    <Box sx={styles.sideBar}>
       {menuItems.map(({ title, children, icon }, index) => {
         return (
           <SideBarItemContainer
@@ -194,7 +198,7 @@ const SideBar: FC<IProps> = ({ open, setOpen }) => {
           />
         );
       })}
-    </div>
+    </Box>
   );
 };
 
