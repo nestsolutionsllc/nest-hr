@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { Typography, Stack } from "@mui/material";
 
 const styles = {
@@ -8,7 +9,7 @@ const styles = {
   },
 };
 
-const Onboard = () => {
+const Onboard: FC = () => {
   return (
     <Stack>
       <Typography variant="h4" sx={styles.title}>
