@@ -1,5 +1,25 @@
 import { InfoType, SkillItemType, CertificateItemType, AwardItemType, CheckListMockType, ChartType } from "./type";
 
+export type InfoType = {
+  lastName: string;
+  firstName: string;
+  departmentName: string;
+  position: string;
+  email: string;
+  salary: string;
+  joiningDate: Date;
+  userPhoto: string;
+};
+export type LanguageType = {
+  languageName: string;
+  levelOfProficiency: string;
+  countryPhoto: string;
+};
+export const LANGUAGE_MOCK_DATA: LanguageType = {
+  languageName: "English",
+  levelOfProficiency: "Intermediate",
+  countryPhoto: "https://rainbowfilter.io/images/filters/american-flag/100x100.png",
+};
 export const INFO_MOCK_DATA: InfoType = {
   lastName: "Bill",
   firstName: "Duluu",
