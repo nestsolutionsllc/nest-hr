@@ -8,6 +8,8 @@ const styles = {
     boxShadow: "0px 0px 8px 0px rgba(0,0,0,0.1)",
     backgroundColor: "#fff",
     borderRadius: 2,
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     borderBottom: 1,
@@ -18,7 +20,7 @@ const styles = {
     borderLeft: 0.2,
   },
   avatar: {
-    width: "45%",
+    width: "70%",
     height: "100%",
   },
   departmentChip: { maxWidth: "200px" },
@@ -32,10 +34,10 @@ const PersonalInfo: FC = () => {
         Personal information
       </Typography>
       <Grid container sx={styles.container} p={6}>
-        <Grid item sm={2}>
+        <Grid item lg={2} alignItems="center">
           <Avatar alt="Duluu" src={userPhoto} sx={styles.avatar} />
         </Grid>
-        <Grid item sm={3}>
+        <Grid item lg={3}>
           <Box display={"flex"} flexDirection="column" justifyContent={"space-evenly"}>
             <Typography variant="h5">
               {lastName} {firstName}
@@ -48,7 +50,7 @@ const PersonalInfo: FC = () => {
             {/* <Typography variant="body1">Social media account</Typography> */}
           </Box>
         </Grid>
-        <Grid item sm={3}>
+        <Grid item lg={3} xs={12}>
           <Stack spacing={3} sx={styles.infoBorder} pl={6}>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
               <BusinessCenterIcon />
@@ -66,7 +68,7 @@ const PersonalInfo: FC = () => {
             </Stack>
           </Stack>
         </Grid>
-        <Grid item sm={3}>
+        <Grid item lg={3}>
           <Stack spacing={4} sx={styles.infoBorder} pl={6}>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
               <BusinessCenterIcon />

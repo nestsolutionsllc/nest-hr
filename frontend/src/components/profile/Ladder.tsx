@@ -1,4 +1,5 @@
 import { Typography, Stack } from "@mui/material";
+import { FC } from "react";
 
 const styles = {
   title: {
@@ -8,7 +9,7 @@ const styles = {
   },
 };
 
-const Ladder = () => {
+const Ladder: FC = () => {
   return (
     <Stack>
       <Typography variant="h4" sx={styles.title}>
