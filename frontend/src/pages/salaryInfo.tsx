@@ -2,8 +2,117 @@ import type { NextPage } from "next";
 import { Button } from "@mui/material";
 import { useState } from "react";
 import MainLayout from "../layouts/MainLayout";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />;
+
+function createData(name: number, calories: string) {
+  return {
+    name,
+    calories,
+    history: [
+      {
+        date: 40000,
+        customerId: "+10000",
+        amount: "-15000",
+      },
+      {
+        date: 37000,
+        customerId: "+15000",
+        amount: "-10000",
+      },
+    ],
+  };
+}
+
+function Row(props: { row: ReturnType<typeof createData> }) {
+  const { row } = props;
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <React.Fragment>
+      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+        <TableCell>
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell component="th" scope="row">
+          {row.name}
+        </TableCell>
+        <TableCell align="right">{row.calories}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Typography variant="h6" gutterBottom component="div">
+                Salary Details
+              </Typography>
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Amount</TableCell>
+                    <TableCell>Bonus/Allowance</TableCell>
+                    <TableCell align="right">Tax/Insurance</TableCell>
+                    <TableCell align="right">Total</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {row.history.map(historyRow => (
+                    <TableRow key={historyRow.date}>
+                      <TableCell component="th" scope="row">
+                        {historyRow.date}
+                      </TableCell>
+                      <TableCell>{historyRow.customerId}</TableCell>
+                      <TableCell align="right">{historyRow.amount}</TableCell>
+                      <TableCell align="right">47000</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </React.Fragment>
+  );
+}
+
+const rows = [createData(50000, "November 15"), createData(43000, "January 18")];
+
+function CollapsibleTable() {
+  return (
+    <TableContainer>
+      <Table aria-label="collapsible table" style={{ width: "41vw" }}>
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell align="left">Amount received</TableCell>
+            <TableCell align="right">Date</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map(row => (
+            <Row key={row.name} row={row} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
 
 const SalaryPage: NextPage = () => {
   const [type, setType] = useState("text");
@@ -63,33 +172,6 @@ const SalaryPage: NextPage = () => {
             </Button>
           </div>
           <div className="salary-table" style={{ marginTop: 15 }}>
-            {/* <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Salary</TableCell>
-            <TableCell align="right">Bonus</TableCell>
-            <TableCell align="right">Allowance</TableCell>
-            <TableCell align="right">Insurance</TableCell>
-            <TableCell align="right">Tax</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.amount}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.amount}
-              </TableCell>
-              <TableCell align="right">{row.bonus}</TableCell>
-              <TableCell align="right">{row.allowance}</TableCell>
-              <TableCell align="right">{row.insurance}</TableCell>
-              <TableCell align="right">{row.tax}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table> */}
             <div className="salary-breakdown">
               <table cellPadding={2} style={{ border: "solid black 1px", borderCollapse: "collapse", width: "41vw" }}>
                 <tr>
@@ -101,12 +183,6 @@ const SalaryPage: NextPage = () => {
                   <th style={{ border: "solid black 1px" }}>Total</th>
                 </tr>
                 <tr>
-                  {/* <td style={{border:"solid black 1px", textAlign:"center"}}>{list.salary}</td>
-          <td style={{border:"solid black 1px", textAlign:"center"}}>{list.bonus}</td>
-          <td style={{border:"solid black 1px", textAlign:"center"}}>{list.allowance}</td>
-          <td style={{border:"solid black 1px", textAlign:"center"}}>{list.insurance}</td>
-          <td style={{border:"solid black 1px", textAlign:"center"}}>{list.tax}</td>
-          <td style={{border:"solid black 1px", textAlign:"center"}}>{list.total}</td> */}
                   <td style={{ border: "solid black 1px", textAlign: "center" }}>
                     <input
                       style={{ border: "none", fontFamily: "Roboto", fontWeight: 500, textAlign: "center" }}
@@ -157,6 +233,9 @@ const SalaryPage: NextPage = () => {
                   </td>
                 </tr>
               </table>
+              <div className="payroll" style={{ fontFamily: "Roboto", marginTop: 15 }}>
+                <CollapsibleTable />
+              </div>
             </div>
           </div>
         </div>
