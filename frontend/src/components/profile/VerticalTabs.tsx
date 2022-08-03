@@ -3,7 +3,7 @@ import { Tabs, Tab, Box, Stack } from "@mui/material";
 import Ladder from "./Ladder";
 import Salary from "./Salary";
 import Onboard from "./Onboard";
-import Achievement from "./Achievement";
+import Achievement from "./achievement/Achievement";
 
 const tabItems = [
   {
