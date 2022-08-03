@@ -96,7 +96,7 @@ const rows = [createData(50000, "November 15"), createData(43000, "January 18")]
 function CollapsibleTable() {
   return (
     <TableContainer>
-      <Table aria-label="collapsible table" style={{ width: "41vw" }}>
+      <Table aria-label="collapsible table" style={{ minWidth: "41vw" }}>
         <TableHead>
           <TableRow>
             <TableCell />
@@ -165,13 +165,13 @@ const SalaryPage: NextPage = () => {
               }}
               type={type}
               disabled={true}
-              value={"60000000$"}
+              value={"60000$"}
             />
             <Button style={{ marginTop: 50 }} onClick={hider}>
               Hide it
             </Button>
           </div>
-          <div className="salary-table" style={{ marginTop: 15 }}>
+          <div className="salary-table" style={{ marginTop: 15, width: "41vw" }}>
             <div className="salary-breakdown">
               <table cellPadding={2} style={{ border: "solid black 1px", borderCollapse: "collapse", width: "41vw" }}>
                 <tr>
