@@ -1,6 +1,23 @@
 import { useState, FC } from "react";
-import { Typography, Button, Fade, Modal, Box, Backdrop, Input, Stack } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+import {
+  Typography,
+  Button,
+  Fade,
+  Modal,
+  Box,
+  Backdrop,
+  Input,
+  Stack,
+  Theme,
+  useTheme,
+  OutlinedInput,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const styles = {
   container: {
@@ -66,7 +83,65 @@ const styles = {
   },
 };
 
-const UserModal: FC = () => {
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const countryLanguages = ["English", "German", "Chinese", "Korean", "Mongolian"];
+
+const getStyles = (languages: string, language: string[], theme: Theme) => {
+  return {
+    fontWeight:
+      language.indexOf(languages) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
+  };
+};
+
+export const LanguageModal = () => {
+  const theme = useTheme();
+  const [language, setlanguage] = useState<string[]>([]);
+
+  const handleChange = (event: SelectChangeEvent<typeof language>) => {
+    const {
+      target: { value },
+    } = event;
+    setlanguage(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  return (
+    <Stack>
+      <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-languages-label">Languages</InputLabel>
+        <Select
+          labelId="demo-multiple-languages-label"
+          id="demo-multiple-languages"
+          multiple
+          value={language}
+          onChange={handleChange}
+          input={<OutlinedInput label="languages" />}
+          MenuProps={MenuProps}
+        >
+          {countryLanguages.map(languages => (
+            <MenuItem key={languages} value={languages} style={getStyles(languages, language, theme)}>
+              {languages}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Stack>
+  );
+};
+
+export const UserModal: FC = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -74,7 +149,7 @@ const UserModal: FC = () => {
   return (
     <Stack>
       <Button sx={styles.edit} onClick={handleOpen}>
-        <EditIcon sx={styles.icon} />
+        <MoreHorizIcon sx={styles.icon} />
       </Button>
       <Modal
         open={open}
@@ -95,7 +170,7 @@ const UserModal: FC = () => {
                 <Input sx={styles.input} placeholder="Job Title"></Input>
               </Box>
               <Box sx={styles.inputStyle}>
-                <Input sx={styles.input} placeholder="Company Name"></Input>
+                <Input sx={styles.input} placeholder="Company languages"></Input>
               </Box>
               <Box sx={styles.inputStyle}>
                 <Input sx={styles.input} placeholder="Location"></Input>
@@ -122,5 +197,3 @@ const UserModal: FC = () => {
     </Stack>
   );
 };
-
-export default UserModal;

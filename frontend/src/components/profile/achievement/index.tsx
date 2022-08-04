@@ -8,7 +8,6 @@ const styles = {
     borderColor: "#f0f2f5",
   },
 };
-
 const Achievement = () => {
   return (
     <Stack spacing={3}>

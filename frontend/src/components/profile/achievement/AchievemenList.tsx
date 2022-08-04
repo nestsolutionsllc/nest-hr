@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { Stack, Typography, Card, CardContent, Divider } from "@mui/material";
 import { SkillItem, CertificateItem, AwardItem, LanguageItem } from "./AchievementItem";
 import { SKILL_MOCK_DATA, CERTIFICATE_MOCK_DATA, AWARD_MOCK_DATA, LANGUAGE_MOCK_DATA } from "../mockData";
+import { LanguageModal } from "./UserModal";
 
 const styles = {
   cardShadow: {
@@ -10,6 +11,7 @@ const styles = {
   divider: {
     marginTop: 1,
     marginBottom: 4,
+    width: "auto",
   },
 };
 
@@ -65,10 +67,13 @@ export const Awards = () => {
 
 export const Language = () => {
   return (
-    <CardHeader genre="Languages">
-      {LANGUAGE_MOCK_DATA.map((item, index) => (
-        <LanguageItem key={index} {...item} />
-      ))}
+    <CardHeader genre="Language">
+      <LanguageModal />
+      <Stack direction="row" flexWrap="wrap" minWidth={1} width="auto">
+        {LANGUAGE_MOCK_DATA.map((item, index) => (
+          <LanguageItem key={index} {...item} />
+        ))}
+      </Stack>
     </CardHeader>
   );
 };

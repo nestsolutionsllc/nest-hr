@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Stack, Typography, Rating, Card, CardContent, Avatar, CardActions } from "@mui/material";
+import { Stack, Typography, Rating, Card, Avatar, CardActions } from "@mui/material";
 import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
 import CircleIcon from "@mui/icons-material/Circle";
 import { SkillItemType, CertificateItemType, AwardItemType, LanguageItemType } from "../type";
@@ -111,41 +111,16 @@ export const AwardItem: FC<AwardItemType> = ({ date, title, description }) => {
 
 export const LanguageItem: FC<LanguageItemType> = ({ countryPhoto, levelOfProficiency, languageName }) => {
   return (
-    <Card sx={styles.container}>
-      <CardContent sx={styles.contentContainer}>
-        <Typography fontWeight={"bold"} gutterBottom variant="h5" component="div">
-          Language
-        </Typography>
-      </CardContent>
-      <CardActions sx={styles.buttonContainer}>
-        <Card sx={styles.card}>
-          <Avatar src={countryPhoto} sx={styles.circle} />
-          <Card sx={styles.languageContainer}>
-            <Typography fontWeight={"bold"}>{languageName}</Typography>
-            <Typography fontWeight={"bold"} fontSize={13} sx={{ opacity: 0.3 }}>
-              {levelOfProficiency}
-            </Typography>
-          </Card>
+    <CardActions sx={styles.buttonContainer}>
+      <Card sx={styles.card}>
+        <Avatar src={countryPhoto} sx={styles.circle} />
+        <Card sx={styles.languageContainer}>
+          <Typography fontWeight={"bold"}>{languageName}</Typography>
+          <Typography fontWeight={"bold"} fontSize={13} sx={{ opacity: 0.3 }}>
+            {levelOfProficiency}
+          </Typography>
         </Card>
-        <Card sx={styles.card}>
-          <Avatar src={countryPhoto} sx={styles.circle} />
-          <Card sx={styles.languageContainer}>
-            <Typography fontWeight={"bold"}>{languageName}</Typography>
-            <Typography fontWeight={"bold"} fontSize={13} sx={{ opacity: 0.3 }}>
-              {levelOfProficiency}
-            </Typography>
-          </Card>
-        </Card>
-        <Card sx={styles.card}>
-          <Avatar src={countryPhoto} sx={styles.circle} />
-          <Card sx={styles.languageContainer}>
-            <Typography fontWeight={"bold"}>{languageName}</Typography>
-            <Typography fontWeight={"bold"} fontSize={13} sx={{ opacity: 0.3 }}>
-              {levelOfProficiency}
-            </Typography>
-          </Card>
-        </Card>
-      </CardActions>
-    </Card>
+      </Card>
+    </CardActions>
   );
 };
