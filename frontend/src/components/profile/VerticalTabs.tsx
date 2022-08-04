@@ -2,7 +2,7 @@ import { FC, ReactNode, SyntheticEvent, useState } from "react";
 import { Tabs, Tab, Box, Stack } from "@mui/material";
 import Ladder from "./Ladder";
 import Salary from "./Salary";
-import Onboard from "./Onboard";
+import Onboard from "./onboarding/Onboard";
 import Achievement from "./achievement";
 
 const tabItems = [
