@@ -7,6 +7,7 @@ export type InfoType = {
   position: string;
   email: string;
   salary: string;
+  phoneNumber: string;
   joiningDate: Date;
   userPhoto: string;
 };
@@ -47,4 +48,13 @@ export type CheckBoxListProps = {
 export type CheckListMockType = {
   name: string;
   checklists: Array<CheckListType>;
+};
+
+export type SalaryDetailType = {
+  name: string;
+  total: string;
+};
+
+export type ChartType = {
+  salaryDetail: Array<SalaryDetailType>;
 };

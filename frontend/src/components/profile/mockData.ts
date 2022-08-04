@@ -1,12 +1,13 @@
-import { InfoType, SkillItemType, CertificateItemType, AwardItemType, CheckListMockType } from "./type";
+import { InfoType, SkillItemType, CertificateItemType, AwardItemType, CheckListMockType, ChartType } from "./type";
 
 export const INFO_MOCK_DATA: InfoType = {
   lastName: "Bill",
   firstName: "Duluu",
   departmentName: "Technology",
   position: "Software Developer",
-  email: "duluuf@gmail.com",
-  salary: "99999999",
+  email: "duluu@gmail.com",
+  salary: "12000",
+  phoneNumber: "99112233",
   joiningDate: new Date(),
   userPhoto:
     "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png",
@@ -72,3 +73,24 @@ export const AWARD_MOCK_DATA: AwardItemType[] = [
       "Academic & Innovation awards recognize the contribution of a single individual (undergraduate or graduate) who has demonstrated academic excellence or displayed a creative initiative.",
   },
 ];
+
+export const CHART_MOCK_DATA: ChartType = {
+  salaryDetail: [
+    {
+      name: "Total Salary",
+      total: "80",
+    },
+    {
+      name: "Social Security wages",
+      total: "10",
+    },
+    {
+      name: "State tax",
+      total: "5",
+    },
+    {
+      name: "Medicare wages",
+      total: "15",
+    },
+  ],
+};
