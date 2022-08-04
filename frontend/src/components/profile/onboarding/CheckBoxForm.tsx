@@ -1,27 +1,35 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import { CheckBoxList } from "./CheckBoxList";
-import { MOCK_DATA } from "./mockData";
-import { CheckListType } from "./types";
+import { CHECKLIST_MOCK_DATA } from "../mockData";
+import { CheckListType } from "../type";
 
 const styles = {
   buttonsContainer: {
     width: "55%",
     display: "flex",
+    marginTop: 4,
+  },
+  title: {
+    borderBottom: 1,
+    paddingBottom: 2,
+    borderColor: "#f0f2f5",
     marginTop: 2,
   },
 };
 
 const CheckBoxForm: FC = () => {
-  const [realTimeCheckList, setRealTimeCheckList] = useState<CheckListType[]>(MOCK_DATA.checklists);
+  const [realTimeCheckList, setRealTimeCheckList] = useState<CheckListType[]>(CHECKLIST_MOCK_DATA.checklists);
 
   const resetCheckList = () => {
-    setRealTimeCheckList(MOCK_DATA.checklists);
-    console.log(MOCK_DATA.checklists);
+    setRealTimeCheckList(CHECKLIST_MOCK_DATA.checklists);
   };
 
   return (
     <Box>
+      <Typography variant="h4" sx={styles.title}>
+        Onboard Checklist
+      </Typography>
       {realTimeCheckList.map((checklist, index) => {
         return (
           <CheckBoxList key={index} mainData={realTimeCheckList} setMainData={setRealTimeCheckList} index={index} />

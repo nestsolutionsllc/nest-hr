@@ -14,6 +14,11 @@ const styles = {
     marginBottom: 32,
     display: "grid",
     gap: 10,
+    width: "100%",
+    backgroundColor: "rgb(254, 251, 239)",
+    padding: 16,
+    marginLeft: 16,
+    borderRadius: 8,
   },
 };
 
@@ -23,7 +28,7 @@ const ReadGuide: FC = () => {
       <Typography sx={styles.title} variant="h4">
         To-Read
       </Typography>
-      <Typography variant="body1">
+      <Typography variant="subtitle1">
         First of all, please get acquainted with Pinecone’s Pinecone’s structure <Link>(organizational chart)</Link>{" "}
         click below:
         <Link
@@ -34,7 +39,7 @@ const ReadGuide: FC = () => {
           Pinecone Organizational structure
         </Link>
         To get acquainted with Pinecone’s
-        <Link>Roles and Responsibilities of Each Departments</Link> below:
+        <Link> Roles and Responsibilities of Each Departments </Link> below:
         <Link
           color="inherit"
           sx={styles.newLine}
@@ -43,7 +48,7 @@ const ReadGuide: FC = () => {
           Roles and Responsibilities of Each Departments
         </Link>
         To get acquainted with Pinecone’s
-        <Link>employee policy</Link> below:
+        <Link> employee policy</Link> below:
         <Link
           color="inherit"
           sx={styles.newLine}

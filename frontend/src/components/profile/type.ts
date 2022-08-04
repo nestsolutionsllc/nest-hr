@@ -44,7 +44,7 @@ export type CheckBoxListProps = {
   index: number;
 };
 
-export type MockType = {
+export type CheckListMockType = {
   name: string;
   checklists: Array<CheckListType>;
 };

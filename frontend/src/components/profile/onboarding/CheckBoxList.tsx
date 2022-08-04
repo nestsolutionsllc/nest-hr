@@ -1,15 +1,19 @@
 import { Box, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
-import { FC } from "react";
-import { CheckBoxListProps, QuestionType, CheckListType } from "./types";
+import { FC, useState, useEffect } from "react";
+import { CheckBoxListProps, QuestionType, CheckListType } from "../type";
 
 const styles = {
   container: {
-    marginTop: 4,
+    marginTop: 2,
+    boxShadow: "0 2px 8px 0 rgb(5 34 97 / 10%)",
+    borderRadius: 4,
+    paddingLeft: 4,
+    paddingTop: 2,
+    paddingBottom: 2,
   },
   title: {
     fontWeight: "bold",
     fontSize: 32,
-    marginBottom: 2,
   },
 };
 
@@ -17,6 +21,17 @@ export const CheckBoxList: FC<CheckBoxListProps> = ({ mainData, setMainData, ind
   const currentCheckList = mainData[index];
   const title = currentCheckList.type;
   const nestedQuestions = currentCheckList.questions;
+  const [allCompleted, setAllCompleted] = useState(false);
+
+  useEffect(() => {
+    setAllCompleted(true);
+
+    currentCheckList.questions.map(question => {
+      if (!question.checked) setAllCompleted(false);
+      return question;
+    });
+  }, [currentCheckList]);
+
   const updateCheckList = (checkedIndex: number) => {
     const newCheckListQuestions: QuestionType[] = currentCheckList.questions.map((nestedQuestion, i) => {
       if (i === checkedIndex) {
@@ -37,12 +52,20 @@ export const CheckBoxList: FC<CheckBoxListProps> = ({ mainData, setMainData, ind
       }
       return checklist;
     });
+
     setMainData(newMainData);
   };
 
   return (
     <Box sx={styles.container}>
-      <Box sx={styles.title}>{title}</Box>
+      <Box
+        sx={[
+          styles.title,
+          { textDecoration: allCompleted ? "line-through" : "none", opacity: allCompleted ? "0.5" : "1" },
+        ]}
+      >
+        {title}
+      </Box>
       <FormGroup>
         {nestedQuestions.map((nestedQuestion, questionIndex) => {
           const { checked } = nestedQuestion;
