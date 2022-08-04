@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { ReactNode, useState } from "react";
 import { Stack, Card, CardHeader, CardContent, Grid } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -5,6 +6,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import { SkillItem, CertificateItem, AwardItem } from "./AchievementItem";
 import ProfileModal from "../ProfileModal";
 import { ACHIEVEMENT_MOCK_DATA } from "../mockData";
+=======
+import React, { ReactNode } from "react";
+import { Stack, Typography, Card, CardContent, Divider } from "@mui/material";
+import { SkillItem, CertificateItem, AwardItem, LanguageItem } from "./AchievementItem";
+import { SKILL_MOCK_DATA, CERTIFICATE_MOCK_DATA, AWARD_MOCK_DATA, LANGUAGE_MOCK_DATA } from "../mockData";
+>>>>>>> eee297e (refactor: rebased)
 
 const styles = {
   cardShadow: {
@@ -65,5 +72,15 @@ export const Achievements = () => {
         );
       })}
     </>
+  );
+};
+
+export const Language = () => {
+  return (
+    <CardHeader genre="Languages">
+      {LANGUAGE_MOCK_DATA.map((item, index) => (
+        <LanguageItem key={index} {...item} />
+      ))}
+    </CardHeader>
   );
 };
