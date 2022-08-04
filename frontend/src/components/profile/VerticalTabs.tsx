@@ -1,14 +1,14 @@
 import { FC, ReactNode, SyntheticEvent, useState } from "react";
 import { Tabs, Tab, Box, Stack } from "@mui/material";
-import Ladder from "./Ladder";
-import Salary from "./Salary";
+import Level from "./Level";
+import Salary from "./salary";
 import Onboard from "./onboarding/Onboard";
 import Achievement from "./achievement";
 
 const tabItems = [
   {
     title: "Ladder Level",
-    component: <Ladder />,
+    component: <Level />,
   },
   {
     title: "Salary",
@@ -70,6 +70,9 @@ const styles = {
     alignItems: "flex-start",
     textTransform: "capitalize",
   },
+  tabListContainer: {
+    width: "100%",
+  },
 };
 
 const TabPanel: FC<TabPanelProps> = props => {
@@ -93,7 +96,7 @@ const VerticalTabs: FC = () => {
       <Box sx={styles.tabList}>
         <Stack sx={styles.tabHeader}>
           <Box sx={styles.iconWrapper}>
-            <img src="/assets/userprofile/person.svg" alt="person" />
+            <img src="/assets/profile/person.svg" alt="person" />
           </Box>
         </Stack>
         <Tabs orientation="vertical" value={value} onChange={handleChange} sx={styles.tabs}>
@@ -102,7 +105,7 @@ const VerticalTabs: FC = () => {
           ))}
         </Tabs>
       </Box>
-      <Box>
+      <Box sx={styles.tabListContainer}>
         {tabItems.map((item, index) => (
           <TabPanel value={value} index={index} key={index}>
             {item.component}
