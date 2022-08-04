@@ -12,6 +12,12 @@ export type InfoType = {
   userPhoto: string;
 };
 
+export type LanguageItemType = {
+  languageName: string;
+  levelOfProficiency: string;
+  countryPhoto: string;
+};
+
 export type SkillItemType = {
   title: string;
   rating: number;

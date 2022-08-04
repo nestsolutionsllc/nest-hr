@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Stack, Typography, Card, CardContent, Divider } from "@mui/material";
-import { SkillItem, CertificateItem, AwardItem } from "./AchievementItem";
-import { SKILL_MOCK_DATA, CERTIFICATE_MOCK_DATA, AWARD_MOCK_DATA } from "../mockData";
+import { SkillItem, CertificateItem, AwardItem, LanguageItem } from "./AchievementItem";
+import { SKILL_MOCK_DATA, CERTIFICATE_MOCK_DATA, AWARD_MOCK_DATA, LANGUAGE_MOCK_DATA } from "../mockData";
 
 const styles = {
   cardShadow: {
@@ -58,6 +58,16 @@ export const Awards = () => {
     <CardHeader genre="Awards">
       {AWARD_MOCK_DATA.map((item, index) => (
         <AwardItem key={index} {...item} />
+      ))}
+    </CardHeader>
+  );
+};
+
+export const Language = () => {
+  return (
+    <CardHeader genre="Languages">
+      {LANGUAGE_MOCK_DATA.map((item, index) => (
+        <LanguageItem key={index} {...item} />
       ))}
     </CardHeader>
   );

@@ -1,5 +1,5 @@
 import { Typography, Stack, Grid } from "@mui/material";
-import { Skill, Certificate, Awards } from "./AchievemenList";
+import { Skill, Certificate, Awards, Language } from "./AchievemenList";
 
 const styles = {
   title: {
@@ -24,6 +24,9 @@ const Achievement = () => {
         </Grid>
         <Grid item md={5}>
           <Awards />
+        </Grid>
+        <Grid item md={6}>
+          <Language />
         </Grid>
       </Grid>
     </Stack>
