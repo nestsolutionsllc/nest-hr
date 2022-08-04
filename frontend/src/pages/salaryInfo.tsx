@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import { Button } from "@mui/material";
-import { useState } from "react";
 import MainLayout from "../layouts/MainLayout";
 import * as React from "react";
+import { useState, useRef, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
@@ -15,7 +15,8 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
+import PaymentForm from "../components/userprofile/CreditCard";
+import CardComp from "../components/userprofile/CreditCard";
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />;
 
 function createData(name: number, calories: string) {
@@ -114,7 +115,7 @@ function CollapsibleTable() {
   );
 }
 
-const SalaryPage: NextPage = () => {
+const SalaryPage: NextPage = props => {
   const [type, setType] = useState("text");
 
   const hider = () => {
@@ -236,6 +237,7 @@ const SalaryPage: NextPage = () => {
               <div className="payroll" style={{ fontFamily: "Roboto", marginTop: 15 }}>
                 <CollapsibleTable />
               </div>
+              <CardComp />
             </div>
           </div>
         </div>

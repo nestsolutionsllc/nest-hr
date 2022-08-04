@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { Button } from "@mui/material";
 import Link from "next/link";
 import MainLayout from "../layouts/MainLayout";
+import CardComp from "../components/userprofile/CreditCard";
 
 const HomePage: NextPage = () => {
   const router = useRouter();
@@ -20,6 +21,7 @@ const HomePage: NextPage = () => {
               Salary info
             </Button>
           </Link>
+          <CardComp />
         </div>
       </div>
     </MainLayout>
