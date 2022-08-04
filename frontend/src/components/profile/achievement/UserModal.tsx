@@ -66,7 +66,7 @@ const styles = {
   },
 };
 
-export const UserModal: FC = () => {
+const UserModal: FC = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
