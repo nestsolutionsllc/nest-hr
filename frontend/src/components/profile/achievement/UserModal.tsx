@@ -111,10 +111,7 @@ export const LanguageModal = () => {
     const {
       target: { value },
     } = event;
-    setlanguage(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setlanguage(typeof value === "string" ? value.split(",") : value);
   };
 
   return (
