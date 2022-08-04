@@ -1,5 +1,6 @@
-import { Typography, Stack } from "@mui/material";
+import { Typography, Stack, Box } from "@mui/material";
 import { FC } from "react";
+import Ladder from "../okr/ladder/Ladder";
 
 const styles = {
   title: {
@@ -9,15 +10,18 @@ const styles = {
   },
 };
 
-const Ladder: FC = () => {
+const Level: FC = () => {
   return (
     <Stack>
       <Typography variant="h4" sx={styles.title}>
         Ladder level
       </Typography>
+      <Box display={"flex"} justifyItems={"center"} width={"500px"}>
+        <Ladder label={"Current"} />
+      </Box>
       <Typography variant="body1">Ladder level section</Typography>
     </Stack>
   );
 };
 
-export default Ladder;
+export default Level;

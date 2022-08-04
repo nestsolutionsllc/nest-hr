@@ -27,7 +27,7 @@ const styles = {
 };
 
 const PersonalInfo: FC = () => {
-  const { lastName, firstName, departmentName, position, email, salary, joiningDate, userPhoto } = INFO_MOCK_DATA;
+  const { lastName, firstName, departmentName, position, email, phoneNumber, joiningDate, userPhoto } = INFO_MOCK_DATA;
   return (
     <Box mb={4} mr={2}>
       <Typography variant="h4" sx={styles.title}>
@@ -38,8 +38,8 @@ const PersonalInfo: FC = () => {
           <Avatar alt="Duluu" src={userPhoto} sx={styles.avatar} />
         </Grid>
         <Grid item lg={3}>
-          <Box display={"flex"} flexDirection="column" justifyContent={"space-evenly"}>
-            <Typography variant="h5">
+          <Box display={"flex"} flexDirection="column">
+            <Typography variant="h5" fontWeight={700}>
               {lastName} {firstName}
             </Typography>
             <Chip label={departmentName} color="primary" sx={styles.departmentChip} />
@@ -55,14 +55,14 @@ const PersonalInfo: FC = () => {
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
               <BusinessCenterIcon />
               <Stack>
-                <Typography>Department</Typography>
+                <Typography fontWeight={700}>Department</Typography>
                 <Typography>{departmentName}</Typography>
               </Stack>
             </Stack>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
               <BusinessCenterIcon />
               <Stack>
-                <Typography>Email</Typography>
+                <Typography fontWeight={700}>Email</Typography>
                 <Typography>{email}</Typography>
               </Stack>
             </Stack>
@@ -73,14 +73,14 @@ const PersonalInfo: FC = () => {
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
               <BusinessCenterIcon />
               <Stack>
-                <Typography>Salary</Typography>
-                <Typography>{salary}</Typography>
+                <Typography fontWeight={700}>Contact</Typography>
+                <Typography>{phoneNumber}</Typography>
               </Stack>
             </Stack>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
               <BusinessCenterIcon />
               <Stack>
-                <Typography>Joining Date</Typography>
+                <Typography fontWeight={700}>Joining Date</Typography>
                 <Typography>{joiningDate.toDateString()}</Typography>
               </Stack>
             </Stack>
