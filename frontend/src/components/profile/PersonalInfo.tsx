@@ -1,6 +1,8 @@
-import { FC } from "react";
-import { Typography, Box, Avatar, Stack, Chip, Grid } from "@mui/material";
-import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+import { FC, useState } from "react";
+import { Typography, Box, Avatar, Stack, Chip, Grid, Link } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import { Smartphone, Work, GitHub, Edit, LinkedIn, AlternateEmail, DateRange } from "@mui/icons-material";
+import ProfileModal from "./ProfileModal";
 import { INFO_MOCK_DATA } from "./mockData";
 
 const styles = {
@@ -10,6 +12,12 @@ const styles = {
     borderRadius: 2,
     justifyContent: "center",
     alignItems: "center",
+    position: "relative",
+  },
+  editBtn: {
+    position: "absolute",
+    right: 10,
+    top: 10,
   },
   title: {
     borderBottom: 1,
@@ -17,50 +25,59 @@ const styles = {
     borderColor: "#f0f2f5",
   },
   infoBorder: {
-    borderLeft: 0.2,
+    borderLeft: 1,
+    borderColor: "#e6e6e6",
   },
-  avatar: {
-    width: "70%",
-    height: "100%",
-  },
-  departmentChip: { maxWidth: "200px" },
+  departmentChip: { maxWidth: "100px" },
 };
 
 const PersonalInfo: FC = () => {
-  const { lastName, firstName, departmentName, position, email, phoneNumber, joiningDate, userPhoto } = INFO_MOCK_DATA;
+  const [showModal, setShowModal] = useState(false);
+  const { lastName, firstName, departmentName, position, email, joiningDate, userPhoto, phoneNumber } = INFO_MOCK_DATA;
+
   return (
     <Box mb={4} mr={2}>
       <Typography variant="h4" sx={styles.title}>
         Personal information
       </Typography>
       <Grid container sx={styles.container} p={6}>
+        <Stack sx={styles.editBtn}>
+          <IconButton onClick={() => setShowModal(true)}>
+            <Edit />
+          </IconButton>
+        </Stack>
+        {showModal && <ProfileModal showModal={showModal} setShowModal={setShowModal} genre={"info"} />}
         <Grid item lg={2} alignItems="center">
-          <Avatar alt="Duluu" src={userPhoto} sx={styles.avatar} />
+          <Avatar alt="Duluu" src={userPhoto} sx={{ width: 170, height: 180 }} />
         </Grid>
         <Grid item lg={3}>
-          <Box display={"flex"} flexDirection="column">
-            <Typography variant="h5" fontWeight={700}>
+          <Stack display="flex" flexDirection="column" justifyContent="space-evenly" spacing={1}>
+            <Typography variant="h5">
               {lastName} {firstName}
             </Typography>
             <Chip label={departmentName} color="primary" sx={styles.departmentChip} />
             <Typography variant="body1">{position}</Typography>
-
-            {/* Social media account if we need later  */}
-
-            {/* <Typography variant="body1">Social media account</Typography> */}
-          </Box>
+            <Stack flexDirection={"row"}>
+              <Link color="inherit" href="https://www.linkedin.com/">
+                <LinkedIn sx={{ marginRight: 1 }} />
+              </Link>
+              <Link color="inherit" href="https://github.com/">
+                <GitHub />
+              </Link>
+            </Stack>
+          </Stack>
         </Grid>
         <Grid item lg={3} xs={12}>
           <Stack spacing={3} sx={styles.infoBorder} pl={6}>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
-              <BusinessCenterIcon />
+              <Work />
               <Stack>
                 <Typography fontWeight={700}>Department</Typography>
                 <Typography>{departmentName}</Typography>
               </Stack>
             </Stack>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
-              <BusinessCenterIcon />
+              <AlternateEmail />
               <Stack>
                 <Typography fontWeight={700}>Email</Typography>
                 <Typography>{email}</Typography>
@@ -71,14 +88,14 @@ const PersonalInfo: FC = () => {
         <Grid item lg={3}>
           <Stack spacing={4} sx={styles.infoBorder} pl={6}>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
-              <BusinessCenterIcon />
+              <Smartphone />
               <Stack>
                 <Typography fontWeight={700}>Contact</Typography>
                 <Typography>{phoneNumber}</Typography>
               </Stack>
             </Stack>
             <Stack direction={"row"} alignItems={"center"} spacing={2}>
-              <BusinessCenterIcon />
+              <DateRange />
               <Stack>
                 <Typography fontWeight={700}>Joining Date</Typography>
                 <Typography>{joiningDate.toDateString()}</Typography>
