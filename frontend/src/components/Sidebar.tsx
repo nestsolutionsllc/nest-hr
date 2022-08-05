@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Box, Button, styled } from "@mui/material";
 import CalendarIcon from "@mui/icons-material/CalendarToday";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 
 type IProps = { open: boolean; setOpen: Dispatch<SetStateAction<boolean>> };
 
@@ -65,6 +66,16 @@ export const menuItems = [
       {
         title: "Ticketing Report",
         href: "/ticketing/report",
+      },
+    ],
+  },
+  {
+    title: "OrgChart",
+    icon: <AccountTreeIcon />,
+    children: [
+      {
+        title: "Organizational Chart",
+        href: "/orgchart",
       },
     ],
   },
