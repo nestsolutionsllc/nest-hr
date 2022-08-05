@@ -12,23 +12,6 @@ export type InfoType = {
   userPhoto: string;
 };
 
-export type SkillItemType = {
-  title: string;
-  rating: number;
-};
-
-export type CertificateItemType = {
-  companyName: string;
-  title: string;
-  date: string;
-};
-
-export type AwardItemType = {
-  date: string;
-  title: string;
-  description: string;
-};
-
 export type QuestionType = {
   question: string;
   checked: boolean;
@@ -57,4 +40,17 @@ export type SalaryDetailType = {
 
 export type ChartType = {
   salaryDetail: Array<SalaryDetailType>;
+};
+
+export type AchievementItemType = {
+  title?: string;
+  rating?: number;
+  companyName?: string;
+  date?: string;
+  description?: string;
+};
+
+export type AchievementListType = {
+  category: string;
+  data: Array<AchievementItemType>;
 };
