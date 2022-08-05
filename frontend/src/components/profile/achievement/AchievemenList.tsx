@@ -1,64 +1,69 @@
-import React, { ReactNode } from "react";
-import { Stack, Typography, Card, CardContent, Divider } from "@mui/material";
+import React, { ReactNode, useState } from "react";
+import { Stack, Card, CardHeader, CardContent, Grid } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
 import { SkillItem, CertificateItem, AwardItem } from "./AchievementItem";
-import { SKILL_MOCK_DATA, CERTIFICATE_MOCK_DATA, AWARD_MOCK_DATA } from "../mockData";
+import ProfileModal from "../ProfileModal";
+import { ACHIEVEMENT_MOCK_DATA } from "../mockData";
 
 const styles = {
   cardShadow: {
     boxShadow: "0px 4px 10px 0px rgba(0,0,0,0.1)",
   },
-  divider: {
-    marginTop: 1,
-    marginBottom: 4,
+  header: {
+    "& span": {
+      fontWeight: 700,
+      textTransform: "capitalize",
+    },
   },
 };
 
-const CardHeader = ({ children, genre }: { children: ReactNode; genre: string }) => {
+export const CardSection = ({ children, genre }: { children: ReactNode; genre: string }) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <Card sx={styles.cardShadow}>
-      <CardContent>
-        <Stack>
-          <Typography variant="h5" textTransform="uppercase">
-            {genre}
-          </Typography>
-        </Stack>
-        <Divider sx={styles.divider} />
-        {children}
-      </CardContent>
-    </Card>
+    <Grid item md={5}>
+      <Card sx={styles.cardShadow}>
+        <CardHeader
+          title={genre}
+          action={
+            <IconButton onClick={() => setShowModal(true)}>
+              <EditIcon />
+            </IconButton>
+          }
+          sx={styles.header}
+        />
+        {showModal && <ProfileModal showModal={showModal} setShowModal={setShowModal} genre={genre} />}
+        <CardContent>{children}</CardContent>
+      </Card>
+    </Grid>
   );
 };
 
-export const Skill = () => {
+export const Achievements = () => {
   return (
-    <CardHeader genre="Skills">
-      <Stack spacing={2}>
-        {SKILL_MOCK_DATA.map((item, index) => (
-          <SkillItem key={index} {...item} />
-        ))}
-      </Stack>
-    </CardHeader>
-  );
-};
-
-export const Certificate = () => {
-  return (
-    <CardHeader genre="Certifications">
-      <Stack direction="row" flexWrap="wrap">
-        {CERTIFICATE_MOCK_DATA.map((item, index) => (
-          <CertificateItem key={index} {...item} />
-        ))}
-      </Stack>
-    </CardHeader>
-  );
-};
-
-export const Awards = () => {
-  return (
-    <CardHeader genre="Awards">
-      {AWARD_MOCK_DATA.map((item, index) => (
-        <AwardItem key={index} {...item} />
-      ))}
-    </CardHeader>
+    <>
+      {ACHIEVEMENT_MOCK_DATA.map((item, index) => {
+        return (
+          <CardSection genre={item.category} key={index}>
+            <Stack spacing={2} direction={item.category === "certificates" ? "row" : "column"}>
+              {item.data.map(d => {
+                return (
+                  <>
+                    {item.category === "skills" && <SkillItem {...d} />}
+                    {item.category === "certificates" && (
+                      <Stack>
+                        <CertificateItem {...d} />
+                      </Stack>
+                    )}
+                    {item.category === "awards" && <AwardItem {...d} />}
+                  </>
+                );
+              })}
+            </Stack>
+          </CardSection>
+        );
+      })}
+    </>
   );
 };

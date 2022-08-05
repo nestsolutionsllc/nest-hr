@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Stack, Typography, Rating } from "@mui/material";
 import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
 import CircleIcon from "@mui/icons-material/Circle";
-import { SkillItemType, CertificateItemType, AwardItemType } from "../type";
+import { AchievementItemType } from "../type";
 
 const styles = {
   ratingIcon: {
@@ -15,14 +15,13 @@ const styles = {
   },
   cardStyle: {
     borderRadius: 3,
-    padding: 3,
-    width: "40%",
+    padding: 2,
+    width: "100%",
     background: "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)",
-    margin: 2,
   },
 };
 
-export const SkillItem = ({ title, rating }: SkillItemType) => {
+export const SkillItem = ({ title, rating }: AchievementItemType) => {
   return (
     <Stack display="flex" direction="row" justifyContent="space-between" spacing={12}>
       <Typography>{title}</Typography>
@@ -39,7 +38,7 @@ export const SkillItem = ({ title, rating }: SkillItemType) => {
   );
 };
 
-export const CertificateItem: FC<CertificateItemType> = ({ companyName, title, date }) => {
+export const CertificateItem: FC<AchievementItemType> = ({ companyName, title, date }) => {
   return (
     <Stack sx={styles.cardStyle}>
       <Typography>{companyName}</Typography>
@@ -53,7 +52,7 @@ export const CertificateItem: FC<CertificateItemType> = ({ companyName, title, d
   );
 };
 
-export const AwardItem: FC<AwardItemType> = ({ date, title, description }) => {
+export const AwardItem: FC<AchievementItemType> = ({ date, title, description }) => {
   return (
     <Stack marginBottom={3}>
       <Typography variant="subtitle2">{date}</Typography>

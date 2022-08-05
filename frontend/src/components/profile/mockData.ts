@@ -1,4 +1,4 @@
-import { InfoType, SkillItemType, CertificateItemType, AwardItemType, CheckListMockType, ChartType } from "./type";
+import { InfoType, AchievementListType, CheckListMockType, ChartType } from "./type";
 
 export const INFO_MOCK_DATA: InfoType = {
   lastName: "Bill",
@@ -37,40 +37,49 @@ export const CHECKLIST_MOCK_DATA: CheckListMockType = {
   ],
 };
 
-export const SKILL_MOCK_DATA: SkillItemType[] = [
-  { title: "HTML/CSS", rating: 3 },
-  { title: "JavaScript", rating: 4 },
-  { title: "React", rating: 6 },
-  { title: "UI Design", rating: 4 },
-  { title: "Problem solver", rating: 2 },
-  { title: "Teamwork", rating: 7 },
-];
-
-export const CERTIFICATE_MOCK_DATA: CertificateItemType[] = [
+export const ACHIEVEMENT_MOCK_DATA: AchievementListType[] = [
   {
-    companyName: "Amazon Web Service (AWS)",
-    title: "AWS Certified DevOps Engineer - Professional",
-    date: "2022 - 2025",
+    category: "skills",
+    data: [
+      { title: "HTML/CSS", rating: 3 },
+      { title: "JavaScript", rating: 4 },
+      { title: "React", rating: 6 },
+      { title: "UI Design", rating: 4 },
+      { title: "Problem solver", rating: 2 },
+      { title: "Teamwork", rating: 7 },
+    ],
   },
   {
-    companyName: "Microsoft Azure",
-    title: "Microsoft Certified Azure Solutions Architect",
-    date: "2018 - 2021",
+    category: "certificates",
+    data: [
+      {
+        companyName: "Amazon Web Service (AWS)",
+        title: "AWS Certified DevOps Engineer - Professional",
+        date: "2022 - 2025",
+      },
+      {
+        companyName: "Microsoft Azure",
+        title: "Microsoft Certified Azure Solutions Architect",
+        date: "2018 - 2021",
+      },
+    ],
   },
-];
-
-export const AWARD_MOCK_DATA: AwardItemType[] = [
   {
-    date: "2015",
-    title: "Art of the week",
-    description:
-      "Academic & Innovation awards recognize the contribution of a single individual (undergraduate or graduate) who has demonstrated academic excellence or displayed a creative initiative.",
-  },
-  {
-    date: "2014",
-    title: "Best Designer",
-    description:
-      "Academic & Innovation awards recognize the contribution of a single individual (undergraduate or graduate) who has demonstrated academic excellence or displayed a creative initiative.",
+    category: "awards",
+    data: [
+      {
+        date: "2015",
+        title: "Art of the week",
+        description:
+          "Academic & Innovation awards recognize the contribution of a single individual (undergraduate or graduate) who has demonstrated academic excellence or displayed a creative initiative.",
+      },
+      {
+        date: "2014",
+        title: "Best Designer",
+        description:
+          "Academic & Innovation awards recognize the contribution of a single individual (undergraduate or graduate) who has demonstrated academic excellence or displayed a creative initiative.",
+      },
+    ],
   },
 ];
 
