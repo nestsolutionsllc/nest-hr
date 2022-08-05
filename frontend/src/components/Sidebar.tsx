@@ -102,6 +102,16 @@ export const menuItems = [
       },
     ],
   },
+  {
+    title: "Profile",
+    icon: <AccountTreeIcon />,
+    children: [
+      {
+        title: "profile",
+        href: "/profile",
+      },
+    ],
+  },
 ];
 
 const styles = {
@@ -125,7 +135,7 @@ const styles = {
   sideBarItemIcon: {
     minWidth: "40px",
     minHeight: "40px",
-    marginRight: "16px",
+    marginRight: "30px",
     borderRadius: "2px",
     display: "flex",
     justifyContent: "center",
@@ -173,10 +183,11 @@ const SideBarItemContainer = ({
           flexDirection: "column" as const,
         }}
       >
-        {menuItem.children.map(tab => (
+        {menuItem.children.map((tab, index) => (
           <StyledListItemButton
             disableElevation
             disableRipple
+            key={index}
             onClick={() => {
               router.push(tab.href);
             }}
