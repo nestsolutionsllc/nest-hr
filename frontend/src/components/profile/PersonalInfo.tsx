@@ -28,6 +28,10 @@ const styles = {
     borderLeft: 1,
     borderColor: "#e6e6e6",
   },
+  userImg: {
+    width: 170,
+    height: 180,
+  },
   departmentChip: { maxWidth: "100px" },
 };
 
@@ -48,7 +52,7 @@ const PersonalInfo: FC = () => {
         </Stack>
         {showModal && <ProfileModal showModal={showModal} setShowModal={setShowModal} genre={"info"} />}
         <Grid item lg={2} alignItems="center">
-          <Avatar alt="Duluu" src={userPhoto} sx={{ width: 170, height: 180 }} />
+          <Avatar alt="Duluu" src={userPhoto} sx={styles.userImg} />
         </Grid>
         <Grid item lg={3}>
           <Stack display="flex" flexDirection="column" justifyContent="space-evenly" spacing={1}>
