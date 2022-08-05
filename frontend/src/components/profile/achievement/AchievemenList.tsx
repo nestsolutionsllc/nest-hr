@@ -34,6 +34,9 @@ const styles = {
     width: "auto",
 >>>>>>> cbaa368 (feat: added language card and selector)
   },
+  language: {
+    display: "flex",
+  },
 };
 
 export const CardSection = ({ children, genre }: { children: ReactNode; genre: string }) => {
@@ -89,11 +92,13 @@ export const Achievements = () => {
 export const Language = () => {
   return (
     <CardHeader genre="Language">
-      <LanguageModal />
-      <Stack direction="row" flexWrap="wrap" minWidth={1} width="auto">
-        {LANGUAGE_MOCK_DATA.map((item, index) => (
-          <LanguageItem key={index} {...item} />
-        ))}
+      <Stack sx={styles.language}>
+        <LanguageModal />
+        <Stack direction="row" flexWrap="wrap" minWidth={1} width="auto">
+          {LANGUAGE_MOCK_DATA.map((item, index) => (
+            <LanguageItem key={index} {...item} />
+          ))}
+        </Stack>
       </Stack>
     </CardHeader>
   );

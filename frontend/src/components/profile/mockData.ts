@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { InfoType, AchievementListType, CheckListMockType, ChartType } from "./type";
 =======
 <<<<<<< HEAD
@@ -7,6 +8,17 @@ import { InfoType, SkillItemType, CertificateItemType, AwardItemType, CheckListM
 import { InfoType, SkillItemType, CertificateItemType, AwardItemType, MockType, LanguageItemType } from "./type";
 >>>>>>> 76c031f (refactor: rebased)
 >>>>>>> eee297e (refactor: rebased)
+=======
+import {
+  InfoType,
+  SkillItemType,
+  CertificateItemType,
+  AwardItemType,
+  CheckListMockType,
+  ChartType,
+  LanguageItemType,
+} from "./type";
+>>>>>>> 055c06b (feat: added edit button)
 
 export const LANGUAGE_MOCK_DATA: LanguageItemType[] = [
   {
