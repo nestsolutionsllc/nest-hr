@@ -1,12 +1,23 @@
 import { Request } from "express";
 import Ticket from "../../models/ticket/ticket";
 
-export const getAllTickets = () => {
+export const getAllTicket = () => {
   return Ticket.find({});
 };
 
-export const getTickets = (request: Request) => {
-  return Ticket.find({ assignee_id: request.params.id });
+export const getTicket = (request: Request) => {
+  return Ticket.findOne({ _id: request.params.id });
+};
+
+export const getTickets = async (request: Request) => {
+  return Ticket.find({
+    $or: [
+      { reporter_id: request.body.id },
+      {
+        assignee_id: request.body.id,
+      },
+    ],
+  });
 };
 
 export const updateTicket = async (request: Request) => {

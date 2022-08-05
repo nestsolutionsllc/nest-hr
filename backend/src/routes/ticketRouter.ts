@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getTicketService,
   getAllTicketsService,
   getTicketsService,
   createTicketService,
@@ -10,9 +11,11 @@ import {
 const ticketRouter = express.Router();
 
 ticketRouter.get("/tickets", getAllTicketsService);
-ticketRouter.get("/ticket/:id", getTicketsService);
+ticketRouter.get("/ticket/:id", getTicketService);
+ticketRouter.delete("/ticket", deleteTicketService);
 ticketRouter.patch("/ticket/:id", updateTicketService);
 ticketRouter.post("/ticket", createTicketService);
-ticketRouter.delete("/ticket", deleteTicketService);
+
+ticketRouter.post("/tickets", getTicketsService);
 
 export default ticketRouter;

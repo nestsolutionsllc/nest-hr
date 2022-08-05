@@ -29,8 +29,8 @@ const ticketSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ["salary", "leave", "facility", "other"],
-    default: "leave",
+    enum: ["office", "dayoff", "other"],
+    default: "office",
   },
   priority: {
     type: String,
