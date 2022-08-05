@@ -1,8 +1,12 @@
-<<<<<<< HEAD
-import { InfoType, SkillItemType, CertificateItemType, AwardItemType, CheckListMockType, ChartType } from "./type";
-=======
-import { InfoType, SkillItemType, CertificateItemType, AwardItemType, MockType, LanguageItemType } from "./type";
->>>>>>> 76c031f (refactor: rebased)
+import {
+  InfoType,
+  SkillItemType,
+  CertificateItemType,
+  AwardItemType,
+  CheckListMockType,
+  ChartType,
+  LanguageItemType,
+} from "./type";
 
 export const LANGUAGE_MOCK_DATA: LanguageItemType[] = [
   {

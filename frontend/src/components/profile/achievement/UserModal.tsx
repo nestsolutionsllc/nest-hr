@@ -8,16 +8,13 @@ import {
   Backdrop,
   Input,
   Stack,
-  Theme,
-  useTheme,
-  OutlinedInput,
   InputLabel,
   MenuItem,
   FormControl,
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import EditIcon from "@mui/icons-material/Edit";
 
 const styles = {
   container: {
@@ -76,64 +73,105 @@ const styles = {
     p: 1,
     flexDirection: "column",
     justifyContent: "space-around",
+    marginTop: 3,
   },
   input: {
     opacity: 0.6,
     marginBottom: 2,
   },
-};
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
+  languageButton: {
+    width: 25,
+    height: 25,
+  },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
 };
 
-const countryLanguages = ["English", "German", "Chinese", "Korean", "Mongolian"];
-
-const getStyles = (languages: string, language: string[], theme: Theme) => {
-  return {
-    fontWeight:
-      language.indexOf(languages) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
-  };
-};
-
 export const LanguageModal = () => {
-  const theme = useTheme();
-  const [language, setlanguage] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  const handleChange = (event: SelectChangeEvent<typeof language>) => {
-    const {
-      target: { value },
-    } = event;
-    setlanguage(typeof value === "string" ? value.split(",") : value);
+  const [language, setLanguage] = useState("");
+  const [proficiency, setProficiency] = useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setLanguage(event.target.value);
+  };
+  const changeHandle = (event: SelectChangeEvent) => {
+    setProficiency(event.target.value);
   };
 
   return (
     <Stack>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-languages-label">Languages</InputLabel>
-        <Select
-          labelId="demo-multiple-languages-label"
-          id="demo-multiple-languages"
-          multiple
-          value={language}
-          onChange={handleChange}
-          input={<OutlinedInput label="languages" />}
-          MenuProps={MenuProps}
-        >
-          {countryLanguages.map(languages => (
-            <MenuItem key={languages} value={languages} style={getStyles(languages, language, theme)}>
-              {languages}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <Button sx={styles.edit} onClick={handleOpen}>
+        <EditIcon sx={styles.icon} />
+      </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={styles.container}>
+            <Typography fontWeight={"bold"} color={"black"} margin={1} variant="h5">
+              Edit Languages
+            </Typography>
+            <Box sx={styles.inputContainer}>
+              <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-helper-label">Language</InputLabel>
+                <Select
+                  labelId="demo-simple-select-helper-label"
+                  id="demo-simple-select-helper"
+                  value={language}
+                  label="Language"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>English</MenuItem>
+                  <MenuItem value={20}>German</MenuItem>
+                  <MenuItem value={30}>Chinese</MenuItem>
+                  <MenuItem value={40}>Korean</MenuItem>
+                  <MenuItem value={50}>Mongolian</MenuItem>
+                  <MenuItem value={60}>Spanish</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-helper">Proficiency</InputLabel>
+                <Select
+                  labelId="demo-simple-select-helper"
+                  id="demo-simple-select"
+                  value={proficiency}
+                  label="Proficiency"
+                  onChange={changeHandle}
+                >
+                  <MenuItem value={10}>Beginner</MenuItem>
+                  <MenuItem value={20}>Intermediate</MenuItem>
+                  <MenuItem value={30}>Advanced</MenuItem>
+                  <MenuItem value={40}>Native Language</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <Box sx={styles.buttons}>
+              <Button onClick={handleClose} sx={styles.cancelButton}>
+                <Typography fontSize={14} color={"#444444"}>
+                  Cancel
+                </Typography>
+              </Button>
+              <Button sx={styles.confirmButton}>
+                <Typography fontSize={14} color={"White"}>
+                  Save
+                </Typography>
+              </Button>
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
     </Stack>
   );
 };
@@ -146,7 +184,7 @@ export const UserModal: FC = () => {
   return (
     <Stack>
       <Button sx={styles.edit} onClick={handleOpen}>
-        <MoreHorizIcon sx={styles.icon} />
+        <EditIcon sx={styles.icon} />
       </Button>
       <Modal
         open={open}

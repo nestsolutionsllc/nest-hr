@@ -13,6 +13,9 @@ const styles = {
     marginBottom: 4,
     width: "auto",
   },
+  language: {
+    display: "flex",
+  },
 };
 
 const CardHeader = ({ children, genre }: { children: ReactNode; genre: string }) => {
@@ -68,11 +71,13 @@ export const Awards = () => {
 export const Language = () => {
   return (
     <CardHeader genre="Language">
-      <LanguageModal />
-      <Stack direction="row" flexWrap="wrap" minWidth={1} width="auto">
-        {LANGUAGE_MOCK_DATA.map((item, index) => (
-          <LanguageItem key={index} {...item} />
-        ))}
+      <Stack sx={styles.language}>
+        <LanguageModal />
+        <Stack direction="row" flexWrap="wrap" minWidth={1} width="auto">
+          {LANGUAGE_MOCK_DATA.map((item, index) => (
+            <LanguageItem key={index} {...item} />
+          ))}
+        </Stack>
       </Stack>
     </CardHeader>
   );
