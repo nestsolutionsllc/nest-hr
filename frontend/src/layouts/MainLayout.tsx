@@ -11,9 +11,8 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { Button } from "@mui/material";
 import SideBar from "../components/Sidebar";
-import { useAuth } from "../providers";
+import AccountPopOver from "./AccountPopOver";
 
 const drawerWidth = 240;
 
@@ -68,7 +67,6 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   const toggleDrawer = useCallback(() => {
     setOpen(!open);
   }, [open]);
-  const { setUser } = useAuth();
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -94,9 +92,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
           <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
             HR System
           </Typography>
-          <Button color="error" onClick={() => setUser("")}>
-            garah
-          </Button>
+          <AccountPopOver />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
