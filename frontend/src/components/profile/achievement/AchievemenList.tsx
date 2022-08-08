@@ -49,7 +49,7 @@ export const Achievements = () => {
       {ACHIEVEMENT_MOCK_DATA.map((item, index) => {
         return (
           <CardSection genre={item.category} key={index}>
-            <Stack spacing={2} direction={item.direction === "row" ? "row" : "column"}>
+            <Stack spacing={2} direction={item.category === "certificates" ? "row" : "column"}>
               {item.data.map(d => {
                 return (
                   <>

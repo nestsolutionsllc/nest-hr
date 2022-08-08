@@ -55,6 +55,5 @@ export type AchievementItemType = {
 
 export type AchievementListType = {
   category: string;
-  direction: string;
   data: Array<AchievementItemType>;
 };
