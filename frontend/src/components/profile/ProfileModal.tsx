@@ -123,7 +123,7 @@ export const LanguageModal = () => {
       <Box sx={styles.inputContainer}>
         <Box sx={styles.inputStyle}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <InputLabel id="demo-simple-select-label">Language</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -139,7 +139,7 @@ export const LanguageModal = () => {
         </Box>
         <Box sx={styles.inputStyle}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select">Age</InputLabel>
+            <InputLabel id="demo-simple-select">Proficiency</InputLabel>
             <Select
               labelId="demo-simple-select"
               id="demo-simple"
