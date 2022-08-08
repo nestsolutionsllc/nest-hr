@@ -49,7 +49,7 @@ export const Achievements = () => {
       {ACHIEVEMENT_MOCK_DATA.map((item, index) => {
         return (
           <CardSection genre={item.category} key={index}>
-            <Stack spacing={2} direction={item.category === "languages" ? "row" : "column"}>
+            <Stack spacing={2} direction={item.category === "skills" ? "column" : "row"}>
               {item.data.map(d => {
                 return (
                   <>
@@ -71,18 +71,3 @@ export const Achievements = () => {
     </>
   );
 };
-
-// export const Language = () => {
-//   return (
-//     <CardHeader genre="Language">
-//       <Stack sx={styles.language}>
-//         <LanguageModal />
-//         <Stack direction="row" flexWrap="wrap" minWidth={1} width="auto">
-//           {LANGUAGE_MOCK_DATA.map((item, index) => (
-//             <LanguageItem key={index} {...item} />
-//           ))}
-//         </Stack>
-//       </Stack>
-//     </CardHeader>
-//   );
-// };

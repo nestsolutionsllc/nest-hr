@@ -38,7 +38,7 @@ const styles = {
   },
   buttonContainer: {
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-evenlys",
     marginBottom: 0.5,
   },
   contentContainer: {
@@ -57,8 +57,6 @@ const styles = {
   languageContainer: {
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "flex-start",
-    // alignItems: "center",
     width: 160,
     borderRadius: 2,
     boxShadow: 0,
