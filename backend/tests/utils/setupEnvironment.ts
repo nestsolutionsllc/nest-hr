@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Movie from "../../src/models/Movie";
+import Ticket from "../../src/models/ticket/ticket";
 
 const setupEnvironment = async () => {
   /* istanbul ignore next */
@@ -9,11 +10,13 @@ const setupEnvironment = async () => {
   if (mongoose.connection.readyState === 0) {
     await mongoose.connect(process.env.MONGODB_URL, {});
     await Movie.deleteMany();
+    await Ticket.deleteMany();
   }
 };
 
 const tearDown = async () => {
   await Movie.deleteMany();
+  await Ticket.deleteMany();
   await mongoose.connection.close();
 };
 
