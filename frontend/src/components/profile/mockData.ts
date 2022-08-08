@@ -40,7 +40,6 @@ export const CHECKLIST_MOCK_DATA: CheckListMockType = {
 export const ACHIEVEMENT_MOCK_DATA: AchievementListType[] = [
   {
     category: "skills",
-    direction: "column",
     data: [
       { title: "HTML/CSS", rating: 3 },
       { title: "JavaScript", rating: 4 },
@@ -52,7 +51,6 @@ export const ACHIEVEMENT_MOCK_DATA: AchievementListType[] = [
   },
   {
     category: "certificates",
-    direction: "row",
     data: [
       {
         companyName: "Amazon Web Service (AWS)",
@@ -68,7 +66,6 @@ export const ACHIEVEMENT_MOCK_DATA: AchievementListType[] = [
   },
   {
     category: "awards",
-    direction: "column",
     data: [
       {
         date: "2015",
@@ -86,7 +83,6 @@ export const ACHIEVEMENT_MOCK_DATA: AchievementListType[] = [
   },
   {
     category: "languages",
-    direction: "row",
     data: [
       {
         languageName: "English",
