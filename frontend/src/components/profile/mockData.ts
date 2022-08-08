@@ -1,37 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { InfoType, AchievementListType, CheckListMockType, ChartType } from "./type";
-=======
-<<<<<<< HEAD
-import { InfoType, SkillItemType, CertificateItemType, AwardItemType, CheckListMockType, ChartType } from "./type";
-=======
-import { InfoType, SkillItemType, CertificateItemType, AwardItemType, MockType, LanguageItemType } from "./type";
->>>>>>> 76c031f (refactor: rebased)
->>>>>>> eee297e (refactor: rebased)
-=======
-import {
-  InfoType,
-  SkillItemType,
-  CertificateItemType,
-  AwardItemType,
-  CheckListMockType,
-  ChartType,
-  LanguageItemType,
-} from "./type";
->>>>>>> 055c06b (feat: added edit button)
 
-export const LANGUAGE_MOCK_DATA: LanguageItemType[] = [
-  {
-    languageName: "English",
-    levelOfProficiency: "Intermediate",
-    countryPhoto: "https://rainbowfilter.io/images/filters/american-flag/100x100.png",
-  },
-  {
-    languageName: "German",
-    levelOfProficiency: "Advanced",
-    countryPhoto: "https://pbs.twimg.com/profile_images/2678665488/9e78670e3b08784bdf651918389e31fb_400x400.jpeg",
-  },
-];
 export const INFO_MOCK_DATA: InfoType = {
   lastName: "Bill",
   firstName: "Duluu",
@@ -110,6 +78,21 @@ export const ACHIEVEMENT_MOCK_DATA: AchievementListType[] = [
         title: "Best Designer",
         description:
           "Academic & Innovation awards recognize the contribution of a single individual (undergraduate or graduate) who has demonstrated academic excellence or displayed a creative initiative.",
+      },
+    ],
+  },
+  {
+    category: "languages",
+    data: [
+      {
+        languageName: "English",
+        levelOfProficiency: "Intermediate",
+        countryPhoto: "https://rainbowfilter.io/images/filters/american-flag/100x100.png",
+      },
+      {
+        languageName: "German",
+        levelOfProficiency: "Advanced",
+        countryPhoto: "https://pbs.twimg.com/profile_images/2678665488/9e78670e3b08784bdf651918389e31fb_400x400.jpeg",
       },
     ],
   },
