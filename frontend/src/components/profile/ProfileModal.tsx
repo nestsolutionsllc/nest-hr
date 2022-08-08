@@ -1,5 +1,18 @@
-import { FC, Dispatch, SetStateAction } from "react";
-import { Typography, Button, Modal, Box, Backdrop, Input, Stack } from "@mui/material";
+import { FC, Dispatch, SetStateAction, useState } from "react";
+import {
+  Typography,
+  Button,
+  Modal,
+  Box,
+  Backdrop,
+  Input,
+  Stack,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 
 interface ModalProps {
   showModal: boolean;
@@ -93,6 +106,15 @@ export const CertificateModal = () => {
 };
 
 export const LanguageModal = () => {
+  const [language, setLanguage] = useState("");
+  const [proficiency, setProficiency] = useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setLanguage(event.target.value as string);
+  };
+  const changeHandle = (event: SelectChangeEvent) => {
+    setProficiency(event.target.value as string);
+  };
   return (
     <Stack>
       <Typography fontWeight={"bold"} color={"black"} margin={1} variant="h5">
@@ -100,10 +122,36 @@ export const LanguageModal = () => {
       </Typography>
       <Box sx={styles.inputContainer}>
         <Box sx={styles.inputStyle}>
-          <Input sx={styles.input} placeholder="Language" />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Language</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={language}
+              label="Language"
+              onChange={handleChange}
+            >
+              <MenuItem value={10}>English</MenuItem>
+              <MenuItem value={20}>German</MenuItem>
+              <MenuItem value={30}>Chinese</MenuItem>
+            </Select>
+          </FormControl>
         </Box>
         <Box sx={styles.inputStyle}>
-          <Input sx={styles.input} placeholder="Level" />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select">Proficiency</InputLabel>
+            <Select
+              labelId="demo-simple-select"
+              id="demo-simple"
+              value={proficiency}
+              label="Proficiency"
+              onChange={changeHandle}
+            >
+              <MenuItem value={10}>Beginner</MenuItem>
+              <MenuItem value={20}>Intermediate</MenuItem>
+              <MenuItem value={30}>Advanced</MenuItem>
+            </Select>
+          </FormControl>
         </Box>
       </Box>
     </Stack>

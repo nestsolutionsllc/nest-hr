@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from "react";
 import { Stack, Card, CardHeader, CardContent, Grid } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
-import { SkillItem, CertificateItem, AwardItem } from "./AchievementItem";
+import { SkillItem, CertificateItem, AwardItem, LanguageItem } from "./AchievementItem";
 import ProfileModal from "../ProfileModal";
 import { ACHIEVEMENT_MOCK_DATA } from "../mockData";
 
@@ -15,6 +15,9 @@ const styles = {
       fontWeight: 700,
       textTransform: "capitalize",
     },
+  },
+  language: {
+    display: "flex",
   },
 };
 
@@ -57,6 +60,7 @@ export const Achievements = () => {
                       </Stack>
                     )}
                     {item.category === "awards" && <AwardItem {...d} />}
+                    {item.category === "languages" && <LanguageItem {...d} />}
                   </>
                 );
               })}

@@ -48,6 +48,9 @@ export type AchievementItemType = {
   companyName?: string;
   date?: string;
   description?: string;
+  languageName?: string;
+  levelOfProficiency?: string;
+  countryPhoto?: string;
 };
 
 export type AchievementListType = {

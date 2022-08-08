@@ -81,6 +81,21 @@ export const ACHIEVEMENT_MOCK_DATA: AchievementListType[] = [
       },
     ],
   },
+  {
+    category: "languages",
+    data: [
+      {
+        languageName: "English",
+        levelOfProficiency: "Intermediate",
+        countryPhoto: "https://rainbowfilter.io/images/filters/american-flag/100x100.png",
+      },
+      {
+        languageName: "German",
+        levelOfProficiency: "Advanced",
+        countryPhoto: "https://pbs.twimg.com/profile_images/2678665488/9e78670e3b08784bdf651918389e31fb_400x400.jpeg",
+      },
+    ],
+  },
 ];
 
 export const CHART_MOCK_DATA: ChartType = {
