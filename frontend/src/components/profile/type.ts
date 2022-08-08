@@ -12,32 +12,6 @@ export type InfoType = {
   userPhoto: string;
 };
 
-<<<<<<< HEAD
-=======
-export type LanguageItemType = {
-  languageName: string;
-  levelOfProficiency: string;
-  countryPhoto: string;
-};
-
-export type SkillItemType = {
-  title: string;
-  rating: number;
-};
-
-export type CertificateItemType = {
-  companyName: string;
-  title: string;
-  date: string;
-};
-
-export type AwardItemType = {
-  date: string;
-  title: string;
-  description: string;
-};
-
->>>>>>> eee297e (refactor: rebased)
 export type QuestionType = {
   question: string;
   checked: boolean;
@@ -74,6 +48,9 @@ export type AchievementItemType = {
   companyName?: string;
   date?: string;
   description?: string;
+  languageName?: string;
+  levelOfProficiency?: string;
+  countryPhoto?: string;
 };
 
 export type AchievementListType = {

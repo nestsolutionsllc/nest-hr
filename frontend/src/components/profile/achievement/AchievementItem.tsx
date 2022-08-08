@@ -2,11 +2,7 @@ import React, { FC } from "react";
 import { Stack, Typography, Rating, Card, Avatar, CardActions } from "@mui/material";
 import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
 import CircleIcon from "@mui/icons-material/Circle";
-<<<<<<< HEAD
 import { AchievementItemType } from "../type";
-=======
-import { SkillItemType, CertificateItemType, AwardItemType, LanguageItemType } from "../type";
->>>>>>> eee297e (refactor: rebased)
 
 const styles = {
   ratingIcon: {
@@ -112,7 +108,7 @@ export const AwardItem: FC<AchievementItemType> = ({ date, title, description })
   );
 };
 
-export const LanguageItem: FC<LanguageItemType> = ({ countryPhoto, levelOfProficiency, languageName }) => {
+export const LanguageItem: FC<AchievementItemType> = ({ countryPhoto, levelOfProficiency, languageName }) => {
   return (
     <CardActions sx={styles.buttonContainer}>
       <Card sx={styles.card}>
