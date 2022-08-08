@@ -1,10 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
+import TicketList from "../../components/ticket/TicketList";
 
 const Daily = () => {
   return (
     <Box>
-      <Typography>Daily</Typography>
+      <TicketList />
     </Box>
   );
 };
