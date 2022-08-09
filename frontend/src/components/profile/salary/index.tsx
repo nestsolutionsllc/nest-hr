@@ -6,6 +6,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import PaidIcon from "@mui/icons-material/Paid";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { INFO_MOCK_DATA, CHART_MOCK_DATA } from "../mockData";
+import CardComp from "./creditCard";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -111,7 +112,7 @@ const Salary: FC = () => {
             <Stack alignItems={"center"}>
               <Doughnut data={chartData} />
             </Stack>
-            <Stack>
+            <Stack sx={{ paddingRight: 20 }}>
               {salaryDetail.map((tax, index) => {
                 return (
                   <Typography fontWeight={700} key={index}>
@@ -120,6 +121,13 @@ const Salary: FC = () => {
                 );
               })}
             </Stack>
+            <CardComp
+              style={{ paddingLeft: 50 }}
+              name={"Joseph Joestar"}
+              num={"5151231234243123"}
+              expiry={"0525"}
+              cvc={"444"}
+            />
           </Box>
         </Grid>
       </Grid>
