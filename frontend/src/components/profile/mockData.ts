@@ -1,4 +1,4 @@
-import { InfoType, AchievementListType, CheckListMockType, ChartType } from "./type";
+import { InfoType, AchievementListType, LadderCommentListType, CheckListMockType, ChartType } from "./type";
 
 export const INFO_MOCK_DATA: InfoType = {
   lastName: "Bill",
@@ -115,6 +115,28 @@ export const CHART_MOCK_DATA: ChartType = {
     {
       name: "Medicare wages",
       total: "15",
+    },
+  ],
+};
+
+export const COMMENT_MOCK_DATA: LadderCommentListType = {
+  commentData: [
+    {
+      img: "https://cdn5.shoppy.mn/img/112064/840x0xwebp/nnn.png?h=cdbe20dde8803634a7cb27219a945b52ef0208b3",
+      name: "urana",
+      comment:
+        "Lorem Iim Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    },
+    {
+      img: "https://cdn5.shoppy.mn/img/112070/840x0xwebp/hhhhhhhhhhhhh.png?h=cdbe20dde8803634a7cb27219a945b52ef0208b3",
+      name: "Matar",
+      comment:
+        " Lorem Ipsum i took a galley of type and scrambled it to make a type specimen book. It has sries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop ",
+    },
+    {
+      img: "https://cdn3.shoppy.mn/spree/images/1326825/product/open-uri20220506-3073495-momk26.",
+      name: "someOne",
+      comment: "good 1960s with thining Lorem Ipsum passages, and moreof Lorem Ipsum.",
     },
   ],
 };

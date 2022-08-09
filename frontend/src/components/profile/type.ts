@@ -57,3 +57,13 @@ export type AchievementListType = {
   category: string;
   data: Array<AchievementItemType>;
 };
+
+export type LadderCommentItemType = {
+  img: string;
+  name: string;
+  comment: string;
+};
+
+export type LadderCommentListType = {
+  commentData: Array<LadderCommentItemType>;
+};
