@@ -95,13 +95,12 @@ export default function DialogSelect() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTicket),
       };
-      console.log(newTicket);
 
-      // try {
-      //   await fetch(URL, requestOptions);
-      // } catch (error) {
-      //   throw new Error(error);
-      // }
+      try {
+        await fetch(URL, requestOptions);
+      } catch (error) {
+        throw new Error(error);
+      }
       setCurrType(type[0]);
       setOpen(false);
     }
