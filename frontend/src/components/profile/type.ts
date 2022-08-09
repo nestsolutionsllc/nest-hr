@@ -57,3 +57,9 @@ export type AchievementListType = {
   category: string;
   data: Array<AchievementItemType>;
 };
+
+export type SalaryTableType = {
+  tom?: object;
+  jerry?: object;
+  oogway?: object;
+};

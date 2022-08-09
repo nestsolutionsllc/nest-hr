@@ -1,4 +1,4 @@
-import { InfoType, AchievementListType, CheckListMockType, ChartType } from "./type";
+import { InfoType, AchievementListType, CheckListMockType, ChartType, SalaryTableType } from "./type";
 
 export const INFO_MOCK_DATA: InfoType = {
   lastName: "Bill",
@@ -115,6 +115,63 @@ export const CHART_MOCK_DATA: ChartType = {
     {
       name: "Medicare wages",
       total: "15",
+    },
+  ],
+};
+
+export const SALARY_TABLE_MOCK_DATA: SalaryTableType = {
+  tom: [
+    {
+      name: "Tom",
+      job: "Manager",
+      salary: 1500000,
+      workdays: 19,
+      workedDays: 19,
+      bonus: 0,
+      calculatedSalary: 1500000,
+      socialSecurityDeduction: 165000,
+      HOAOT: 123500,
+      prePayment: 600750,
+      otherDeduction: 0,
+      totalDeduction: 0,
+      salaryAtHand: 0,
+      card: 0,
+    },
+  ],
+  jerry: [
+    {
+      name: "Jerry",
+      job: "Manager",
+      salary: 300000,
+      workdays: 19,
+      workedDays: 19,
+      bonus: 0,
+      calculatedSalary: 300000,
+      socialSecurityDeduction: 32400,
+      HOAOT: 26760,
+      prePayment: 0,
+      otherDeduction: 0,
+      totalDeduction: 0,
+      salaryAtHand: 0,
+      card: 0,
+    },
+  ],
+  oogway: [
+    {
+      name: "Oogway",
+      job: "smthing",
+      salary: 750000,
+      workdays: 19,
+      workedDays: 19,
+      bonus: 0,
+      calculatedSalary: 750000,
+      socialSecurityDeduction: 82500,
+      HOAOT: 55083,
+      prePayment: 0,
+      otherDeduction: 0,
+      totalDeduction: 0,
+      salaryAtHand: 0,
+      card: 0,
     },
   ],
 };
