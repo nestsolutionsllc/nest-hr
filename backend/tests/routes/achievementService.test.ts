@@ -78,7 +78,7 @@ describe("Testing achievement CRUD", () => {
     expect(data._id).toBeDefined();
 
     const { _id } = data;
-    const deleteResponse = await request(app).delete("/movie").send({ _id });
+    const deleteResponse = await request(app).delete("/achievement").send({ _id });
 
     expect(deleteResponse.statusCode).toBe(200);
   });
