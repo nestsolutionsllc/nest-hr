@@ -1,11 +1,17 @@
-import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import { useRouter } from "next/router";
-import { Box, Button, styled } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import CalendarIcon from "@mui/icons-material/CalendarToday";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
-type IProps = { open: boolean; setOpen: Dispatch<SetStateAction<boolean>> };
+type IProps = {
+  open?: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  openTab: string;
+  setOpenTab: Dispatch<SetStateAction<string>>;
+};
 
 type tabType = {
   title: string;
@@ -17,38 +23,6 @@ type MenuItemType = {
   children: tabType[];
   icon: React.ReactElement;
 };
-
-const StyledButton = styled(Button)`
-  background: transparent;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 8px;
-  color: #42526e;
-  borderradius: 4px;
-  justify-content: flex-start;
-  text-transform: capitalize;
-  :hover {
-    background: transparent;
-    color: #019aff;
-  }
-`;
-const StyledListItemButton = styled(Button)`
-  background: transparent;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 8px;
-  color: #42526e;
-  text-transform: capitalize;
-  borderradius: 4px;
-  justify-content: flex-start;
-  margin-left: 8px;
-  :hover {
-    background: transparent;
-    color: #019aff;
-  }
-`;
 
 export const menuItems = [
   {
@@ -82,7 +56,6 @@ export const menuItems = [
   {
     title: "Leave",
     icon: <CalendarIcon />,
-
     children: [
       {
         title: "Leave Request",
@@ -104,7 +77,7 @@ export const menuItems = [
   },
   {
     title: "Profile",
-    icon: <AccountTreeIcon />,
+    icon: <AccountBoxIcon />,
     children: [
       {
         title: "profile",
@@ -145,6 +118,37 @@ const styles = {
   sideBarIconButton: {
     px: 0,
   },
+  sideButton: {
+    background: "transparent",
+    fontSize: "14px",
+    fontWeight: "bold",
+    cursor: "pointer",
+    padding: "8px",
+    color: "#42526e",
+    borderRadius: "4px",
+    justifyContent: "flex-start",
+    textTransform: "capitalize",
+    "&:hover": {
+      background: "transparent",
+      color: "#019aff",
+    },
+  },
+  listButton: {
+    background: "transparent",
+    fontSize: "14px",
+    fontWeight: "bold",
+    cursor: "pointer",
+    padding: "8px",
+    color: "#42526e",
+    textTransform: "capitalize",
+    borderRadius: "4px",
+    justifyContent: "flex-start",
+    marginLeft: " 8px",
+    "&:hover": {
+      background: "transparent",
+      color: "#019aff",
+    },
+  },
 };
 
 const SideBarItemContainer = ({
@@ -159,54 +163,65 @@ const SideBarItemContainer = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
+  const hasChildren = menuItem.children.length >= 2;
   return (
     <Box sx={styles.sideBarItemContainer}>
-      <StyledButton
+      <Button
         disableElevation
         disableRipple
-        sx={styles.sideBarIconButton}
-        onClick={() => {
-          if (openTab !== menuItem.title) {
-            setOpenTab(menuItem.title);
-          } else {
+        sx={[
+          styles.sideBarIconButton,
+          styles.sideButton,
+          !hasChildren && router.asPath === menuItem.children[0].href && { color: "#019aff" },
+          hasChildren && menuItem.children.find(item => item.href === router.asPath) && { color: "#019aff" },
+        ]}
+        onClick={async () => {
+          if (!hasChildren) {
+            await router.push(menuItem.children[0].href);
             setOpenTab("");
+            setOpen(false);
+            return;
+          }
+          if (openTab === menuItem.title) {
+            setOpenTab("");
+          } else {
+            setOpenTab(menuItem.title);
           }
           setOpen(true);
         }}
       >
         <Box sx={styles.sideBarItemIcon}>{menuItem.icon}</Box>
         {menuItem.title}
-      </StyledButton>
-      <Box
-        sx={{
-          display: openTab === menuItem.title ? "flex" : "none",
-          flexDirection: "column" as const,
-        }}
-      >
-        {menuItem.children.map((tab, index) => (
-          <StyledListItemButton
-            disableElevation
-            disableRipple
-            key={index}
-            onClick={() => {
-              router.push(tab.href);
-            }}
-          >
-            {tab.title}
-          </StyledListItemButton>
-        ))}
-      </Box>
+      </Button>
+      {hasChildren && (
+        <Box
+          sx={{
+            display: openTab === menuItem.title ? "flex" : "none",
+            flexDirection: "column" as const,
+          }}
+        >
+          {menuItem.children.map((tab, index) => (
+            <Button
+              disableElevation
+              disableRipple
+              key={index}
+              sx={styles.listButton}
+              onClick={async () => {
+                await router.push(tab.href);
+                setOpenTab("");
+                setOpen(false);
+              }}
+            >
+              {tab.title}
+            </Button>
+          ))}
+        </Box>
+      )}
     </Box>
   );
 };
 
-const SideBar: FC<IProps> = ({ open, setOpen }) => {
-  const [openTab, setOpenTab] = useState<string>("");
-  useEffect(() => {
-    if (!open) {
-      setOpenTab("");
-    }
-  }, [open]);
+const SideBar: FC<IProps> = ({ setOpen, openTab, setOpenTab }) => {
   return (
     <Box sx={styles.sideBar}>
       {menuItems.map(({ title, children, icon }, index) => {
