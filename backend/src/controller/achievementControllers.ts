@@ -18,6 +18,7 @@ export const getAllAchievementService = async (request: Request, response: Respo
 
 export const getAchievementsService = async (request: Request, response: Response) => {
   try {
+    /* ! Would get the data under user id, once the user model created */
     const achievement = await getAchievements(request);
     response.status(200).send(achievement);
   } catch (error) {
@@ -29,7 +30,7 @@ export const getAchievementsService = async (request: Request, response: Respons
 export const createAchievementService = async (request: Request, response: Response) => {
   try {
     const achievement = await addAchievement(request);
-    response.status(200).send(achievement);
+    response.status(201).send(achievement);
   } catch (error) {
     /* istanbul ignore next */
     response.status(500).send(error);
