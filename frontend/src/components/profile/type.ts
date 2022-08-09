@@ -58,8 +58,21 @@ export type AchievementListType = {
   data: Array<AchievementItemType>;
 };
 
-export type SalaryTableType = {
-  tom?: object;
-  jerry?: object;
-  oogway?: object;
-};
+export type SalaryTableType = [
+  {
+    name: string;
+    job: string;
+    salary: number;
+    workdays: number;
+    workedDays: number;
+    bonus: number;
+    calculatedSalary: number;
+    socialSecurityDeduction: number;
+    HOAOT: number;
+    prePayment: number;
+    otherDeduction: number;
+    totalDeduction: number;
+    salaryAtHand: number;
+    card: number;
+  }
+];

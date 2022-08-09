@@ -18,7 +18,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import PaidIcon from "@mui/icons-material/Paid";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { INFO_MOCK_DATA, CHART_MOCK_DATA, SALARY_TABLE_MOCK_DATA } from "../mockData";
-import { table } from "console";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -82,10 +81,7 @@ const Salary: FC = () => {
     ],
   };
 
-  const TableDataTom = SALARY_TABLE_MOCK_DATA.tom;
-  const TableDataJerry = SALARY_TABLE_MOCK_DATA.jerry;
-  const TableDataOogway = SALARY_TABLE_MOCK_DATA.oogway;
-
+  const TableDataInfo = SALARY_TABLE_MOCK_DATA;
   return (
     <Box>
       <Typography variant="h4" sx={styles.title}>
@@ -139,7 +135,7 @@ const Salary: FC = () => {
               })}
             </Stack>
           </Box>
-          <div className="salaryTable">
+          <Box className="salaryTable">
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
@@ -161,98 +157,18 @@ const Salary: FC = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {TableDataTom.map(TableData => (
-                    <TableRow key={TableData.name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                      <TableCell component="th" scope="row">
-                        {TableData.name}
-                      </TableCell>
-                      <TableCell align="center">{TableData.job}</TableCell>
-                      <TableCell align="center">{TableData.salary}</TableCell>
-                      <TableCell align="center">{TableData.workdays}</TableCell>
-                      <TableCell align="center">{TableData.workedDays}</TableCell>
-                      <TableCell align="center">{TableData.bonus}</TableCell>
-                      <TableCell align="center">{TableData.calculatedSalary}</TableCell>
-                      <TableCell align="center">{TableData.socialSecurityDeduction}</TableCell>
-                      <TableCell align="center">{TableData.HOAOT}</TableCell>
-                      <TableCell align="center">{TableData.prePayment}</TableCell>
-                      <TableCell align="center">{TableData.otherDeduction}</TableCell>
-                      <TableCell align="center">
-                        {
-                          (TableData.totalDeduction = Math.floor(
-                            TableData.socialSecurityDeduction + TableData.HOAOT + TableData.prePayment
-                          ))
-                        }
-                      </TableCell>
-                      <TableCell align="center">
-                        {(TableData.salaryAtHand = Math.floor(TableData.calculatedSalary - TableData.totalDeduction))}
-                      </TableCell>
-                      <TableCell align="center">{TableData.salaryAtHand}</TableCell>
-                    </TableRow>
-                  ))}
-                  {TableDataJerry.map(TableData => (
-                    <TableRow key={TableData.name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                      <TableCell component="th" scope="row">
-                        {TableData.name}
-                      </TableCell>
-                      <TableCell align="center">{TableData.job}</TableCell>
-                      <TableCell align="center">{TableData.salary}</TableCell>
-                      <TableCell align="center">{TableData.workdays}</TableCell>
-                      <TableCell align="center">{TableData.workedDays}</TableCell>
-                      <TableCell align="center">{TableData.bonus}</TableCell>
-                      <TableCell align="center">{TableData.calculatedSalary}</TableCell>
-                      <TableCell align="center">{TableData.socialSecurityDeduction}</TableCell>
-                      <TableCell align="center">{TableData.HOAOT}</TableCell>
-                      <TableCell align="center">{TableData.prePayment}</TableCell>
-                      <TableCell align="center">{TableData.otherDeduction}</TableCell>
-                      <TableCell align="center">
-                        {
-                          (TableData.totalDeduction = Math.floor(
-                            TableData.socialSecurityDeduction + TableData.HOAOT + TableData.prePayment
-                          ))
-                        }
-                      </TableCell>
-                      <TableCell align="center">
-                        {(TableData.salaryAtHand = Math.floor(TableData.calculatedSalary - TableData.totalDeduction))}
-                      </TableCell>
-                      <TableCell align="center">{TableData.salaryAtHand}</TableCell>
-                    </TableRow>
-                  ))}
-                  {TableDataOogway.map(TableData => (
-                    <TableRow key={TableData.name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                      <TableCell component="th" scope="row">
-                        {TableData.name}
-                      </TableCell>
-                      <TableCell align="center">{TableData.job}</TableCell>
-                      <TableCell align="center">{TableData.salary}</TableCell>
-                      <TableCell align="center">{TableData.workdays}</TableCell>
-                      <TableCell align="center">{TableData.workedDays}</TableCell>
-                      <TableCell align="center">{TableData.bonus}</TableCell>
-                      <TableCell align="center">{TableData.calculatedSalary}</TableCell>
-                      <TableCell align="center">{TableData.socialSecurityDeduction}</TableCell>
-                      <TableCell align="center">{TableData.HOAOT}</TableCell>
-                      <TableCell align="center">{TableData.prePayment}</TableCell>
-                      <TableCell align="center">{TableData.otherDeduction}</TableCell>
-                      <TableCell align="center">
-                        {
-                          (TableData.totalDeduction = Math.floor(
-                            TableData.socialSecurityDeduction + TableData.HOAOT + TableData.prePayment
-                          ))
-                        }
-                      </TableCell>
-                      <TableCell align="center">
-                        {(TableData.salaryAtHand = Math.floor(TableData.calculatedSalary - TableData.totalDeduction))}
-                      </TableCell>
-                      <TableCell align="center">{TableData.salaryAtHand}</TableCell>
-                    </TableRow>
-                  ))}
+                  <TableRow key={TableDataInfo[0].name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    {Object.keys(TableDataInfo[0]).map(x => {
+                      return <TableCell align="center">{TableDataInfo[0][x]}</TableCell>;
+                    })}
+                  </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>
-          </div>
+          </Box>
         </Grid>
       </Grid>
     </Box>
   );
 };
-
 export default Salary;
