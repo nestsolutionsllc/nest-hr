@@ -1,7 +1,3 @@
-- name: Transfer example data for use with Review Apps
-  copy:
-    src: README.md
-    dest: "/home/test"
 - name: Create direcotory for repo
   file: path={{ project_root }} state=directory
 - name: Transfer backend source directory to project root directory
@@ -16,15 +12,15 @@
     verify_host: yes
     rsync_opts:
       - "--exclude=backend/node_modules"
-- name: Transfer frontend source directory to project root directory
-  synchronize:
-    src: frontend/
-    dest: "{{ project_root }}/frontend"
-    archive: no
-    recursive: yes
-    times: yes
-    delete: yes
-    use_ssh_args: yes
-    verify_host: yes
-    rsync_opts:
-      - "--exclude=frontend/node_modules"
+# - name: Transfer frontend source directory to project root directory
+#   synchronize:
+#     src: frontend/
+#     dest: "{{ project_root }}/frontend"
+#     archive: no
+#     recursive: yes
+#     times: yes
+#     delete: yes
+#     use_ssh_args: yes
+#     verify_host: yes
+#     rsync_opts:
+#       - "--exclude=frontend/node_modules"
