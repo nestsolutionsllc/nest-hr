@@ -1,0 +1,4 @@
+preview_baseurl: "http://128.199.116.115"
+preview_namespace: "{{ lookup('env', 'PREVIEW_NAMESPACE')
+  |default('preview', true) }}"
+preview_url: "/{{ preview_namespace }}/"

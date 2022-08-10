@@ -1,0 +1,8 @@
+server {
+    listen 80 {{ preview }};
+    server_name {{preview}}
+    
+    location /{{ preview }} {
+        proxy_pass http://localhost:{{issue_id | int + 5000}}
+    }
+}
