@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import {
   Typography,
   Grid,
@@ -83,6 +83,7 @@ const Salary: FC = () => {
 
   const TableDataInfo = SALARY_TABLE_MOCK_DATA;
   const TableHeaderData = SALARY_TABLE_HEADER_MOCK_DATA;
+
   return (
     <Box>
       <Typography variant="h4" sx={styles.title}>
@@ -138,9 +139,9 @@ const Salary: FC = () => {
           </Box>
           <Box className="salaryTable">
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <Table sx={{ minWidth: 650 }}>
                 <TableHead>
-                  <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                  <TableRow sx={{ "&:last-child td, &:last-child th": { borderBottom: 1, borderRadius: "50%" } }}>
                     {TableHeaderData.map(headers => {
                       return <TableCell align="center">{headers}</TableCell>;
                     })}
@@ -148,8 +149,8 @@ const Salary: FC = () => {
                 </TableHead>
                 <TableBody>
                   <TableRow key={TableDataInfo[0].name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                    {Object.keys(TableDataInfo[0]).map(x => {
-                      return <TableCell align="center">{TableDataInfo[0][x]}</TableCell>;
+                    {Object.keys(TableDataInfo[0]).map(Data => {
+                      return <TableCell align="center">{TableDataInfo[0][Data]}</TableCell>;
                     })}
                   </TableRow>
                 </TableBody>

@@ -141,7 +141,6 @@ export const SALARY_TABLE_MOCK_DATA: SalaryTableType = [
     otherDeduction: 0,
     totalDeduction: 0,
     salaryAtHand: 0,
-    card: 0,
   },
 ];
 

@@ -73,23 +73,7 @@ export type SalaryTableType = [
     otherDeduction: number;
     totalDeduction: number;
     salaryAtHand: number;
-    card: number;
   }
 ];
 
-export type SalaryTableHeaderType = [
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string
-];
+export type SalaryTableHeaderType = Array<string>;
