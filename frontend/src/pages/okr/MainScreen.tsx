@@ -1,8 +1,11 @@
 import { useState } from "react";
 import type { NextPage } from "next";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import OkrAccordion from "../../components/okr/mainsSreen/Accordion";
+import UserObjective from "../../components/okr/userObj/UserObjective";
+import OBJECTIVE_INFO_MOCK_DATA from "../../components/okr/userObj/Mockdata";
+// import MockData from "../../components/okr/mockData.json";
 
 const OkrPage: NextPage = () => {
   const [okrData, setOkrData] = useState([
@@ -20,10 +23,8 @@ const OkrPage: NextPage = () => {
   };
   return (
     <Box>
-      <Typography variant="h5" mb={3}>
-        OKR GOALS
-      </Typography>
-      <Box>
+      <UserObjective infos={OBJECTIVE_INFO_MOCK_DATA} />
+      <Box marginTop="20px">
         {add ? (
           <Box>
             <TextField
