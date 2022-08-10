@@ -4,12 +4,14 @@ const nextConfig = {
   swcMinify: true,
   experimental: { images: { layoutRaw: true } },
   images: {
-    loader: 'imgix',
-    path: '',
-    domains: ['firebasestorage.googleapis.com'],
+    loader: "imgix",
+    path: "",
+    domains: ["firebasestorage.googleapis.com"],
   },
   tralingSlash: true,
+  env: {
+    TICKET_SYSTEM_ENDPOINT_URL: process.env.TICKET_SYSTEM_ENDPOINT_URL,
+  },
 };
 
 module.exports = nextConfig;
-
