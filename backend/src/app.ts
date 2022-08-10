@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import movieRouter from "./routes/movieRouter";
+import salaryRouter from "./routes/salaryRouter";
 import ticketRouter from "./routes/ticketRouter";
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 // Routers
 app.use(movieRouter);
 app.use(ticketRouter);
+app.use(salaryRouter);
 
 app.get("/", (req, res) => {
   res.send("SERVICE RUNNING");
