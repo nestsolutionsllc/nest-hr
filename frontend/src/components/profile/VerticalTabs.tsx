@@ -1,6 +1,6 @@
 import { FC, ReactNode, SyntheticEvent, useState } from "react";
 import { Tabs, Tab, Box, Stack } from "@mui/material";
-import Ladder from "./ladder";
+import Level from "./level";
 import Salary from "./salary";
 import Onboard from "./onboarding/Onboard";
 import Achievement from "./achievement";
@@ -8,7 +8,7 @@ import Achievement from "./achievement";
 const tabItems = [
   {
     title: "Ladder Level",
-    component: <Ladder />,
+    component: <Level />,
   },
   {
     title: "Salary",

@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Typography, Stack, Box, Divider } from "@mui/material";
-import { FC, useState } from "react";
 import Ladder from "../../okr/ladder/Ladder";
 import CommentListIndex from "./CommentList";
 import { COMMENT_MOCK_DATA } from "../mockData";
-import { LadderCommentItemType } from "../type";
 
 const styles = {
   title: {
@@ -16,10 +13,7 @@ const styles = {
   },
 };
 
-const Level: FC = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [commentList, setCommentList] = useState<LadderCommentItemType[]>(COMMENT_MOCK_DATA.commentData);
-
+const Level = () => {
   return (
     <Stack>
       <Typography variant="h4" sx={styles.title}>
@@ -39,9 +33,15 @@ const Level: FC = () => {
           <Typography variant="h4" mb={2} style={styles.title}>
             Comment List
           </Typography>
-          {commentList.map((obj, index) => {
+          {COMMENT_MOCK_DATA.commentData.map((singleComment, index) => {
             return (
-              <CommentListIndex key={index} name={obj.name} img={obj.img} comment={obj.comment}></CommentListIndex>
+              <CommentListIndex
+                key={index}
+                name={singleComment.name}
+                img={singleComment.img}
+                comment={singleComment.comment}
+                category={singleComment.category}
+              ></CommentListIndex>
             );
           })}
         </Stack>

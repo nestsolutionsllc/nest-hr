@@ -62,6 +62,7 @@ export type LadderCommentItemType = {
   img: string;
   name: string;
   comment: string;
+  category: string;
 };
 
 export type LadderCommentListType = {
