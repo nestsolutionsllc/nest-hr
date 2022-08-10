@@ -1,16 +1,16 @@
 import { Dispatch, SetStateAction } from "react";
 
-export type dataType = {
+export type OkrDataType = {
   name: string;
   child: string[];
 };
 export type PropsType = {
   title: string;
-  setData: Dispatch<SetStateAction<unknown>>;
-  data: dataType[];
+  setOkrData: Dispatch<SetStateAction<unknown>>;
+  okrData: OkrDataType[];
   ind: number;
 };
-export type ColType = {
+export type StateType = {
   expanded: string;
   addResult: boolean;
   anchorEl: string;

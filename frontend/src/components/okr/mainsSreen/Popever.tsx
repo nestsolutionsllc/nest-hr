@@ -5,10 +5,21 @@ import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import EditIcon from "@mui/icons-material/Edit";
-import More from "./More";
+import DropDownMenu from "./DropDownMenu";
 
 const PopeverDown = props => {
-  const { handleClose, setType, setData, data, collection, setOpen, openPop, setCollection, setEdit, ind1 } = props;
+  const {
+    handleClose,
+    setModalType,
+    setOkrData,
+    okrData,
+    setCollection,
+    collection,
+    setOpen,
+    openPop,
+    setEdit,
+    okrIndex,
+  } = props;
   type MoreType = {
     title: string;
     Icon: ReactNode;
@@ -37,38 +48,36 @@ const PopeverDown = props => {
       {collection.type === "dad"
         ? ResultData.map((el, ind) => {
             return (
-              <More
+              <DropDownMenu
                 Icon={el.Icon}
                 title={el.title}
-                setType={setType}
+                setModalType={setModalType}
                 collection={collection}
                 setOpen={setOpen}
-                data={data}
-                setData={setData}
-                name={collection.newTitle}
+                okrData={okrData}
+                setOkrData={setOkrData}
                 setEdit={setEdit}
-                ind={collection.index}
+                krIndex={collection.index}
                 setCollection={setCollection}
                 key={ind}
-                ind1={ind1}
+                okrIndex={okrIndex}
               />
             );
           })
         : MoreData.map((el, ind) => (
-            <More
+            <DropDownMenu
               Icon={el.Icon}
               title={el.title}
               setCollection={setCollection}
               collection={collection}
-              setType={setType}
+              setModalType={setModalType}
               setOpen={setOpen}
-              data={data}
-              setData={setData}
-              name={collection.newTitle}
+              okrData={okrData}
+              setOkrData={setOkrData}
               setEdit={setEdit}
-              ind={collection.index}
+              krIndex={collection.index}
               key={ind}
-              ind1={ind1}
+              okrIndex={okrIndex}
             />
           ))}
     </Popover>

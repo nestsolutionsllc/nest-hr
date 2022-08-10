@@ -33,15 +33,15 @@ const style = {
   },
 };
 const Summary = props => {
-  const { collection, edit, setCollection, setEdit, data, ind, setData } = props;
+  const { collection, edit, setCollection, setEdit, okrData, ind, setOkrData } = props;
   const handleClick = event => {
     setCollection({ ...collection, anchorEl: event.currentTarget, type: "child" });
   };
   const Edit = () => {
     setEdit(false);
-    const newData = data;
+    const newData = okrData;
     newData[ind].name = collection.newTitle;
-    setData([...newData]);
+    setOkrData([...newData]);
   };
   return (
     <Box sx={style.container} ml={1}>

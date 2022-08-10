@@ -1,54 +1,29 @@
 import { FC, SyntheticEvent, useEffect, useState } from "react";
 // Material UI Components
-import { Box, Stack, Typography } from "@mui/material";
+import { AccordionDetails, Box } from "@mui/material";
 // Import Material Icons
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import ModalComp from "../modal/Modal";
 import Body from "../modal/Body";
-import { Accordion, AccordionDetails, AccordionSummary, NoBorder } from "./styledComponents";
+import { Accordion, AccordionSummary } from "./styledComponents";
 import { MockType } from "../modal/type";
 import PopeverDown from "./Popever";
 import Summary from "./Summary";
-import { ColType, PropsType } from "./Type";
-import Results from "./Results";
+import { StateType, PropsType } from "./Type";
+import Details from "./Details";
 
 const style = {
   container: {
     width: "48%",
     marginTop: 1,
   },
-  column: {
-    display: "flex",
-    flexDirection: "column",
-  },
-
-  slider: {
-    width: "60%",
-  },
-  word: {
-    fontSize: "12px",
-    color: "#b0bec5",
-    display: "flex",
-    margin: "4px 10px 0px 60px",
-  },
-  results: {
-    display: "flex",
-    alignItems: "center",
-    margin: "16px 0px 0px 54px",
-    cursor: "pointer",
-  },
-  edit: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+  shadow: {
+    boxShadow: "0 5px 6px -2px #929294",
   },
 };
 
 const OkrAccordion: FC<PropsType> = props => {
-  const { title, data, setData, ind } = props;
-  const [collection, setCollection] = useState<ColType>({
+  const { title, okrData, setOkrData, ind } = props;
+  const [collection, setCollection] = useState<StateType>({
     expanded: "panel1",
     addResult: false,
     anchorEl: null,
@@ -64,7 +39,7 @@ const OkrAccordion: FC<PropsType> = props => {
     result: false,
     goals: false,
   });
-  const [type, setType] = useState<string>("");
+  const [type, setModalType] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [mockData, setMockData] = useState<MockType>({
     points: { ResultType: "$", StartValue: 0, EndValue: 100, Decimals: 0 },
@@ -74,11 +49,11 @@ const OkrAccordion: FC<PropsType> = props => {
       { ResultType: "MUI", percent: "0" },
     ],
   });
-  const openPop = Boolean(collection.anchorEl);
-  const openPopel = Boolean(collection.anchorElement);
+  const openPop = [Boolean(collection.anchorEl), Boolean(collection.anchorElement)];
+
   useEffect(() => {
     setCollection({ ...collection, newTitle: title });
-  }, [data]);
+  }, [okrData]);
 
   const handleChange = (panel: string) => (_event: SyntheticEvent, newExpanded: boolean) => {
     setCollection({ ...collection, expanded: newExpanded ? panel : "false" });
@@ -86,95 +61,48 @@ const OkrAccordion: FC<PropsType> = props => {
   const handleClose = () => {
     setCollection({ ...collection, anchorEl: null, anchorElement: null });
   };
-  const add = () => {
-    if (collection.value !== "") {
-      data[ind].child.push(collection.value);
-      setCollection({ ...collection, addResult: false, value: "" });
-    }
-    setData([...data]);
-  };
 
   return (
     <Box sx={style.container}>
       <Accordion expanded={collection.expanded === "okrPanel1"} onChange={handleChange("okrPanel1")}>
-        <AccordionSummary aria-controls="panel1d-content" id="okrPanel1" sx={{ boxShadow: "0 5px 6px -2px #929294" }}>
+        <AccordionSummary aria-controls="panel1d-content" id="okrPanel1" sx={style.shadow}>
           <Summary
             collection={collection}
             edit={edit}
             setCollection={setCollection}
             setEdit={setEdit}
-            data={data}
+            okrData={okrData}
             ind={ind}
-            setData={setData}
+            setOkrData={setOkrData}
           />
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            {data[ind].child.map((el, index: number) => {
-              return (
-                <Results
-                  el={el}
-                  index={index}
-                  setCollection={setCollection}
-                  edit={edit}
-                  collection={collection}
-                  key={index}
-                  setEdit={setEdit}
-                />
-              );
-            })}
-
-            <Box sx={style.results}>
-              {collection.addResult ? (
-                <Box>
-                  <AddOutlinedIcon onClick={add} />
-                  <NoBorder
-                    id="standard-basic"
-                    sx={{ ml: 3 }}
-                    size="small"
-                    value={collection.value}
-                    onChange={e => setCollection({ ...collection, value: e.target.value })}
-                    onKeyPress={e => e.code === "Enter" && add()}
-                    placeholder="Enter your objective"
-                    autoFocus
-                  />
-                </Box>
-              ) : (
-                <Stack onClick={() => setCollection({ ...collection, addResult: true })} sx={style.edit}>
-                  <Box color="#929294" ml={0.2}>
-                    <AddCircleOutlineOutlinedIcon />
-                  </Box>
-                  <Box sx={{ ml: 1 }}>Add Key Result</Box>
-                </Stack>
-              )}
-            </Box>
-          </Typography>
+          <Details
+            collection={collection}
+            okrData={okrData}
+            ind={ind}
+            setCollection={setCollection}
+            setOkrData={setOkrData}
+            setEdit={setEdit}
+            edit={edit}
+          />
         </AccordionDetails>
-        <PopeverDown
-          setOpen={setOpen}
-          setType={setType}
-          setEdit={setEdit}
-          setData={setData}
-          setCollection={setCollection}
-          collection={collection}
-          data={data}
-          openPop={openPop}
-          handleClose={handleClose}
-          ind1={ind}
-        />
-        <PopeverDown
-          setOpen={setOpen}
-          setType={setType}
-          setEdit={setEdit}
-          setData={setData}
-          setCollection={setCollection}
-          collection={collection}
-          data={data}
-          openPop={openPopel}
-          handleClose={handleClose}
-          ind1={ind}
-        />
-
+        {openPop.map(el => {
+          return (
+            <PopeverDown
+              setOpen={setOpen}
+              setModalType={setModalType}
+              setEdit={setEdit}
+              setOkrData={setOkrData}
+              setCollection={setCollection}
+              collection={collection}
+              okrData={okrData}
+              openPop={el}
+              handleClose={handleClose}
+              okrIndex={ind}
+            />
+          );
+        })}
         <ModalComp mockData={mockData} type={type} setMockData={setMockData} setOpen={setOpen} open={open}>
           <Body mockData={mockData} type={type} />
         </ModalComp>

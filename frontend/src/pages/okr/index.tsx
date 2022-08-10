@@ -42,7 +42,7 @@ const MockData = [
 export type OkrListType = typeof MockData[0];
 
 const Modal: FC = () => {
-  const [type, setType] = useState<string>("");
+  const [type, setModalType] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [mockData, setMockData] = useState({
     points: { ResultType: "$", StartValue: 0, EndValue: 100, Decimals: 0 },
@@ -56,7 +56,7 @@ const Modal: FC = () => {
   });
   const Handle = (children: string) => {
     setOpen(true);
-    setType(children);
+    setModalType(children);
   };
 
   return (

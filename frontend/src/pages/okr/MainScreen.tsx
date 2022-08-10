@@ -5,15 +5,17 @@ import AddIcon from "@mui/icons-material/Add";
 import OkrAccordion from "../../components/okr/mainsSreen/Accordion";
 
 const OkrPage: NextPage = () => {
-  const [data, setData] = useState([{ name: "improve customerisfaction scores with 20%", child: ["nest.js", "MUI"] }]);
+  const [okrData, setOkrData] = useState([
+    { name: "improve customerisfaction scores with 20%", child: ["nest.js", "MUI"] },
+  ]);
   const [add, setAdd] = useState(false);
   const [value, setValue] = useState<string>("");
   const addData = () => {
     if (value !== "") {
-      data.push({ name: value, child: [] });
+      okrData.push({ name: value, child: [] });
       setAdd(false);
     }
-    setData([...data]);
+    setOkrData([...okrData]);
     setValue("");
   };
   return (
@@ -46,8 +48,8 @@ const OkrPage: NextPage = () => {
           </Button>
         )}
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-          {data.map((el, ind) => {
-            return <OkrAccordion title={el.name} ind={ind} data={data} setData={setData} key={ind} />;
+          {okrData.map((el, ind) => {
+            return <OkrAccordion title={el.name} ind={ind} okrData={okrData} setOkrData={setOkrData} key={ind} />;
           })}
         </Box>
       </Box>

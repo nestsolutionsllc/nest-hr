@@ -20,7 +20,8 @@ const style = {
   },
 };
 
-const Results = ({ el, index, setCollection, edit, collection, setEdit }) => {
+const Results = props => {
+  const { el, index, setCollection, collection, edit, setEdit } = props;
   const handleClick = (e, ind: number) => {
     setCollection({ ...collection, index: ind, addResult: false, anchorEl: e.currentTarget, type: "dad" });
   };

@@ -5,7 +5,7 @@ import Body from "../../components/okr/modal/Body";
 import { MockType } from "../../components/okr/modal/type";
 
 const Modal: FC = () => {
-  const [type, setType] = useState<string>("");
+  const [type, setModalType] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [mockData, setMockData] = useState<MockType>({
     points: { ResultType: "$", StartValue: 0, EndValue: 100, Decimals: 0 },
@@ -19,7 +19,7 @@ const Modal: FC = () => {
   });
   const Handle = (children: string) => {
     setOpen(true);
-    setType(children);
+    setModalType(children);
   };
   return (
     <Box>
