@@ -1,4 +1,11 @@
-import { InfoType, AchievementListType, CheckListMockType, ChartType } from "./type";
+import {
+  InfoType,
+  AchievementListType,
+  CheckListMockType,
+  ChartType,
+  SalaryTableType,
+  SalaryTableHeaderType,
+} from "./type";
 
 export const INFO_MOCK_DATA: InfoType = {
   lastName: "Bill",
@@ -118,3 +125,37 @@ export const CHART_MOCK_DATA: ChartType = {
     },
   ],
 };
+
+export const SALARY_TABLE_MOCK_DATA: SalaryTableType = [
+  {
+    name: "Tom",
+    position: "Manager",
+    salary: 1500000,
+    workdays: 19,
+    workedDays: 19,
+    raise: 0,
+    calculatedSalary: 1500000,
+    socialInsurance: 165000,
+    PIT: 123500,
+    prePayment: 600750,
+    otherDeduction: 0,
+    totalDeduction: 0,
+    salaryAtHand: 0,
+  },
+];
+
+export const SALARY_TABLE_HEADER_MOCK_DATA: SalaryTableHeaderType = [
+  "Name",
+  "Position",
+  "Income",
+  "Work Days",
+  "Days Worked",
+  "Bonus",
+  "Expected Salary",
+  "Social Security Deductions",
+  "PIT",
+  "Pre Payment",
+  "Other Deductions",
+  "Total Deductions",
+  "Salary Up Front",
+];

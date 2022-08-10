@@ -57,3 +57,23 @@ export type AchievementListType = {
   category: string;
   data: Array<AchievementItemType>;
 };
+
+export type SalaryTableType = [
+  {
+    name: string;
+    position: string;
+    salary: number;
+    workdays: number;
+    workedDays: number;
+    raise: number;
+    calculatedSalary: number;
+    socialInsurance: number;
+    PIT: number;
+    prePayment: number;
+    otherDeduction: number;
+    totalDeduction: number;
+    salaryAtHand: number;
+  }
+];
+
+export type SalaryTableHeaderType = Array<string>;

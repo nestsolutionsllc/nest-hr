@@ -1,11 +1,23 @@
 import { FC } from "react";
-import { Typography, Grid, Box, Stack } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  Box,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
 import AnimatedNumber from "react-animated-number";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import PaidIcon from "@mui/icons-material/Paid";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import { INFO_MOCK_DATA, CHART_MOCK_DATA } from "../mockData";
+import { INFO_MOCK_DATA, CHART_MOCK_DATA, SALARY_TABLE_MOCK_DATA, SALARY_TABLE_HEADER_MOCK_DATA } from "../mockData";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -68,6 +80,10 @@ const Salary: FC = () => {
       },
     ],
   };
+
+  const SalaryInfo = SALARY_TABLE_MOCK_DATA;
+  const HeaderInfo = SALARY_TABLE_HEADER_MOCK_DATA;
+
   return (
     <Box>
       <Typography variant="h4" sx={styles.title}>
@@ -121,10 +137,29 @@ const Salary: FC = () => {
               })}
             </Stack>
           </Box>
+          <Box className="salaryTable">
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }}>
+                <TableHead>
+                  <TableRow sx={{ "&:last-child td, &:last-child th": { borderBottom: 1, borderRadius: "50%" } }}>
+                    {HeaderInfo.map(header => {
+                      return <TableCell align="center">{header}</TableCell>;
+                    })}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow key={SalaryInfo[0].name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    {Object.keys(SalaryInfo[0]).map(salary => {
+                      return <TableCell align="center">{SalaryInfo[0][salary]}</TableCell>;
+                    })}
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
         </Grid>
       </Grid>
     </Box>
   );
 };
-
 export default Salary;
