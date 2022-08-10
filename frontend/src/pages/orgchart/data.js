@@ -2,7 +2,7 @@ const employees = [
   {
     id: 1,
     parentId: "",
-    name: "John",
+    givenName: "John",
     positionName: "CEO",
     phone: "99887766",
     email: "employee@email.com",
@@ -16,7 +16,7 @@ const employees = [
   {
     id: 2,
     parentId: "1",
-    name: "Smith",
+    givenName: "Kola",
     positionName: "COO",
     phone: "99887766",
     email: "employee@email.com",
@@ -30,7 +30,7 @@ const employees = [
   {
     id: 3,
     parentId: "1",
-    name: "Kate",
+    givenName: "Kate",
     positionName: "CTO",
     phone: "99887766",
     email: "employee@email.com",
@@ -49,7 +49,7 @@ const employees = [
   {
     id: 5,
     parentId: "3",
-    name: "Erica",
+    givenName: "Erica",
     positionName: "Manager of something",
     phone: "99887766",
     email: "employee@email.com",
@@ -62,7 +62,7 @@ const employees = [
   {
     id: 6,
     parentId: "3",
-    name: "Paul",
+    givenName: "Paul",
     positionName: "Manager of something",
     phone: "99887766",
     email: "employee@email.com",
@@ -81,7 +81,7 @@ const employees = [
   {
     id: 8,
     parentId: "3",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Manager of something",
     phone: "99887766",
     email: "employee@email.com",
@@ -94,7 +94,7 @@ const employees = [
   {
     id: 9,
     parentId: "2",
-    name: "Sally",
+    givenName: "Sally",
     positionName: "Manager of something",
     phone: "99887766",
     email: "employee@email.com",
@@ -107,7 +107,7 @@ const employees = [
   {
     id: 10,
     parentId: "4",
-    name: "Scott",
+    givenName: "Scott",
     positionName: "HR assistant",
     phone: "99887766",
     email: "employee@email.com",
@@ -121,7 +121,7 @@ const employees = [
   {
     id: 11,
     parentId: "1",
-    name: "James",
+    givenName: "James",
     positionName: "CGO",
     phone: "99887766",
     email: "employee@email.com",
@@ -134,7 +134,7 @@ const employees = [
   {
     id: 12,
     parentId: "4",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "HR assistant",
     phone: "99887766",
     email: "employee@email.com",
@@ -147,7 +147,7 @@ const employees = [
   {
     id: 13,
     parentId: "4",
-    name: "Sally",
+    givenName: "Sally",
     positionName: "HR assistant",
     phone: "99887766",
     email: "employee@email.com",
@@ -160,7 +160,7 @@ const employees = [
   {
     id: 14,
     parentId: "8",
-    name: "Scott",
+    givenName: "Scott",
     positionName: "Teacher",
     phone: "99887766",
     email: "employee@email.com",
@@ -174,7 +174,7 @@ const employees = [
   {
     id: 15,
     parentId: "8",
-    name: "James",
+    givenName: "James",
     positionName: "Teacher",
     phone: "99887766",
     email: "employee@email.com",
@@ -187,7 +187,7 @@ const employees = [
   {
     id: 16,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -200,7 +200,7 @@ const employees = [
   {
     id: 17,
     parentId: "7",
-    name: "Sally",
+    givenName: "Sally",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -213,7 +213,7 @@ const employees = [
   {
     id: 18,
     parentId: "8",
-    name: "Scott",
+    givenName: "Scott",
     positionName: "Teacher",
     phone: "99887766",
     email: "employee@email.com",
@@ -226,7 +226,7 @@ const employees = [
   {
     id: 19,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -239,7 +239,7 @@ const employees = [
   {
     id: 20,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -252,7 +252,7 @@ const employees = [
   {
     id: 21,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -265,7 +265,7 @@ const employees = [
   {
     id: 22,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -278,7 +278,7 @@ const employees = [
   {
     id: 23,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -291,7 +291,7 @@ const employees = [
   {
     id: 24,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -304,7 +304,7 @@ const employees = [
   {
     id: 25,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -317,7 +317,7 @@ const employees = [
   {
     id: 26,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",
@@ -330,7 +330,7 @@ const employees = [
   {
     id: 27,
     parentId: "7",
-    name: "Tony",
+    givenName: "Tony",
     positionName: "Developer",
     phone: "99887766",
     email: "employee@email.com",

@@ -5,11 +5,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -22,9 +18,10 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "src/pages/orgchart/data.js",
+    "src/components/orgchart/ExpandButton.js",
+    "src/components/orgchart/NodeContent.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
