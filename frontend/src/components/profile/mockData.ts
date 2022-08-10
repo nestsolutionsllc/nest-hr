@@ -158,5 +158,4 @@ export const SALARY_TABLE_HEADER_MOCK_DATA: SalaryTableHeaderType = [
   "Other Deductions",
   "Total Deductions",
   "Salary Up Front",
-  "Card",
 ];

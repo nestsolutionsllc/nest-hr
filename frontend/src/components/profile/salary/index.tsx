@@ -81,8 +81,8 @@ const Salary: FC = () => {
     ],
   };
 
-  const TableDataInfo = SALARY_TABLE_MOCK_DATA;
-  const TableHeaderData = SALARY_TABLE_HEADER_MOCK_DATA;
+  const SalaryInfo = SALARY_TABLE_MOCK_DATA;
+  const HeaderInfo = SALARY_TABLE_HEADER_MOCK_DATA;
 
   return (
     <Box>
@@ -142,15 +142,15 @@ const Salary: FC = () => {
               <Table sx={{ minWidth: 650 }}>
                 <TableHead>
                   <TableRow sx={{ "&:last-child td, &:last-child th": { borderBottom: 1, borderRadius: "50%" } }}>
-                    {TableHeaderData.map(headers => {
-                      return <TableCell align="center">{headers}</TableCell>;
+                    {HeaderInfo.map(header => {
+                      return <TableCell align="center">{header}</TableCell>;
                     })}
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow key={TableDataInfo[0].name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                    {Object.keys(TableDataInfo[0]).map(Data => {
-                      return <TableCell align="center">{TableDataInfo[0][Data]}</TableCell>;
+                  <TableRow key={SalaryInfo[0].name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    {Object.keys(SalaryInfo[0]).map(salary => {
+                      return <TableCell align="center">{SalaryInfo[0][salary]}</TableCell>;
                     })}
                   </TableRow>
                 </TableBody>
