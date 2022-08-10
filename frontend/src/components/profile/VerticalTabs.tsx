@@ -3,7 +3,10 @@ import { Tabs, Tab, Box, Stack } from "@mui/material";
 import Level from "./Level";
 import Salary from "./salary";
 import Onboard from "./onboarding/Onboard";
+import Offboard from "./onboarding/Offboard";
 import Achievement from "./achievement";
+
+const offBoarding = true;
 
 const tabItems = [
   {
@@ -15,8 +18,8 @@ const tabItems = [
     component: <Salary />,
   },
   {
-    title: "Onboarding checklist",
-    component: <Onboard />,
+    title: offBoarding ? "Offboarding" : "Onboarding",
+    component: offBoarding ? <Offboard /> : <Onboard />,
   },
   {
     title: "Achievement",

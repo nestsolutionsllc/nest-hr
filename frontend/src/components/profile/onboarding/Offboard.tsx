@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Box, Stack, Grid } from "@mui/material";
 import CheckBoxForm from "./CheckBoxForm";
 import ReadGuide from "./ReadGuide";
-import { ONBOARD_MOCK_DATA } from "../mockData";
+import { OFFBOARD_MOCK_DATA } from "../mockData";
 
 const styles = {
   line: {
@@ -14,7 +14,7 @@ const styles = {
   },
 };
 
-const Onboard: FC = () => {
+const Offboard: FC = () => {
   return (
     <Stack>
       <Grid container>
@@ -25,11 +25,11 @@ const Onboard: FC = () => {
           <Box sx={styles.line}></Box>
         </Grid>
         <Grid item md={5}>
-          <CheckBoxForm checklists={ONBOARD_MOCK_DATA.checklists} />
+          <CheckBoxForm checklists={OFFBOARD_MOCK_DATA.checklists} />
         </Grid>
       </Grid>
     </Stack>
   );
 };
 
-export default Onboard;
+export default Offboard;
