@@ -1,0 +1,54 @@
+[
+  {
+    "userId": "fsoi32",
+    "username": "Jumanji",
+    "profileImg": "https://picsum.photos/60",
+    "lastUpdated": "2022-08-03",
+    "status": "Pending",
+    "okrList": [
+      {
+        "title": "Improve communication skill",
+        "krList": ["speak with many people", "fix bad mouth", "learn bright words"]
+      }
+    ]
+  },
+  {
+    "userId": "8372hkj",
+    "username": "Kylie",
+    "profileImg": "https://picsum.photos/10",
+    "lastUpdated": "2022-08-03",
+    "status": "Approved",
+    "okrList": [
+      {
+        "title": "Improve communication skill",
+        "krList": ["speak with many people", "fix bad mouth", "learn bright words"]
+      }
+    ]
+  },
+  {
+    "userId": "dlkja2",
+    "username": "Robin",
+    "profileImg": "https://picsum.photos/20",
+    "lastUpdated": "2022-08-03",
+    "status": "Approved",
+    "okrList": [
+      {
+        "title": "Improve communication skill",
+        "krList": ["speak with many people", "fix bad mouth", "learn bright words"]
+      }
+    ]
+  },
+  {
+    "userId": "dsadasd",
+    "username": "Alex",
+    "profileImg": "https://picsum.photos/30",
+    "lastUpdated": "2022-08-03",
+    "status": "Pending",
+    "okrList": [
+      {
+        "title": "Improve communication skill",
+        "krList": ["speak with many people", "fix bad mouth", "learn bright words"]
+      }
+    ]
+  }
+]
