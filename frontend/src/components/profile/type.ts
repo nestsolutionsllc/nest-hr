@@ -61,18 +61,35 @@ export type AchievementListType = {
 export type SalaryTableType = [
   {
     name: string;
-    job: string;
+    position: string;
     salary: number;
     workdays: number;
     workedDays: number;
-    bonus: number;
+    raise: number;
     calculatedSalary: number;
-    socialSecurityDeduction: number;
-    HOAOT: number;
+    socialInsurance: number;
+    PIT: number;
     prePayment: number;
     otherDeduction: number;
     totalDeduction: number;
     salaryAtHand: number;
     card: number;
   }
+];
+
+export type SalaryTableHeaderType = [
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string
 ];

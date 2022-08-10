@@ -17,7 +17,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import PaidIcon from "@mui/icons-material/Paid";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import { INFO_MOCK_DATA, CHART_MOCK_DATA, SALARY_TABLE_MOCK_DATA } from "../mockData";
+import { INFO_MOCK_DATA, CHART_MOCK_DATA, SALARY_TABLE_MOCK_DATA, SALARY_TABLE_HEADER_MOCK_DATA } from "../mockData";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -82,6 +82,7 @@ const Salary: FC = () => {
   };
 
   const TableDataInfo = SALARY_TABLE_MOCK_DATA;
+  const TableHeaderData = SALARY_TABLE_HEADER_MOCK_DATA;
   return (
     <Box>
       <Typography variant="h4" sx={styles.title}>
@@ -139,21 +140,10 @@ const Salary: FC = () => {
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
-                  <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell align="center">Job</TableCell>
-                    <TableCell align="center">Salary</TableCell>
-                    <TableCell align="center">Total Work Days</TableCell>
-                    <TableCell align="center">Days Worked</TableCell>
-                    <TableCell align="center">Bonus</TableCell>
-                    <TableCell align="center">Calculated Salary</TableCell>
-                    <TableCell align="center">Social Security</TableCell>
-                    <TableCell align="center">HOAOT</TableCell>
-                    <TableCell align="center">PrePayment</TableCell>
-                    <TableCell align="center">Other Deductions</TableCell>
-                    <TableCell align="center">Total Deductions</TableCell>
-                    <TableCell align="center">Salary Up Front</TableCell>
-                    <TableCell align="center">Card</TableCell>
+                  <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    {TableHeaderData.map(headers => {
+                      return <TableCell align="center">{headers}</TableCell>;
+                    })}
                   </TableRow>
                 </TableHead>
                 <TableBody>
