@@ -1,18 +1,12 @@
 import { TextField, Typography } from "@mui/material";
-import FormControler from "./FormControler";
+import FormControler from "./FormController";
 
 const styles = {
   fieldGap: {
     margin: "0.5em",
   },
 };
-
-type Props = {
-  inputs: Input[];
-  callback: (key: string, value: string) => void;
-};
-
-export type Input = {
+export type inputType = {
   tag: string;
   label?: string;
   minRows?: number;
@@ -26,6 +20,11 @@ export type Input = {
         reason: string[];
         time: string[];
       };
+};
+
+type Props = {
+  inputs: inputType[];
+  callback: (key: string, value: string) => void; // eslint-disable-line no-unused-vars
 };
 
 export const Form = ({ inputs, callback }: Props) => {
@@ -56,6 +55,7 @@ export const Form = ({ inputs, callback }: Props) => {
                 if (e === "type") return null;
                 return (
                   <FormControler
+                    getType={null}
                     key={Math.random() * index}
                     handleFormValuesChange={callback}
                     title={e}

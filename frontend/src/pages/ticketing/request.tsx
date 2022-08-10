@@ -5,12 +5,21 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import FormControler from "../../components/ticket/FormControler";
-import { Input, Form } from "../../components/ticket/Form";
+import FormController from "../../components/ticket/FormController";
+import { inputType, Form } from "../../components/ticket/Form";
 
 const styles = {
   line: { width: "100%", height: "0.1em", backgroundColor: "#DFE1E6" },
-  scrollHide: { overflowX: "hidden" },
+  customScroll: {
+    overflowX: "hidden",
+    "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+      width: 8,
+    },
+    "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+      borderRadius: 8,
+      backgroundColor: "#61bff2",
+    },
+  },
   modal: {
     display: "flex",
     flexDirection: "column",
@@ -22,11 +31,12 @@ const styles = {
 };
 
 type dataType = {
-  orderData: Input[];
-  leaveData: Input[];
-  officeData: Input[];
+  orderData: inputType[];
+  leaveData: inputType[];
+  officeData: inputType[];
 };
 const type: string[] = ["other", "office", "leave"];
+const URL = process.env.TICKET_SYSTEM_ENDPOINT_URL;
 
 const data: dataType = {
   orderData: [
@@ -74,11 +84,10 @@ const data: dataType = {
 
 export default function DialogSelect() {
   const [open, setOpen] = React.useState(false);
-  const [currType, setCurrType] = React.useState(type[0]);
+  const [currentType, setCurrentType] = React.useState(type[0]);
   let newTicket = {
     reporter_id: "jigmee",
   };
-  const URL = process.env.TICKET_SYSTEM_ENDPOINT_URL;
 
   const handleClickOpen = () => setOpen(true);
 
@@ -87,7 +96,7 @@ export default function DialogSelect() {
     obj[key] = value;
     newTicket = { ...newTicket, ...obj };
   };
-
+  const getCurrentType = (Type: string) => setCurrentType(Type);
   const handleClose = async (event: React.SyntheticEvent<unknown>, reason?: string) => {
     if (reason !== "backdropClick") {
       const requestOptions = {
@@ -95,13 +104,12 @@ export default function DialogSelect() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTicket),
       };
-
       try {
         await fetch(URL, requestOptions);
       } catch (error) {
         throw new Error(error);
       }
-      setCurrType(type[0]);
+      setCurrentType(type[0]);
       setOpen(false);
     }
   };
@@ -113,17 +121,17 @@ export default function DialogSelect() {
       <Dialog disableEscapeKeyDown open={open} onClose={handleClose} maxWidth="md">
         <DialogTitle>Create issue</DialogTitle>
         <Box sx={styles.line} />
-        <DialogContent sx={styles.scrollHide}>
+        <DialogContent sx={styles.customScroll}>
           <Box component="form" sx={styles.modal}>
-            <FormControler
+            <FormController
               title={"Type"}
-              setState={setCurrType}
+              getType={getCurrentType}
               handleFormValuesChange={handleFormValuesChange}
               selectList={type}
             />
-            {currType === type[0] && <Form inputs={data.orderData} callback={handleFormValuesChange} />}
-            {currType === type[1] && <Form inputs={data.officeData} callback={handleFormValuesChange} />}
-            {currType === type[2] && <Form inputs={data.leaveData} callback={handleFormValuesChange} />}
+            {currentType === type[0] && <Form inputs={data.orderData} callback={handleFormValuesChange} />}
+            {currentType === type[1] && <Form inputs={data.officeData} callback={handleFormValuesChange} />}
+            {currentType === type[2] && <Form inputs={data.leaveData} callback={handleFormValuesChange} />}
           </Box>
         </DialogContent>
         <Box sx={styles.line} />
