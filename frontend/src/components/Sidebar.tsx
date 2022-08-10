@@ -52,6 +52,20 @@ const StyledListItemButton = styled(Button)`
 
 export const menuItems = [
   {
+    title: "Admin",
+    icon: <AccountTreeIcon />,
+    children: [
+      {
+        title: "Group",
+        href: "/admin/group",
+      },
+      {
+        title: "Employee",
+        href: "/admin/employee",
+      },
+    ],
+  },
+  {
     title: "Ticketing",
     icon: <ConfirmationNumberIcon />,
     children: [
