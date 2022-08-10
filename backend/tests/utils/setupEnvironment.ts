@@ -63,7 +63,6 @@ const setupEnvironment = async () => {
       userGroup: ["62e74a8401675f07254517ce", "62f078947d09e5aa9cb5588c", "62f078ee7d09e5aa9cb5588d"],
       createdAt: "1659409317603",
       __v: 0,
-      role: "admin",
     });
 
     await User.create({
@@ -74,7 +73,6 @@ const setupEnvironment = async () => {
       userGroup: ["62e74a8401675f07254517ce", "62f078947d09e5aa9cb5588c", "62f078ee7d09e5aa9cb5588d"],
       createdAt: "1659409317603",
       __v: 0,
-      role: "admin",
     });
     await User.create({
       _id: "62e8ca16e385b0a0864164ef",
@@ -84,6 +82,15 @@ const setupEnvironment = async () => {
       role: "admin",
       userGroup: ["62e74a8401675f07254517ce", "62f078947d09e5aa9cb5588c"],
       createdAt: "1659423254990",
+      __v: 0,
+    });
+    await User.create({
+      _id: "62f2140c7d09e5aa9cb55a1d",
+      userName: "user4",
+      email: "user4@gmail.com",
+      password: "user4",
+      createdAt: "1659409317603",
+      // userGroup: {},
       __v: 0,
     });
     await Achievement.deleteMany();
