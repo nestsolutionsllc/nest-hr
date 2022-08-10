@@ -22,7 +22,10 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "src/pages/orgchart/data.js",
+    "src/components/orgchart/ExpandButton.js",
+    "src/components/orgchart/NodeContent.js"
   ],
   "exclude": [
     "node_modules"
