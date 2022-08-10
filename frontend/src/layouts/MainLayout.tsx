@@ -64,7 +64,11 @@ export const Drawer = styled(MuiDrawer, { shouldForwardProp: property => propert
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false);
+  const [openTab, setOpenTab] = useState("");
   const toggleDrawer = useCallback(() => {
+    if (open) {
+      setOpenTab("");
+    }
     setOpen(!open);
   }, [open]);
 
@@ -110,7 +114,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
         </Toolbar>
         <Divider />
         <List component="nav">
-          <SideBar open={open} setOpen={setOpen} />
+          <SideBar open={open} setOpen={setOpen} openTab={openTab} setOpenTab={setOpenTab} />
         </List>
       </Drawer>
       <Box

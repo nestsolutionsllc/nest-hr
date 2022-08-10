@@ -4,9 +4,7 @@ import Home from "../src/pages/index";
 describe("Home", () => {
   it("renders a heading", async () => {
     render(<Home />);
-
-    const heading = await screen.findByText("Захиалгууд");
-
+    const heading = await screen.findByText("home page");
     expect(heading).toBeInTheDocument();
   });
 });
