@@ -12,6 +12,7 @@
     project_root: "/home/hr/{{ preview }}"
     issue_id: "{{ preview | regex_search('^([0-9]+)') }}"
     port_number: "{{ issue_id | int + 10000 }}"
+
   pre_tasks:
     - name: Print port number
       debug:
@@ -36,6 +37,9 @@
 
     - name: Installs yarn
       command: "npm install -g yarn"
+
+    - name: Installs npm
+      apt: pkg=npm update_cache=true #state=installed
 
     - name: Install PM2
       npm:
