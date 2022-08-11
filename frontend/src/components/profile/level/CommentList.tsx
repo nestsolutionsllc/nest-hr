@@ -10,13 +10,13 @@ const styles = {
     padding: 3,
     maxWidth: "500px",
   },
-  typo: {
+  comment: {
     fontSize: 15,
   },
   category: {
     fontSize: 10,
   },
-  stack: {
+  commentHeader: {
     justifyContent: "space-between",
   },
 };
@@ -24,16 +24,16 @@ const styles = {
 const CommentList: FC<LadderCommentItemType> = ({ name, img, comment, category }) => {
   return (
     <Box sx={styles.container}>
-      <Stack direction="row" sx={styles.stack}>
+      <Stack direction="row" sx={styles.commentHeader}>
         <Stack direction="row" spacing={2}>
           <Avatar alt="Remy Sharp" src={img} />
           <Typography variant="h6" component="h6">
             {name}
           </Typography>
         </Stack>
-        <Box sx={styles.category}>{category}</Box>
+        <Typography sx={styles.category}>{category}</Typography>
       </Stack>
-      <Typography mt={2} sx={styles.typo}>
+      <Typography mt={2} sx={styles.comment}>
         {comment}
       </Typography>
     </Box>

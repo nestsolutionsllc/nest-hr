@@ -10,6 +10,11 @@ const styles = {
   },
   divider: {
     border: "1px solid #f0f2f5",
+    marginBottom: "10px",
+  },
+  commentContainer: {
+    maxHeight: "60vh",
+    overflowY: "scroll",
   },
 };
 
@@ -33,20 +38,21 @@ const Level = () => {
           <Typography variant="h4" mb={2} style={styles.title}>
             Comment List
           </Typography>
-          {COMMENT_MOCK_DATA.commentData.map((singleComment, index) => {
-            return (
-              <CommentListIndex
-                key={index}
-                name={singleComment.name}
-                img={singleComment.img}
-                comment={singleComment.comment}
-                category={singleComment.category}
-              ></CommentListIndex>
-            );
-          })}
+          <Box sx={styles.commentContainer}>
+            {COMMENT_MOCK_DATA.commentData.map((singleComment, index) => {
+              return (
+                <CommentListIndex
+                  key={index}
+                  name={singleComment.name}
+                  img={singleComment.img}
+                  comment={singleComment.comment}
+                  category={singleComment.category}
+                />
+              );
+            })}
+          </Box>
         </Stack>
       </Stack>
-      <Typography variant="body1">Ladder level section</Typography>
     </Stack>
   );
 };
