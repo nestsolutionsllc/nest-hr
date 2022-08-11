@@ -18,7 +18,7 @@ const newTicket = {
   status: "open",
   type: "office",
   priority: "low",
-  description: "test description",
+  description: "description",
 };
 
 let ticketId: string;
@@ -35,7 +35,7 @@ describe("Testing ticketing system CRUD", () => {
       const res = await request(app).post("/ticket").send({ reporter_id: "001" });
       expect(res.statusCode).toBe(400);
     });
-    it("test", async () => {
+    it("It should return 400 error if there is no ticket object", async () => {
       const res = await request(app).post("/ticket");
       expect(res.statusCode).toBe(400);
     });
@@ -50,18 +50,18 @@ describe("Testing ticketing system CRUD", () => {
   });
 
   describe("GET, /ticket", () => {
-    it("It should respond a ticket object by '_id'", async () => {
+    it("It should respond a ticket object by 'id'", async () => {
       const res = await request(app).get(`/ticket/${ticketId}`);
       expect(res.statusCode).toBe(200);
       const data = JSON.parse(res.text);
       expect(data.reporter_id).toBe("001");
     });
-    it("It should return a 500 status if '_id' is invalid", async () => {
+    it("It should return a 500 status if 'id' is invalid", async () => {
       const res = await request(app).get(`/ticket/${"Doesn't exist"}`);
       expect(res.statusCode).toBe(500);
     });
 
-    it("It should return a 404 status if there is no '_id'", async () => {
+    it("It should return a 404 status if there is no 'id'", async () => {
       const res = await request(app).get("/ticket/");
       expect(res.statusCode).toBe(404);
     });
@@ -80,16 +80,16 @@ describe("Testing ticketing system CRUD", () => {
       const res = await request(app).patch(`/ticket/${ticketId}`);
       expect(res.statusCode).toBe(400);
     });
-    it("Inserting data with invalid ticket id and it should return 400", async () => {
+    it("It should return 400, if inserting data with invalid ticket id", async () => {
       const res = await request(app).patch("/ticket/DoesntExist").send({
         status: "rejected",
       });
-      expect(res.statusCode).toBe(500);
+      expect(res.statusCode).toBe(400);
     });
   });
 
   describe("POST, DELETE,  /ticket", () => {
-    it("Delete row with given _id that previously store", async () => {
+    it("Delete row with given '_id' that previously store", async () => {
       const res = await request(app).post("/ticket").send(newTicket);
       expect(res.statusCode).toBe(201);
       const data = JSON.parse(res.text);
@@ -106,7 +106,7 @@ describe("Testing ticketing system CRUD", () => {
   });
 
   describe("POST, /tickets", () => {
-    it("It should respond a ticket object by report_id or assignee_id", async () => {
+    it("It should respond a ticket object by id", async () => {
       const res = await request(app).post("/tickets").send({
         id: "001",
       });

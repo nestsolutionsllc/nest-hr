@@ -1,12 +1,5 @@
 import { Request, Response } from "express";
-import {
-  getAllTicket,
-  getTicket,
-  getTickets,
-  addTicket,
-  deleteTicket,
-  updateTicket,
-} from "../../queries/ticket/ticketService";
+import { getAllTicket, getTicket, getTickets, addTicket, deleteTicket, updateTicket } from "../queries/ticketService";
 
 export const getAllTicketsService = async (request: Request, response: Response) => {
   response.send(await getAllTicket());
@@ -43,7 +36,7 @@ export const updateTicketService = async (request: Request, response: Response) 
     const result = await updateTicket(request);
     response.status(200).send(result);
   } catch (error) {
-    response.status(500).send(error);
+    response.status(400).send(error);
   }
 };
 

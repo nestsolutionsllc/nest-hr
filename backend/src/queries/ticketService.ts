@@ -1,5 +1,5 @@
 import { Request } from "express";
-import Ticket from "../../models/ticket/ticket";
+import Ticket from "../models/ticket";
 
 export const getAllTicket = () => {
   return Ticket.find({});
