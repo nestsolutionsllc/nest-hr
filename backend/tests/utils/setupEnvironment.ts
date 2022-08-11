@@ -3,6 +3,7 @@ import Movie from "../../src/models/Movie";
 import Ticket from "../../src/models/ticket/ticket";
 import Onboard from "../../src/models/profile/onboarding/Onboard";
 import Achievement from "../../src/models/Achievement";
+import Offboard from "../../src/models/profile/offboarding/Offboard";
 
 const setupEnvironment = async () => {
   /* istanbul ignore next */
@@ -15,12 +16,15 @@ const setupEnvironment = async () => {
     await Ticket.deleteMany();
     await Achievement.deleteMany();
     await Onboard.deleteMany();
+    await Offboard.deleteMany();
   }
 };
 
 const tearDown = async () => {
   await Movie.deleteMany();
   await Ticket.deleteMany();
+  await Onboard.deleteMany();
+  await Offboard.deleteMany();
   await mongoose.connection.close();
 };
 
