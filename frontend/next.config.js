@@ -11,6 +11,7 @@ const nextConfig = {
   tralingSlash: true,
   env: {
     TICKET_SYSTEM_ENDPOINT_URL: process.env.TICKET_SYSTEM_ENDPOINT_URL,
+    DB_HOST: process.env.DB_HOST,
   },
 };
 

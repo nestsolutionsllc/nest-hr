@@ -88,3 +88,7 @@ export type LadderCommentItemType = {
 export type LadderCommentListType = {
   commentData: Array<LadderCommentItemType>;
 };
+
+export interface IAchievementDataProps {
+  achievementData: AchievementListType[];
+}

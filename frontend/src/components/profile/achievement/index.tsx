@@ -8,14 +8,15 @@ const styles = {
     borderColor: "#f0f2f5",
   },
 };
-const Achievement = () => {
+
+const Achievement = ({ achievementData }) => {
   return (
     <Stack spacing={3}>
       <Typography variant="h4" sx={styles.title}>
         Achievements
       </Typography>
       <Grid container spacing={4}>
-        <Achievements />
+        <Achievements achievementData={achievementData} />
       </Grid>
     </Stack>
   );

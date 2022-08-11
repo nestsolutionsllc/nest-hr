@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Stack, Typography, Rating, Card, Avatar, CardActions } from "@mui/material";
+import { Stack, Typography, Rating } from "@mui/material";
 import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
 import CircleIcon from "@mui/icons-material/Circle";
 import { AchievementItemType } from "../type";
@@ -103,21 +103,5 @@ export const AwardItem: FC<AchievementItemType> = ({ date, title, description })
       <Typography variant="h5">{title}</Typography>
       <Typography variant="body1">{description}</Typography>
     </Stack>
-  );
-};
-
-export const LanguageItem: FC<AchievementItemType> = ({ countryPhoto, levelOfProficiency, languageName }) => {
-  return (
-    <CardActions sx={styles.buttonContainer}>
-      <Card sx={styles.card}>
-        <Avatar src={countryPhoto} sx={styles.circle} />
-        <Card sx={styles.languageContainer}>
-          <Typography fontWeight={"bold"}>{languageName}</Typography>
-          <Typography fontWeight={"bold"} fontSize={13} sx={{ opacity: 0.3 }}>
-            {levelOfProficiency}
-          </Typography>
-        </Card>
-      </Card>
-    </CardActions>
   );
 };
