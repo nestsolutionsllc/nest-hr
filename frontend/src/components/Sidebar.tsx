@@ -5,6 +5,7 @@ import CalendarIcon from "@mui/icons-material/CalendarToday";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import EventSeat from "@mui/icons-material/EventSeat";
 
 type IProps = {
   open?: boolean;
@@ -82,6 +83,16 @@ export const menuItems = [
       {
         title: "profile",
         href: "/profile",
+      },
+    ],
+  },
+  {
+    title: "Seat plan",
+    icon: <EventSeat />,
+    children: [
+      {
+        title: "seat plan",
+        href: "/seatplan",
       },
     ],
   },
