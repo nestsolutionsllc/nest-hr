@@ -17,23 +17,25 @@ const styles = {
   none: { display: "none" },
 };
 
-type callback = (key: string, value: string) => void;
+type callback = (key: string, value: string) => void; // eslint-disable-line no-unused-vars
 
 type Props = {
   title: string;
   selectList: string[];
   handleFormValuesChange: callback;
-  setState?: React.Dispatch<React.SetStateAction<string>>;
+  getType?: (type: string) => void; // eslint-disable-line no-unused-vars
 };
 
-const FormControler = ({ title, selectList, handleFormValuesChange, setState }: Props) => {
+const FormController = ({ title, selectList, handleFormValuesChange, getType }: Props) => {
   const [$value, set$value] = React.useState<number>(10);
-  handleFormValuesChange(title, selectList[$value / 10 - 1]);
+
   const handleChange = (event: SelectChangeEvent<typeof $value>) => {
-    const typeNum = Number(event.target.value);
-    setState ? setState(selectList[typeNum / 10 - 1]) : null;
-    set$value(Number(typeNum));
+    const nextType = selectList[Number(event.target.value) / 10 - 1];
+    set$value(Number(event.target.value));
+    getType(nextType);
   };
+
+  handleFormValuesChange(title, selectList[$value / 10 - 1]);
 
   return (
     <FormControl sx={styles.width}>
@@ -61,4 +63,4 @@ const FormControler = ({ title, selectList, handleFormValuesChange, setState }: 
   );
 };
 
-export default FormControler;
+export default FormController;
