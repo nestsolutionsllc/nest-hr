@@ -9,6 +9,9 @@ const nextConfig = {
     domains: ["firebasestorage.googleapis.com"],
   },
   tralingSlash: true,
+  env: {
+    TICKET_SYSTEM_ENDPOINT_URL: process.env.TICKET_SYSTEM_ENDPOINT_URL,
+  },
 };
 
 module.exports = nextConfig;

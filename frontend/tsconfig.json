@@ -23,5 +23,8 @@
     "src/components/orgchart/ExpandButton.js",
     "src/components/orgchart/NodeContent.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
+

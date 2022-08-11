@@ -1,4 +1,12 @@
-import { InfoType, AchievementListType, CheckListMockType, ChartType } from "./type";
+import {
+  InfoType,
+  AchievementListType,
+  CheckListMockType,
+  ChartType,
+  SalaryTableType,
+  SalaryTableHeaderType,
+  LadderCommentListType,
+} from "./type";
 
 export const INFO_MOCK_DATA: InfoType = {
   lastName: "Bill",
@@ -115,6 +123,66 @@ export const CHART_MOCK_DATA: ChartType = {
     {
       name: "Medicare wages",
       total: "15",
+    },
+  ],
+};
+
+export const SALARY_TABLE_MOCK_DATA: SalaryTableType = [
+  {
+    name: "Tom",
+    position: "Manager",
+    salary: 1500000,
+    workdays: 19,
+    workedDays: 19,
+    raise: 0,
+    calculatedSalary: 1500000,
+    socialInsurance: 165000,
+    PIT: 123500,
+    prePayment: 600750,
+    otherDeduction: 0,
+    totalDeduction: 0,
+    salaryAtHand: 0,
+  },
+];
+
+export const SALARY_TABLE_HEADER_MOCK_DATA: SalaryTableHeaderType = [
+  "Name",
+  "Position",
+  "Income",
+  "Work Days",
+  "Days Worked",
+  "Bonus",
+  "Expected Salary",
+  "Social Security Deductions",
+  "PIT",
+  "Pre Payment",
+  "Other Deductions",
+  "Total Deductions",
+  "Salary Up Front",
+];
+
+export const COMMENT_MOCK_DATA: LadderCommentListType = {
+  commentData: [
+    {
+      img: "https://cdn5.shoppy.mn/img/112064/840x0xwebp/nnn.png?h=cdbe20dde8803634a7cb27219a945b52ef0208b3",
+      name: "urana",
+      category: "Technology",
+      comment:
+        "Lorem Iim Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    },
+    {
+      img: "https://cdn5.shoppy.mn/img/112070/840x0xwebp/hhhhhhhhhhhhh.png?h=cdbe20dde8803634a7cb27219a945b52ef0208b3",
+      name: "Matar",
+      category: "System",
+
+      comment:
+        " Lorem Ipsum i took a galley of type and scrambled it to make a type specimen book. It has sries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop ",
+    },
+    {
+      img: "https://cdn3.shoppy.mn/spree/images/1326825/product/open-uri20220506-3073495-momk26.",
+      name: "someOne",
+      category: "People",
+      comment: "good 1960s with thining Lorem Ipsum passages, and moreof Lorem Ipsum.",
     },
   ],
 };

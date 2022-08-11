@@ -154,7 +154,7 @@ const Body: FC<{
         Weight is used to increase or decrease importance of a single Key Result when calculating Objective completion%.
       </Box>
       <Box sx={style.margin}>
-        {mockData.weight.map(el => {
+        {mockData.weight.map((el, ind) => {
           return (
             <Box>
               <InputComp
@@ -165,6 +165,7 @@ const Body: FC<{
                 inputType="count"
                 type={type}
                 mockData={mockData}
+                key={ind}
               />
             </Box>
           );

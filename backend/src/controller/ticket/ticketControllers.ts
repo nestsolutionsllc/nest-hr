@@ -1,11 +1,22 @@
 import { Request, Response } from "express";
-import { getTickets, addTicket, deleteTicket, updateTicket, getAllTickets } from "../../queries/ticket/ticketService";
+import {
+  getAllTicket,
+  getTicket,
+  getTickets,
+  addTicket,
+  deleteTicket,
+  updateTicket,
+} from "../../queries/ticket/ticketService";
 
 export const getAllTicketsService = async (request: Request, response: Response) => {
+  response.send(await getAllTicket());
+};
+
+export const getTicketService = async (request: Request, response: Response) => {
   try {
-    response.send(await getAllTickets());
+    const result = await getTicket(request);
+    response.status(200).send(result);
   } catch (error) {
-    /* istanbul ignore next */
     response.status(500).send(error);
   }
 };
