@@ -6,7 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import FormController from "../../components/ticket/FormController";
-import { inputType, Form } from "../../components/ticket/Form";
+import { Input, Form } from "../../components/ticket/Form";
 
 const styles = {
   line: { width: "100%", height: "0.1em", backgroundColor: "#DFE1E6" },
@@ -31,9 +31,9 @@ const styles = {
 };
 
 type dataType = {
-  orderData: inputType[];
-  leaveData: inputType[];
-  officeData: inputType[];
+  orderData: Input[];
+  leaveData: Input[];
+  officeData: Input[];
 };
 const type: string[] = ["other", "office", "leave"];
 const URL = process.env.TICKET_SYSTEM_ENDPOINT_URL;
