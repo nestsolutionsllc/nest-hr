@@ -13,7 +13,7 @@ const styles = {
     backgroundColor: "#fef9ef",
     borderRadius: "1rem",
     border: "1px solid #d3d3d3",
-    overflowY: "scroll",
+    overflowY: "auto",
   },
   cardCloseBtn: {
     position: "absolute",
@@ -55,8 +55,8 @@ const styles = {
     flexDirection: "column",
   },
   cardBodyTeamMembers: {
-    height: "23vh",
-    overflowY: "scroll",
+    maxHeight: "23vh",
+    overflowY: "auto",
   },
   cardItem: {
     width: "100%",
