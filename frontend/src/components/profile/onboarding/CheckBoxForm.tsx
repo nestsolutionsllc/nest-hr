@@ -1,7 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import { CheckBoxList } from "./CheckBoxList";
-import { CHECKLIST_MOCK_DATA } from "../mockData";
 import { CheckListType } from "../type";
 
 const styles = {
@@ -18,11 +17,15 @@ const styles = {
   },
 };
 
-const CheckBoxForm: FC = () => {
-  const [realTimeCheckList, setRealTimeCheckList] = useState<CheckListType[]>(CHECKLIST_MOCK_DATA.checklists);
+type CheckBoxFormProps = {
+  checklists: Array<CheckListType>;
+};
+
+const CheckBoxForm: FC<CheckBoxFormProps> = ({ checklists }) => {
+  const [realTimeCheckList, setRealTimeCheckList] = useState<CheckListType[]>(checklists);
 
   const resetCheckList = () => {
-    setRealTimeCheckList(CHECKLIST_MOCK_DATA.checklists);
+    setRealTimeCheckList(checklists);
   };
 
   return (

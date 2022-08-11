@@ -21,7 +21,7 @@ export const INFO_MOCK_DATA: InfoType = {
     "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png",
 };
 
-export const CHECKLIST_MOCK_DATA: CheckListMockType = {
+export const ONBOARD_MOCK_DATA: CheckListMockType = {
   name: "Developer",
   checklists: [
     {
@@ -41,6 +41,24 @@ export const CHECKLIST_MOCK_DATA: CheckListMockType = {
         { question: "Github access", checked: false },
         { question: "Mono-repo guidance, readme", checked: false },
       ],
+    },
+  ],
+};
+
+export const OFFBOARD_MOCK_DATA: CheckListMockType = {
+  name: "Developer",
+  checklists: [
+    {
+      type: "Basics",
+      questions: [{ question: "Has given company imac or laptop", checked: false }],
+    },
+    {
+      type: "Accounts",
+      questions: [{ question: "Logout to Slack with your Google account", checked: false }],
+    },
+    {
+      type: "Tools",
+      questions: [{ question: "Github access", checked: false }],
     },
   ],
 };
