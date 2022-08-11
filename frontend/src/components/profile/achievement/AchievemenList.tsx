@@ -1,10 +1,9 @@
 import React, { ReactNode, useState } from "react";
-import { Stack, Card, CardHeader, CardContent, Grid } from "@mui/material";
+import { Stack, Card, CardHeader, CardContent, Grid, Box } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
-import { SkillItem, CertificateItem, AwardItem, LanguageItem } from "./AchievementItem";
+import { SkillItem, CertificateItem, AwardItem } from "./AchievementItem";
 import ProfileModal from "../ProfileModal";
-import { ACHIEVEMENT_MOCK_DATA } from "../mockData";
 
 const styles = {
   cardShadow: {
@@ -43,25 +42,25 @@ export const CardSection = ({ children, genre }: { children: ReactNode; genre: s
   );
 };
 
-export const Achievements = () => {
+export const Achievements = ({ achievementData }) => {
+  console.log("achievementData => ", achievementData);
   return (
     <>
-      {ACHIEVEMENT_MOCK_DATA.map((item, index) => {
+      {achievementData.map((achievement, index) => {
         return (
-          <CardSection genre={item.category} key={index}>
-            <Stack spacing={2} direction={item.category === "certificates" ? "row" : "column"}>
-              {item.data.map(d => {
+          <CardSection genre={achievement.category} key={index}>
+            <Stack spacing={2} direction={achievement.category === "certificates" ? "row" : "column"}>
+              {achievement.data.map((d, id) => {
                 return (
-                  <>
-                    {item.category === "skills" && <SkillItem {...d} />}
-                    {item.category === "certificates" && (
+                  <Box key={id}>
+                    {achievement.category === "skills" && <SkillItem {...d} />}
+                    {achievement.category === "certificates" && (
                       <Stack>
                         <CertificateItem {...d} />
                       </Stack>
                     )}
-                    {item.category === "awards" && <AwardItem {...d} />}
-                    {item.category === "languages" && <LanguageItem {...d} />}
-                  </>
+                    {achievement.category === "awards" && <AwardItem {...d} />}
+                  </Box>
                 );
               })}
             </Stack>

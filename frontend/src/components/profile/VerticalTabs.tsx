@@ -4,25 +4,7 @@ import Level from "./level/index";
 import Salary from "./salary";
 import Onboard from "./onboarding/Onboard";
 import Achievement from "./achievement";
-
-const tabItems = [
-  {
-    title: "Ladder Level",
-    component: <Level />,
-  },
-  {
-    title: "Salary",
-    component: <Salary />,
-  },
-  {
-    title: "Onboarding checklist",
-    component: <Onboard />,
-  },
-  {
-    title: "Achievement",
-    component: <Achievement />,
-  },
-];
+import { IAchievementDataProps } from "./type";
 
 interface TabPanelProps {
   children?: ReactNode;
@@ -84,8 +66,26 @@ const TabPanel: FC<TabPanelProps> = props => {
   );
 };
 
-const VerticalTabs: FC = () => {
-  const [value, setValue] = useState(0);
+const VerticalTabs: FC<IAchievementDataProps> = ({ achievementData }) => {
+  const tabItems = [
+    {
+      title: "Ladder Level",
+      component: <Level />,
+    },
+    {
+      title: "Salary",
+      component: <Salary />,
+    },
+    {
+      title: "Onboarding checklist",
+      component: <Onboard />,
+    },
+    {
+      title: "Achievement",
+      component: <Achievement achievementData={achievementData} />,
+    },
+  ];
+  const [value, setValue] = useState<number>(0);
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
