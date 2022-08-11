@@ -1,6 +1,6 @@
 import { FC, ReactNode, SyntheticEvent, useState } from "react";
 import { Tabs, Tab, Box, Stack } from "@mui/material";
-import Level from "./Level";
+import Level from "./level/index";
 import Salary from "./salary";
 import Onboard from "./onboarding/Onboard";
 import Achievement from "./achievement";

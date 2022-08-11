@@ -77,3 +77,14 @@ export type SalaryTableType = [
 ];
 
 export type SalaryTableHeaderType = Array<string>;
+
+export type LadderCommentItemType = {
+  img: string;
+  name: string;
+  comment: string;
+  category: string;
+};
+
+export type LadderCommentListType = {
+  commentData: Array<LadderCommentItemType>;
+};
