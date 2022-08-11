@@ -35,11 +35,9 @@ const OrganizationalChart = (props: { data: IEmployee[] }) => {
           toggleDetailsCard(d);
         })
         .buttonContent(node => {
-          console.log(node);
           return ReactDOMServer.renderToStaticMarkup(<ExpandButton {...node.node} />);
         })
         .nodeContent(d => {
-          console.log(d);
           return ReactDOMServer.renderToStaticMarkup(<NodeContent {...d} />);
         })
         .render();

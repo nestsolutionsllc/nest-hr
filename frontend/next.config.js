@@ -4,12 +4,11 @@ const nextConfig = {
   swcMinify: true,
   experimental: { images: { layoutRaw: true } },
   images: {
-    loader: 'imgix',
-    path: '',
-    domains: ['firebasestorage.googleapis.com'],
+    loader: "imgix",
+    path: "",
+    domains: ["firebasestorage.googleapis.com"],
   },
   tralingSlash: true,
 };
 
 module.exports = nextConfig;
-
