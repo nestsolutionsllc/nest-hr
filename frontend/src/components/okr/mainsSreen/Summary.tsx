@@ -1,10 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import React from "react";
-// import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
-// import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import { BorderLinearProgress, NoBorder } from "./styledComponents";
 
 const style = {
@@ -22,7 +19,7 @@ const style = {
     display: "flex",
     fontSize: "12px",
     justifyContent: "space-between",
-    width: "360px",
+    width: "300px",
     alignItems: "center",
   },
   container: {
@@ -38,10 +35,10 @@ const Summary = props => {
     setCollection({ ...collection, anchorEl: event.currentTarget, type: "child" });
   };
   const Edit = () => {
-    setEdit(false);
     const newData = okrData;
-    newData[ind].name = collection.newTitle;
+    newData[ind].title = collection.newTitle;
     setOkrData([...newData]);
+    setEdit(false);
   };
   return (
     <Box sx={style.container} ml={1}>
@@ -67,10 +64,6 @@ const Summary = props => {
           <Box sx={style.calendar}>
             <BorderLinearProgress variant="determinate" value={30} sx={{ width: 150 }} />
             <Box ml={2}>30%</Box>
-          </Box>
-          <Box sx={style.calendar} color="#929294">
-            <CalendarTodayOutlinedIcon fontSize="small" />
-            <Box>Due in 54 days</Box>
           </Box>
           <Box color="#929294">Owner</Box>
         </Box>

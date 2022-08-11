@@ -1,5 +1,5 @@
 import { AddCircleOutlineOutlined, AddOutlined } from "@mui/icons-material";
-import { Box } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import Results from "./Results";
 import { NoBorder } from "./styledComponents";
@@ -31,19 +31,17 @@ const style = {
 const Details = props => {
   const { okrData, ind, collection, setCollection, setOkrData, setEdit, edit } = props;
   const add = () => {
-    if (collection.value !== "") {
-      okrData[ind].child.push(collection.value);
-      setCollection({ ...collection, addResult: false, value: "" });
-    }
+    if (collection.value.trim() === "") return;
+    okrData[ind].krList.push({ kr: collection.value, comments: [] });
+    setCollection({ ...collection, addResult: false, value: "" });
     setOkrData([...okrData]);
   };
-
   return (
     <Box>
-      {okrData[ind].child.map((el, index: number) => {
+      {okrData[ind].krList.map((el, index: number) => {
         return (
           <Results
-            el={el}
+            el={el.kr}
             index={index}
             setCollection={setCollection}
             edit={edit}
@@ -56,11 +54,11 @@ const Details = props => {
 
       <Box sx={style.results}>
         {collection.addResult ? (
-          <Box>
-            <AddOutlined onClick={add} />
+          <Box sx={style.edit}>
+            <AddOutlined onClick={add} color={"disabled"} />
             <NoBorder
               id="standard-basic"
-              sx={{ ml: 3 }}
+              sx={{ ml: "10px" }}
               size="small"
               value={collection.value}
               onChange={e => setCollection({ ...collection, value: e.target.value })}
@@ -68,13 +66,14 @@ const Details = props => {
               placeholder="Enter your objective"
               autoFocus
             />
+            <Button onClick={() => setCollection({ ...collection, addResult: false })}>Cancel</Button>
           </Box>
         ) : (
           <Box onClick={() => setCollection({ ...collection, addResult: true })} sx={style.edit}>
-            <Box color="#929294" ml={0.2}>
-              <AddCircleOutlineOutlined />
-            </Box>
-            <Box sx={{ ml: 1 }}>Add Key Result</Box>
+            <AddCircleOutlineOutlined color={"disabled"} sx={{ marginLeft: 0.2 }} />
+            <Typography color={"GrayText"} marginLeft={"10px"}>
+              Add Key Result
+            </Typography>
           </Box>
         )}
       </Box>

@@ -25,14 +25,14 @@ const styles = {
   },
 };
 
-const AllUsersOkr: React.FC<typeof MockData[0]> = props => {
+const AllUsersOkr: React.FC<typeof MockData.okrData[0]> = props => {
   return (
-    <Link href="./okr/MainScreen">
+    <Link href="./okr/list">
       <Box sx={styles.listContainer}>
         <Box sx={styles.leftContainer}>
           <Avatar sx={{ width: "48px", height: "48px" }} src={props.profileImg}></Avatar>
           <Box ml="20px">
-            <Typography sx={styles.title}>{props.username}</Typography>
+            <Typography sx={styles.title}>{props.userName}</Typography>
             <Typography color={"#b2b2b2"}>Status: {props.status}</Typography>
             <Typography color={"#b2b2b2"}>Last updated: {props.lastUpdated}</Typography>
           </Box>

@@ -1,54 +1,298 @@
-[
-  {
-    "userId": "fsoi32",
-    "username": "Jumanji",
-    "profileImg": "https://picsum.photos/60",
-    "lastUpdated": "2022-08-03",
-    "status": "Pending",
-    "okrList": [
-      {
-        "title": "Improve communication skill",
-        "krList": ["speak with many people", "fix bad mouth", "learn bright words"]
-      }
+{
+  "okrData": [
+    {
+      "userId": "fsoi32",
+      "userName": "Jumanji",
+      "profileImg": "https://picsum.photos/60",
+      "lastUpdated": "2022-08-03",
+      "status": "Pending",
+      "okrList": [
+        {
+          "title": "Improve communication skill",
+          "krList": [
+            {
+              "kr": "speak with many people",
+              "comments": []
+            },
+            {
+              "kr": "fix bad mouth",
+              "comments": []
+            },
+            {
+              "kr": "learn bright words",
+              "comments": []
+            }
+          ]
+        },
+        {
+          "title": "Improve foosball skill",
+          "krList": [
+            {
+              "kr": "play 3 matches daily",
+              "comments": []
+            }
+          ]
+        },
+        {
+          "title": "Improve coding skill",
+          "krList": [
+            {
+              "kr": "solve 5 problems daily",
+              "comments": []
+            },
+            {
+              "kr": "do a project daily on my own",
+              "comments": []
+            }
+          ]
+        },
+        {
+          "title": "Improve my ladder level",
+          "krList": [
+            {
+              "kr": "increase my influence",
+              "comments": []
+            },
+            {
+              "kr": "improve technology knowledge",
+              "comments": []
+            },
+            {
+              "kr": "be more engaged with people",
+              "comments": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "userId": "8372hkj",
+      "userName": "Kylie",
+      "profileImg": "https://picsum.photos/10",
+      "lastUpdated": "2022-08-03",
+      "status": "Approved",
+      "okrList": [
+        {
+          "title": "Improve communication skill",
+          "krList": [
+            {
+              "kr": "speak with many people",
+              "comments": []
+            },
+            {
+              "kr": "fix bad mouth",
+              "comments": []
+            },
+            {
+              "kr": "learn bright words",
+              "comments": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "userId": "dlkja2",
+      "userName": "Robin",
+      "profileImg": "https://picsum.photos/20",
+      "lastUpdated": "2022-08-03",
+      "status": "Approved",
+      "okrList": [
+        {
+          "title": "Improve communication skill",
+          "krList": [
+            {
+              "kr": "speak with many people",
+              "comments": []
+            },
+            {
+              "kr": "fix bad mouth",
+              "comments": []
+            },
+            {
+              "kr": "learn bright words",
+              "comments": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "userId": "dsadasd",
+      "userName": "Alex",
+      "profileImg": "https://picsum.photos/30",
+      "lastUpdated": "2022-08-03",
+      "status": "Pending",
+      "okrList": [
+        {
+          "title": "Improve communication skill",
+          "krList": [
+            {
+              "kr": "speak with many people",
+              "comments": []
+            },
+            {
+              "kr": "fix bad mouth",
+              "comments": []
+            },
+            {
+              "kr": "learn bright words",
+              "comments": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ladderData": {
+    "Technology": [
+      ["Adopts", "Actively learns and adopts the technology and tools defined by the team"],
+      ["Specializes", "Is the go-to person for one or more technologies and takes initiative to learn new ones"],
+      ["Evangelizes", "Researches, create proofs of concept, and introduces new technologies to the team"],
+      ["Masters", "Has very deep knowledge about the whole technology stack of the system"],
+      ["Creates", "Designs and creates new technologies that are widely used either by internal or external teams"]
+    ],
+    "System": [
+      ["Enhances", " Successfully pushes new features and bug fixes to improve and extend the system"],
+      ["Designs", "Designs and implements medium to large size features while reducing the system's tech debt"],
+      ["Owns", "Owns the production operation and monitoring of the system and is aware of its SLAs"],
+      ["Evolves", "Evolves the architecture to support future requirements and defines its SLAs"],
+      ["Leads", "Leads the technical excellence of the system and creates plans to mitigate outages"]
+    ],
+    "People": [
+      ["Learns", "Quickly learns from others and consistently steps up when it is required"],
+      ["Supports", "Proactively supports other team members and helps them to be successful"],
+      ["Mentors", "Mentors others to accelerate their career growth and encourage them to participate"],
+      ["Coordinates", "Coordinates team members providing effective feedback and moderating discussions"],
+      ["Manages", "Manages the team members' career, expectations, performance, and level of happiness"]
+    ],
+    "Process": [
+      ["Follows", "Follows the team processes, delivering a consistent flow of features to production"],
+      ["Enforces", "Enforces the team processes, making sure everybody understands the benefits and tradeoffs"],
+      ["Challenges", "Challenges the team processes, looking for ways to improve them"],
+      ["Adjusts", "Adjusts the team processes, listening to feedback and guiding the team through the changes"],
+      ["Defines", "Defines the right processes for the team's maturity level, balancing agility and discipline"]
+    ],
+    "Influence": [
+      ["Subsystem", "Makes an impact on one or more subsystems"],
+      ["Team", "Makes an impact on the whole team, not just on specific parts of it"],
+      ["Multiple teams", "Makes an impact not only on his/her team but also on other teams"],
+      ["Company", "Makes an impact on the whole tech organization"],
+      ["Community", "Makes an impact on the tech community"]
+    ],
+    "d1": [
+      ["Technology", 1],
+      ["System", 1],
+      ["People", 1],
+      ["Process", 1],
+      ["Influence", 1]
+    ],
+    "d2": [
+      ["Technology", 1],
+      ["System", 2],
+      ["People", 2],
+      ["Process", 2],
+      ["Influence", 1]
+    ],
+    "d3": [
+      ["Technology", 2],
+      ["System", 2],
+      ["People", 2],
+      ["Process", 3],
+      ["Influence", 2]
+    ],
+    "d4": [
+      ["Technology", 3],
+      ["System", 3],
+      ["People", 3],
+      ["Process", 3],
+      ["Influence", 2]
+    ],
+    "d5": [
+      ["Technology", 4],
+      ["System", 4],
+      ["People", 3],
+      ["Process", 4],
+      ["Influence", 3]
+    ],
+    "d6": [
+      ["Technology", 5],
+      ["System", 5],
+      ["People", 3],
+      ["Process", 4],
+      ["Influence", 4]
+    ],
+    "d7": [
+      ["Technology", 5],
+      ["System", 5],
+      ["People", 3],
+      ["Process", 4],
+      ["Influence", 5]
+    ],
+    "Current": [
+      ["Technology", 2],
+      ["System", 2],
+      ["People", 2],
+      ["Process", 2],
+      ["Influence", 2]
     ]
   },
-  {
-    "userId": "8372hkj",
-    "username": "Kylie",
-    "profileImg": "https://picsum.photos/10",
-    "lastUpdated": "2022-08-03",
-    "status": "Approved",
-    "okrList": [
-      {
-        "title": "Improve communication skill",
-        "krList": ["speak with many people", "fix bad mouth", "learn bright words"]
-      }
-    ]
-  },
-  {
-    "userId": "dlkja2",
-    "username": "Robin",
-    "profileImg": "https://picsum.photos/20",
-    "lastUpdated": "2022-08-03",
-    "status": "Approved",
-    "okrList": [
-      {
-        "title": "Improve communication skill",
-        "krList": ["speak with many people", "fix bad mouth", "learn bright words"]
-      }
-    ]
-  },
-  {
-    "userId": "dsadasd",
-    "username": "Alex",
-    "profileImg": "https://picsum.photos/30",
-    "lastUpdated": "2022-08-03",
-    "status": "Pending",
-    "okrList": [
-      {
-        "title": "Improve communication skill",
-        "krList": ["speak with many people", "fix bad mouth", "learn bright words"]
-      }
-    ]
+  "ladderLevelData": {
+    "Current": {
+      "technology": 2,
+      "system": 2,
+      "people": 2,
+      "process": 2,
+      "influence": 2
+    },
+    "d1": {
+      "technology": 1,
+      "system": 1,
+      "people": 1,
+      "process": 1,
+      "influence": 1
+    },
+    "d2": {
+      "technology": 1,
+      "system": 2,
+      "people": 2,
+      "process": 2,
+      "influence": 1
+    },
+    "d3": {
+      "technology": 2,
+      "system": 2,
+      "people": 2,
+      "process": 3,
+      "influence": 2
+    },
+    "d4": {
+      "technology": 3,
+      "system": 3,
+      "people": 3,
+      "process": 3,
+      "influence": 2
+    },
+    "d5": {
+      "technology": 4,
+      "system": 4,
+      "people": 3,
+      "process": 4,
+      "influence": 3
+    },
+    "d6": {
+      "technology": 5,
+      "system": 5,
+      "people": 3,
+      "process": 4,
+      "influence": 4
+    },
+    "d7": {
+      "technology": 5,
+      "system": 5,
+      "people": 3,
+      "process": 4,
+      "influence": 5
+    }
   }
-]
+}

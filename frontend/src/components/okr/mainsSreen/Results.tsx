@@ -2,9 +2,9 @@ import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { NoBorder } from "./styledComponents";
+import KRComment from "../KRComment/KRComment";
 
 const style = {
   KR: {
@@ -17,6 +17,11 @@ const style = {
   check: {
     display: "flex",
     flexdirection: "row",
+  },
+  marginLeft: {
+    marginLeft: "10px",
+    cursor: "pointer",
+    color: "gray",
   },
 };
 
@@ -52,13 +57,14 @@ const Results = props => {
           <Box>{newCol}</Box>
         )}
       </Box>
-      <Box color="#929294">
-        <ChatOutlinedIcon sx={{ mr: 4 }} />
+      <Box sx={style.check}>
+        <KRComment />
         <MoreIcon
           onClick={e => {
             e.stopPropagation();
             handleClick(e, index);
           }}
+          sx={style.marginLeft}
         />
       </Box>
     </Box>

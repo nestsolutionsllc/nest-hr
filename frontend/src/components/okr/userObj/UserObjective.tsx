@@ -7,7 +7,7 @@ const styles = {
     backgroundColor: "#fff",
     padding: "50px 30px 50px 30px",
     borderRadius: "10px",
-    width: "50%",
+    width: "100%",
   },
   box: {
     display: "flex",

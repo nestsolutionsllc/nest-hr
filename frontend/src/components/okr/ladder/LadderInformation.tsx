@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { Button, Typography, Box } from "@mui/material";
 import Ladder from "./Ladder";
 import { Information, levelsType } from "./LadderData";
+import MockData from "../mockData.json";
 
 const styles = {
   barTop: {
@@ -15,32 +16,25 @@ const styles = {
   contentContainer: {
     display: "flex",
     justifyContent: "space-between",
-    flexDirection: {
-      xs: "column",
-      md: "row",
-    },
+    flexDirection: "column",
   },
   graphContainer: {
-    width: {
-      xs: "100%",
-      md: "50%",
-    },
+    width: "100%",
   },
   contentTextContainer: {
     display: "flex",
     flexDirection: "column",
     overflowY: "scroll",
     verticalAlign: "center",
-    width: {
-      xs: "100%",
-      md: "45%",
-    },
+    width: "100%",
   },
   container: {
     width: "100%",
     backgroundColor: "white",
     borderRadius: "20px",
     padding: "10px",
+    marginBottom: "50px",
+    alignSelf: "flex-start",
   },
   margintop: {
     marginTop: "20px",
@@ -68,6 +62,8 @@ const LadderInformation: FC<{ type: "description" | "level" }> = ({ type }) => {
     type === "level" ? "Current" : "Technology"
   );
 
+  // console.log(ladderData);
+
   return (
     <Box sx={styles.container}>
       <Box sx={styles.barTop}>
@@ -91,7 +87,7 @@ const LadderInformation: FC<{ type: "description" | "level" }> = ({ type }) => {
           </Box>
         )}
         <Box sx={styles.contentTextContainer}>
-          {Information[descriptionContent].map(el => (
+          {MockData.ladderData[descriptionContent].map(el => (
             <Box sx={styles.margintop}>
               <Typography variant={"h5"}>{`${el[0]} ${
                 type === "level" ? `- ${Information[el[0]][el[1] - 1][0]}` : ""
@@ -103,7 +99,7 @@ const LadderInformation: FC<{ type: "description" | "level" }> = ({ type }) => {
                 >{` • ${el[1]}`}</Typography>
               ) : (
                 <Typography sx={[styles.margintop, styles.marginLeft]} variant={"subtitle1"}>
-                  {` • ${Information[el[0]][el[1] - 1][1]}`}
+                  {` • ${MockData.ladderData[el[0]][el[1] - 1][1]}`}
                 </Typography>
               )}
             </Box>

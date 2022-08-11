@@ -6,7 +6,6 @@ import { levelsType, levelData, Information } from "./LadderData";
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
 const Ladder: FC<{ label: levelsType }> = ({ label }) => {
-  // const [windowWidth, setWindowWidth] = useState<number>(1800);
   const data = {
     labels: ["Technology", "System", "People", "Process", "Influence"],
     datasets: [
@@ -22,7 +21,7 @@ const Ladder: FC<{ label: levelsType }> = ({ label }) => {
         backgroundColor: "transparent",
         borderColor: "#0070c0",
       },
-      {
+      label !== "Current" && {
         label,
         data: [
           levelData[label].technology,
@@ -58,7 +57,6 @@ const Ladder: FC<{ label: levelsType }> = ({ label }) => {
         ticks: {
           color: ["none", "black", "black", "black", "black", "black"],
           font: {
-            // size: windowWidth > 1200 ? 15 : windowWidth > 800 ? 15 : 10,
             size: 12,
           },
           backdropColor: "transparent",
@@ -68,7 +66,6 @@ const Ladder: FC<{ label: levelsType }> = ({ label }) => {
         max: 6,
         pointLabels: {
           font: {
-            // size: windowWidth > 1200 ? 15 : windowWidth > 800 ? 15 : 10,
             size: 12,
           },
           color: "black",

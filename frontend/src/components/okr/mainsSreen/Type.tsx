@@ -1,12 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
 
 export type OkrDataType = {
-  name: string;
-  child: string[];
+  title: string;
+  krList: {
+    kr: string;
+    comments: string[];
+  }[];
 };
 export type PropsType = {
   title: string;
-  setOkrData: Dispatch<SetStateAction<unknown>>;
+  setOkrData: Dispatch<SetStateAction<OkrDataType[]>>;
   okrData: OkrDataType[];
   ind: number;
 };

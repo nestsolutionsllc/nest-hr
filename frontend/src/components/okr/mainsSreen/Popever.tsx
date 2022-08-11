@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
 import { Popover } from "@mui/material";
 // mui Icons
-import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
-import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
+// import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
+// import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import DropDownMenu from "./DropDownMenu";
@@ -25,15 +25,12 @@ const PopeverDown = props => {
     Icon: ReactNode;
   };
   const MoreData: MoreType[] = [
-    { title: "Change Period", Icon: <AccessTimeOutlinedIcon /> },
     { title: "Edit", Icon: <EditIcon /> },
-    { title: "Change KR weights", Icon: <ScaleOutlinedIcon /> },
     { title: "Delete to", Icon: <DeleteOutlineOutlinedIcon /> },
   ];
   const ResultData: MoreType[] = [
     { title: "Edit Result", Icon: <EditIcon /> },
     { title: "Delete Result", Icon: <DeleteOutlineOutlinedIcon /> },
-    { title: "Change Type/values", Icon: <ScaleOutlinedIcon /> },
   ];
   return (
     <Popover
