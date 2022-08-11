@@ -15,7 +15,6 @@ const ProfilePage: NextPage<IAchievementDataProps> = ({ achievementData }) => {
   return (
     <Box>
       {/* Personal information section */}
-
       <PersonalInfo />
       <Box sx={styles.tabContainer}>
         {/* Profile vertical tab menu sesction */}
