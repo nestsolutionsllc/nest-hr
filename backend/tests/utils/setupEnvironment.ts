@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Movie from "../../src/models/Movie";
 import Ticket from "../../src/models/ticket/ticket";
 import Onboard from "../../src/models/profile/onboarding/Onboard";
+import Achievement from "../../src/models/Achievement";
 
 const setupEnvironment = async () => {
   /* istanbul ignore next */
@@ -12,6 +13,7 @@ const setupEnvironment = async () => {
     await mongoose.connect(process.env.MONGODB_URL, {});
     await Movie.deleteMany();
     await Ticket.deleteMany();
+    await Achievement.deleteMany();
     await Onboard.deleteMany();
   }
 };
@@ -19,7 +21,6 @@ const setupEnvironment = async () => {
 const tearDown = async () => {
   await Movie.deleteMany();
   await Ticket.deleteMany();
-  await Onboard.deleteMany();
   await mongoose.connection.close();
 };
 
