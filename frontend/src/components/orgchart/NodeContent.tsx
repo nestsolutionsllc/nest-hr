@@ -1,5 +1,7 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import ApartmentIcon from "@mui/icons-material/Apartment";
+import Image from "next/image";
+import { IEmployee } from "../../interfaces/IEmployee";
 
 const styles = {
   nodeContainer: {
@@ -71,19 +73,18 @@ const styles = {
     margin: "0 0.3rem",
   },
 };
-
-const NodeContent = props => {
+const NodeContent = (props: { data: IEmployee; _children: [{ data: IEmployee }] }) => {
   return (
     <div style={styles.nodeContainer}>
-      <div style={styles.nodeDetails}>
+      <div style={styles.nodeDetails as CSSProperties}>
         {props.data.team === "" ? (
           <div style={styles.nodeContent}>
             <img style={styles.nodeImg} src={props.data.imageUrl} alt="Profile" />
-            <div style={styles.nodeInfo}>
-              <div style={styles.nodeName}>{props.data.name}</div>
+            <div style={styles.nodeInfo as CSSProperties}>
+              <div style={styles.nodeName}>{props.data.givenName}</div>
               <div style={styles.nodeRole}>{props.data.positionName}</div>
               {props.data.department && (
-                <div style={styles.nodeDepartment}>
+                <div style={styles.nodeDepartment as CSSProperties}>
                   <ApartmentIcon />
                   <div style={styles.nodeDepartmentName}>{props.data.department}</div>
                 </div>
@@ -91,13 +92,13 @@ const NodeContent = props => {
             </div>
           </div>
         ) : (
-          <div style={styles.nodeTeam}>
+          <div style={styles.nodeTeam as CSSProperties}>
             <div style={styles.nodeTeamName}>{props.data.team}</div>
             {props._children !== null &&
               props._children
                 .slice(0, 4)
                 .map(child => (
-                  <img
+                  <Image
                     key={child.data.id}
                     style={styles.nodeTeamMemberImg}
                     src={child.data.imageUrl}

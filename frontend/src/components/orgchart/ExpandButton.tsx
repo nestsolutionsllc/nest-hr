@@ -1,6 +1,7 @@
 import React from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { IEmployee } from "../../interfaces/IEmployee";
 
 const styles = {
   expandBtn: {
@@ -23,7 +24,7 @@ const styles = {
   },
 };
 
-const ExpandButton = node => {
+const ExpandButton = (node: { data: { _directSubordinates: number }; children: IEmployee }) => {
   return (
     <>
       {node && (

@@ -1,21 +1,23 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import ReactDOMServer from "react-dom/server";
 import { OrgChart as OrgTree } from "d3-org-chart";
-import NodeContent from "./NodeContent.js";
-import ExpandButton from "./ExpandButton.js";
-import EmployeeDetails from "./EmployeeDetails.js";
+import NodeContent from "./NodeContent";
+import EmployeeDetails from "./EmployeeDetails";
+import ExpandButton from "./ExpandButton";
+import { IEmployee } from "../../interfaces/IEmployee";
 
-const OrganizationalChart = props => {
+const OrganizationalChart = (props: { data: IEmployee[] }) => {
   const d3Container = useRef(null);
+
   let chart = null;
 
-  const [cardShow, setCardShow] = useState(false);
-  const [employeeId, setEmployeeId] = useState("");
+  const [cardShow, setCardShow] = useState<boolean>(false);
+  const [employeeId, setEmployeeId] = useState<number>();
 
   const handleShow = () => setCardShow(true);
   const handleClose = () => setCardShow(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const toggleDetailsCard = nodeId => {
       handleShow();
       setEmployeeId(nodeId);
