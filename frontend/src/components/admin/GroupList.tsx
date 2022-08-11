@@ -1,12 +1,9 @@
-import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { useState, FC, useEffect } from "react";
-import { Typography, Box, Button, Modal } from "@mui/material";
-import Link from "next/link";
-import { TicketListModalType, ticketType, users } from "../ticket/type";
-import Status from "../ticket/TicketListStatus";
-import TicketModal from "../ticket/TicketListModal";
-import Assignee from "../ticket/TicketAssignee";
-import AddEmployeeModal from "./AddEmployeeModal";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { useState, FC } from "react";
+import { Typography, Box, Button } from "@mui/material";
+import { AddGroupModal } from "./AddGroupModal";
+import { GroupDetail } from "./GroupDetailModal";
+import { GroupDataType } from "./type";
 
 const styles = {
   container: { width: "100%", display: "flex", flexDirection: "column", alignItems: "center" },
@@ -28,48 +25,49 @@ const styles = {
 
 const GroupList: FC = () => {
   const [modal, setModal] = useState<boolean>(false);
-  const [user, setUser] = useState("jigmee");
+  const [detailModal, setDetailModal] = useState<boolean>(false);
+  const [selectedData, setSelectedData] = useState<GroupDataType>();
+
   const columns: GridColDef[] = [
-    { field: "name", headerName: "Name", width: 150 },
+    { field: "id", headerName: "ID", width: 50 },
+    { field: "name", headerName: "Name", width: 350 },
     {
-      field: "email",
-      headerName: "Email",
+      field: "permissions",
+      headerName: "Permissions",
       width: 150,
-      renderCell: params => <Typography>{params.value}</Typography>,
-    },
-    { field: "phone", headerName: "Phone", width: 150 },
-    {
-      field: "groups",
-      headerName: "Groups",
-      width: 150,
-      renderCell: (params: GridRenderCellParams<string>) => {
-        return <Assignee value={params.value} currRow={params.row} user={user} setUser={setUser} />;
-      },
-    },
-    {
-      field: "Detail",
-      headerName: "Detail",
-      width: 150,
-      renderCell: (params: GridRenderCellParams<string>) => {
-        return <Button onClick={() => console.log("detail")}>Detail</Button>;
+      renderCell: () => {
+        return <Button onClick={() => setDetailModal(true)}>Detail</Button>;
       },
     },
   ];
   const dummyData = [
     {
-      name: "Anand-Ochir",
-      phone: "90262021",
-      email: "ananda@gmail.com",
-      // groups: {
-      //   salary: {
-      //     read: true,
-      //     write: true,
-      //   },
-      //   "profile-all": {
-      //     read: true,
-      //     write: true,
-      //   },
-      // },
+      id: 1,
+      name: "HR-1",
+      permissions: {
+        users: {
+          read: true,
+          write: true,
+        },
+        "salary-all": {
+          read: true,
+          write: true,
+        },
+      },
+    },
+    {
+      id: 2,
+      name: "HR-2",
+      permissions: {
+        users: {
+          read: true,
+          write: true,
+        },
+        "salary-all": {
+          read: true,
+          write: true,
+        },
+      },
     },
   ];
   return (
@@ -78,17 +76,21 @@ const GroupList: FC = () => {
       <Box sx={styles.contentContainer}>
         <Typography>All groups</Typography>
         <DataGrid
-          checkboxSelection
           autoHeight
           rows={dummyData}
           columns={columns}
-          getRowId={row => row.phone}
+          getRowId={row => row.id}
           getRowHeight={() => "auto"}
           onCellKeyDown={(params, events) => events.stopPropagation()}
           sx={styles.dataGrid}
+          onSelectionModelChange={indx => {
+            const filteredData = dummyData.find(row => row.id === indx[0]);
+            setSelectedData(filteredData);
+          }}
         />
       </Box>
-      <AddEmployeeModal modal={modal} setModal={setModal} />
+      <AddGroupModal modal={modal} setModal={setModal} />
+      <GroupDetail modal={detailModal} setModal={setDetailModal} data={selectedData} />
     </Box>
   );
 };
