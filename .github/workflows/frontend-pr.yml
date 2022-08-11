@@ -22,7 +22,6 @@ jobs:
 
       - name: Project setup
         run: |
-          cd frontend
           yarn && yarn add --global vercel@latest
       - name: Production deploy
         uses: amondnet/vercel-action@v19
