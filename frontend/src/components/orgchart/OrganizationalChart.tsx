@@ -29,7 +29,7 @@ const OrganizationalChart = (props: { data: IEmployee[] }) => {
       chart
         .container(d3Container.current)
         .data(props.data)
-        .nodeWidth(() => 170)
+        .nodeWidth(() => 175)
         .nodeHeight(() => 160)
         .compactMarginBetween(() => 80)
         .onNodeClick(d => {
