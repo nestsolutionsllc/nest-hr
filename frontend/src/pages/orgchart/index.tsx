@@ -11,6 +11,10 @@ const OrgChart: NextPage = () => {
     setEmployees(data);
   }, []);
 
-  return <OrganizationalChart data={employees} />;
+  return (
+    <div>
+      <OrganizationalChart data={employees} />
+    </div>
+  );
 };
 export default OrgChart;
