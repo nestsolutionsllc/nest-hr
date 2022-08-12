@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import VerticalTabs from "../components/profile/VerticalTabs";
 import PersonalInfo from "../components/profile/PersonalInfo";
 import { IAchievementDataProps } from "../components/profile/type";
+import fetchData from "../utils/fetchData";
 
 const styles = {
   tabContainer: {
@@ -25,8 +26,7 @@ const ProfilePage: NextPage<IAchievementDataProps> = ({ achievementData }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`${process.env.DB_HOST}/achievements`);
-  const achievementData = await res.json();
+  const achievementData = await fetchData({ path: "/achievements", method: "get" });
   return {
     props: {
       achievementData,
