@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import Movie from "../../src/models/Movie";
-import Ticket from "../../src/models/ticket/ticket";
 import Onboard from "../../src/models/profile/onboarding/Onboard";
 import Achievement from "../../src/models/Achievement";
+import Ticket from "../../src/models/ticket";
 
 const setupEnvironment = async () => {
   /* istanbul ignore next */
