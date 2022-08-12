@@ -16,7 +16,10 @@
             },
             {
               "kr": "fix bad mouth",
-              "comments": []
+              "comments": [
+                { "postedAt": "Yesterday", "postedBy": "Enko", "comment": "ene neeh hereggu" },
+                { "postedAt": "Yesterday", "postedBy": "Jumanjij", "comment": "ok" }
+              ]
             },
             {
               "kr": "learn bright words",
@@ -29,7 +32,7 @@
           "krList": [
             {
               "kr": "play 3 matches daily",
-              "comments": []
+              "comments": [{ "postedAt": "Yesterday", "postedBy": "Enko", "comment": "hendch hereggu OKR baina" }]
             }
           ]
         },
@@ -41,8 +44,12 @@
               "comments": []
             },
             {
-              "kr": "do a project daily on my own",
-              "comments": []
+              "kr": "do a project weekly on my own",
+              "comments": [
+                { "postedAt": "Yesterday", "postedBy": "Enko", "comment": "arai amarhan baina" },
+                { "postedAt": "Yesterday", "postedBy": "Jumanji", "comment": "uur yu baij bolhu?" },
+                { "postedAt": "Today", "postedBy": "Enko", "comment": "uuruu bod" }
+              ]
             }
           ]
         },
@@ -59,7 +66,13 @@
             },
             {
               "kr": "be more engaged with people",
-              "comments": []
+              "comments": [
+                {
+                  "postedAt": "Yesterday",
+                  "postedBy": "Enko",
+                  "comment": "ene communication skilliin okr dotroo orchhim bishu"
+                }
+              ]
             }
           ]
         }

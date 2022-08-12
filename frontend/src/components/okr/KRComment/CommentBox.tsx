@@ -75,7 +75,7 @@ export type commentDetailType = {
   comment: string;
 };
 
-const userId = "me";
+const userId = "Jumanji";
 
 const CommentBox: FC<{
   commentDetail: commentDetailType;

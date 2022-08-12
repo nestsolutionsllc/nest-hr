@@ -4,7 +4,11 @@ export type OkrDataType = {
   title: string;
   krList: {
     kr: string;
-    comments: string[];
+    comments: {
+      postedAt: string;
+      postedBy: string;
+      comment: string;
+    }[];
   }[];
 };
 export type PropsType = {

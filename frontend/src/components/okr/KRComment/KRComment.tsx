@@ -3,10 +3,13 @@ import { TextField, Box, Button, Typography, Modal, Badge } from "@mui/material"
 import DraftsIcon from "@mui/icons-material/Drafts";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import CommentBox, { commentDetailType, styles } from "./CommentBox";
+import { okrData } from "../mockData.json";
 
-const KRComment: FC = () => {
+const KRComment: FC<{ krIndex: number; okrIndex: number }> = ({ krIndex, okrIndex }) => {
   const [openedAll, setOpenedAll] = useState<boolean>(false);
-  const [commentDetails, setCommentDetails] = useState<commentDetailType[]>([]);
+  const [commentDetails, setCommentDetails] = useState<commentDetailType[]>(
+    okrData[0].okrList[okrIndex].krList[krIndex].comments
+  );
   const [replying, setReplying] = useState<boolean>(false);
   const [reply, setReply] = useState<string>("");
 

@@ -24,7 +24,7 @@ const style = {
 };
 
 const Results = props => {
-  const { el, index, setCollection, collection, edit, setEdit } = props;
+  const { el, krIndex, okrIndex, setCollection, collection, edit, setEdit } = props;
   const handleClick = (e, ind: number) => {
     setCollection({ ...collection, index: ind, addResult: false, anchorEl: e.currentTarget, type: "dad" });
   };
@@ -38,7 +38,7 @@ const Results = props => {
         <Box mr={1} color="#1990ff">
           <CheckCircleOutline />
         </Box>
-        {edit.resultIndex === index ? (
+        {edit.resultIndex === krIndex ? (
           <NoBorder
             InputProps={{
               endAdornment: <Edit />,
@@ -56,11 +56,11 @@ const Results = props => {
         )}
       </Box>
       <Box sx={style.check}>
-        <KRComment />
+        <KRComment krIndex={krIndex} okrIndex={okrIndex} />
         <MoreVert
           onClick={e => {
             e.stopPropagation();
-            handleClick(e, index);
+            handleClick(e, krIndex);
           }}
           sx={style.marginLeft}
         />
