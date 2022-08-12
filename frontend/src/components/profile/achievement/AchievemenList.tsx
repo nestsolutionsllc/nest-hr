@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from "react";
-import { Stack, Card, CardHeader, CardContent, Grid, Box } from "@mui/material";
+import { Stack, Card, CardHeader, CardContent, Grid, Box, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import { SkillItem, CertificateItem, AwardItem } from "./AchievementItem";
@@ -43,30 +43,33 @@ export const CardSection = ({ children, genre }: { children: ReactNode; genre: s
 };
 
 export const Achievements = ({ achievementData }) => {
-  console.log("achievementData => ", achievementData);
   return (
     <>
-      {achievementData.map((achievement, index) => {
-        return (
-          <CardSection genre={achievement.category} key={index}>
-            <Stack spacing={2} direction={achievement.category === "certificates" ? "row" : "column"}>
-              {achievement.data.map((d, id) => {
-                return (
-                  <Box key={id}>
-                    {achievement.category === "skills" && <SkillItem {...d} />}
-                    {achievement.category === "certificates" && (
-                      <Stack>
-                        <CertificateItem {...d} />
-                      </Stack>
-                    )}
-                    {achievement.category === "awards" && <AwardItem {...d} />}
-                  </Box>
-                );
-              })}
-            </Stack>
-          </CardSection>
-        );
-      })}
+      {achievementData ? (
+        achievementData.map((achievement, index) => {
+          return (
+            <CardSection genre={achievement.category} key={index}>
+              <Stack spacing={2} direction={achievement.category === "certificates" ? "row" : "column"}>
+                {achievement.data.map((d, id) => {
+                  return (
+                    <Box key={id}>
+                      {achievement.category === "skills" && <SkillItem {...d} />}
+                      {achievement.category === "certificates" && (
+                        <Stack>
+                          <CertificateItem {...d} />
+                        </Stack>
+                      )}
+                      {achievement.category === "awards" && <AwardItem {...d} />}
+                    </Box>
+                  );
+                })}
+              </Stack>
+            </CardSection>
+          );
+        })
+      ) : (
+        <Typography>No Achievement</Typography>
+      )}
     </>
   );
 };
