@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getGroups, addGroup, deleteGroup, updateGroup } from "../queries/groupService";
+import { getGroups, addGroup, deleteGroup, updateGroup, getGroup } from "../queries/groupService";
 
 export const getGroupsService = async (request: Request, response: Response) => {
   try {
@@ -11,8 +11,10 @@ export const getGroupsService = async (request: Request, response: Response) => 
 };
 
 export const getGroupService = async (request: Request, response: Response) => {
+  console.log("getGroupService is running");
+
   try {
-    response.status(200).send("result");
+    response.send(await getGroup(request));
   } catch (error) {
     /* istanbul ignore next */
     response.status(500).send(error);

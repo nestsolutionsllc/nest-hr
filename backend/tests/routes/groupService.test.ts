@@ -60,65 +60,110 @@ describe("Testing Login with fail result", () => {
 });
 
 let AllowedToken: string;
-let NotAllowedToken: string;
-describe("Testing '/users' API", () => {
+let accountant: string;
+describe("Login and getting token for permitted and not permitted users", () => {
   it("Trying to Login with permitted and not permitted", async () => {
     const res = await request(app).post("/login").send({ email: "user1@gmail.com", password: "user1" });
     expect(res.status).toBe(200);
     const data = JSON.parse(res.text);
     AllowedToken = data.data.token;
-    const res1 = await request(app).post("/login").send({ email: "user4@gmail.com", password: "user4" });
+    const res1 = await request(app).post("/login").send({ email: "accountant@gmail.com", password: "accountant" });
     expect(res1.status).toBe(200);
     const data1 = JSON.parse(res1.text);
-    NotAllowedToken = data1.data.token;
-  });
-
-  it("Testing GET '/users' api", async () => {
-    const res = await request(app)
-      .get("/users")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
-    expect(res.status).toBe(200);
-    const res1 = await request(app)
-      .get("/users")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
-    expect(res1.status).toBe(403);
+    accountant = data1.data.token;
   });
 });
 
-describe("Testing '/groups' API", () => {
+const groupId = "62f078ee7d09e5aa9cb5588d";
+describe("Testing '/groups' and '/group API", () => {
   it("Testing GET '/groups' api", async () => {
     const res = await request(app)
       .get("/groups")
       .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
     expect(res.status).toBe(200);
+
     const res1 = await request(app)
-      .get("/groups")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
+      .get("/users")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${accountant}` });
     expect(res1.status).toBe(403);
   });
-});
-describe("Testing GET '/group' API", () => {
   it("Testing GET '/group' api", async () => {
     const res = await request(app)
-      .get("/group")
+      .get(`/group/${groupId}`)
       .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
     expect(res.status).toBe(200);
+
     const res1 = await request(app)
-      .get("/group")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
+      .get(`/group/${groupId}`)
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${accountant}` });
     expect(res1.status).toBe(403);
   });
-});
-describe("Testing Patch '/group' API", () => {
-  it("Testing Patch '/group' api", async () => {
+  it("Setting accountant '/users' read permission FALSE", async () => {
     const res = await request(app)
       .patch("/group")
       .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
-      .send({});
+      .send({
+        id: "62f078ee7d09e5aa9cb5588d",
+        update: { "permissions.users.read": false },
+      });
     expect(res.status).toBe(200);
+    const data = JSON.parse(res.text);
+    expect(data.permissions.users.read).toBe(false);
+  });
+  it("Try GET '/users api with Accountant: Result is 'Permission denied", async () => {
+    const res = await request(app)
+      .get("/groups")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${accountant}` });
+    expect(res.status).toBe(403);
+  });
+  it("Setting accountant '/users' read permission TRUE", async () => {
     const res1 = await request(app)
-      .get("/group")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
-    expect(res1.status).toBe(403);
+      .patch("/group")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
+      .send({
+        id: "62f078ee7d09e5aa9cb5588d",
+        update: { "permissions.users.read": true },
+      });
+    expect(res1.status).toBe(200);
+    const data1 = JSON.parse(res1.text);
+    expect(data1.permissions.users.read).toBe(true);
+  });
+  it("Try GET '/users api with Accountant: It should success", async () => {
+    const res = await request(app)
+      .get("/users")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${accountant}` });
+    expect(res.status).toBe(200);
+  });
+});
+
+describe("Createing a group Post '/group' API", () => {
+  it("Testing Post '/group' api", async () => {
+    const res = await request(app)
+      .post("/group")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
+      .send({
+        name: "test1",
+        permissions: {
+          users: {
+            rea: true,
+          },
+          "salary-all": {
+            read: true,
+          },
+        },
+      });
+    expect(res.status).toBe(200);
+  });
+});
+
+describe("Delete a group Delete '/group' API", () => {
+  it("Testing Delete '/group' api", async () => {
+    const res = await request(app)
+      .delete("/group")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
+      .send({
+        _id: "62f5b2c277101f8fe15b151c",
+      });
+    expect(res.status).toBe(200);
   });
 });

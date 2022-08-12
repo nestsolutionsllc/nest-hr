@@ -2,17 +2,17 @@ import express from "express";
 import {
   createUserService,
   getUsersService,
-  loginService,
+
   // getUserService,
   // deleteUserService,
   updateUserService,
 } from "../controller/userControllers";
 import { checkPermission, tokenCheck } from "../middlewares/middlewares";
-import { authRegister } from "../controller/authController";
+import { authLogin, authRegister } from "../controller/authController";
 
 const userRouter = express.Router();
 
-userRouter.post("/login", loginService);
+userRouter.post("/login", authLogin);
 userRouter.post("/register", [authRegister], createUserService);
 
 userRouter.get("/users", [tokenCheck, checkPermission({ module: "users", action: "read" })], getUsersService);

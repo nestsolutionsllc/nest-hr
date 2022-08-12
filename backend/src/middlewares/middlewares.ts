@@ -7,6 +7,8 @@ const User = db.user;
 
 // Checking token validation
 export const tokenCheck = async (req: Request, res: Response, next: NextFunction) => {
+  console.log("tokenCheck is running");
+
   const token: string | undefined = req.headers.authorization;
 
   if (!token) {
@@ -43,14 +45,18 @@ export const checkPermission =
       .populate("userGroup")
       .where("user")
       .select("userGroup");
-
-    userWithGroups.userGroup.forEach((group: any) => {
-      if (group.permissions && group.permissions[module]) {
-        if (group.permissions[module][action]) {
-          permitted = true;
+    try {
+      userWithGroups.userGroup.forEach((group: any) => {
+        if (group.permissions && group.permissions[module]) {
+          if (group.permissions[module][action]) {
+            permitted = true;
+          }
         }
-      }
-    });
+      });
+    } catch (error) {
+      /* istanbul ignore next */
+      res.status(500).send(error);
+    }
 
     if (!permitted) {
       res.status(403).send({

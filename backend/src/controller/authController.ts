@@ -7,6 +7,7 @@ export async function authLogin(req: Request, res: Response) {
   const { email, password } = req.body;
 
   const existingUser = await User.findOne({ email, password });
+
   if (!existingUser) {
     return res.status(404).json({
       success: false,

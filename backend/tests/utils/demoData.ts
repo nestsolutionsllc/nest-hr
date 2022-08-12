@@ -42,10 +42,10 @@ export const demoUser = [
   },
   {
     _id: "62f2140c7d09e5aa9cb55a2d",
-    userName: "user5",
-    email: "user5@gmail.com",
-    password: "user5",
-    userGroup: [],
+    userName: "accountant",
+    email: "accountant@gmail.com",
+    password: "accountant",
+    userGroup: ["62e74a8401675f07254517ce", "62f078ee7d09e5aa9cb5588d"],
     createdAt: "1659409317603",
     __v: 0,
   },
@@ -67,6 +67,7 @@ export const demoGroup = [
     name: "HR-1",
     permissions: {
       users: { read: true, update: true },
+      groups: { read: true, update: true, create: true, delete: true },
       "kpiInfo-all": { read: true, update: true },
       "salary-all": { read: true },
       "ladderInfo-all": { read: true, update: true },
@@ -83,7 +84,13 @@ export const demoGroup = [
   {
     _id: "62f078ee7d09e5aa9cb5588d",
     name: "accountant",
-    permissions: { users: { read: true }, "salary-all": { update: true, read: true } },
+    permissions: { "salary-all": { update: true, read: true } },
+    __v: 0,
+  },
+  {
+    _id: "62f5b2c277101f8fe15b151c",
+    name: "group to be deleted",
+    permissions: { "salary-all": { update: true, read: true } },
     __v: 0,
   },
 ];

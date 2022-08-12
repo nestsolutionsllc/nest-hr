@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 // import { sign } from "jsonwebtoken";
-import { findUserId, getUsers, addUser, deleteUser, updateUser, loginUser } from "../queries/userService";
+import { findUserId, getUsers, addUser, deleteUser, updateUser } from "../queries/userService";
 
 export const getUsersService = async (request: Request, response: Response) => {
   try {
@@ -52,7 +52,6 @@ export const deleteUserService = async (request: Request, response: Response) =>
     return response.status(500).send(error);
   }
 };
-export const loginService = loginUser;
 
 //  this function is for test!!!
 // export const getToken = async (request: Request, response: Response) => {

@@ -1,5 +1,4 @@
 import { Request } from "express";
-import { authLogin } from "../controller/authController";
 import db from "../models";
 import { UserType } from "../utils/types/user";
 
@@ -56,4 +55,3 @@ export const deleteUser = (req: Request) => {
 //   const payload = Buffer.from(base64Payload, "base64");
 //   return JSON.parse(payload.toString());
 // }
-export const loginUser = authLogin;

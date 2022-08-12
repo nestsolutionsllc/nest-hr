@@ -6,9 +6,12 @@ export const getGroups = async () => {
   const groups = await Group.find({});
   return groups;
 };
+export const getGroup = (request: Request) => {
+  return Group.findOne({ _id: request.params.id });
+};
 
 export const updateGroup = (request: Request) => {
-  return Group.findByIdAndUpdate(request.params.id, request.body, {
+  return Group.findByIdAndUpdate(request.body.id, request.body.update, {
     new: true,
   });
 };

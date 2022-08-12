@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx jest --verbose --runInBand",
     "coverage": "npx jest --coverage --runInBand",
-    "start": "yarn build && nodemon dist/src/server.js",
+    "start": "yarn build && tsnodemon -x 'nodemon dist/src/server.js'",
     "serve": "pm2 start dist/src/server.js --watch",
     "build": "npx tsc"
   },
@@ -21,7 +21,8 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.8"
+    "mongoose": "^6.0.8",
+    "tsnodemon": "^1.2.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
