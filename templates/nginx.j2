@@ -1,8 +1,15 @@
 server {
     listen 80 {{ preview }};
+<<<<<<< HEAD
     server_name {{preview}}
     
     location /{{ preview }} {
         proxy_pass http://localhost:{{issue_id | int + 5000}}
+=======
+    server_name {{ preview }}
+    
+    location /{{ preview }} {
+        proxy_pass http://localhost:{{ port_number }}
+>>>>>>> 3a70c1b7e24a3c950fe697aa271fef15d195cc2a
     }
 }
