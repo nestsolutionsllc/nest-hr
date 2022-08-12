@@ -1,4 +1,4 @@
-export interface ticketType {
+export interface TicketType {
   _id: string;
   reporter_id: string;
   assignee_id: string;

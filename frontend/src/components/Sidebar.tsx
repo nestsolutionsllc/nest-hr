@@ -34,14 +34,6 @@ export const menuItems = [
         title: "Daily",
         href: "/ticketing/daily",
       },
-      {
-        title: "Ticketing Request",
-        href: "/ticketing/request",
-      },
-      {
-        title: "Ticketing Report",
-        href: "/ticketing/report",
-      },
     ],
   },
   {

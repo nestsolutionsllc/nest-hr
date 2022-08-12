@@ -5,8 +5,8 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import FormController from "../../components/ticket/FormController";
-import { Input, Form } from "../../components/ticket/Form";
+import FormController from "./FormController";
+import { Input, Form } from "./Form";
 
 const styles = {
   line: { width: "100%", height: "0.1em", backgroundColor: "#DFE1E6" },
@@ -82,11 +82,12 @@ const data: dataType = {
   ],
 };
 
-export default function DialogSelect() {
+const RequestBtn: React.FC<{ user: string }> = ({ user }) => {
   const [open, setOpen] = React.useState(false);
   const [currentType, setCurrentType] = React.useState(type[0]);
   let newTicket = {
     reporter_id: "jigmee",
+    assignee: "bataa",
   };
 
   const handleClickOpen = () => setOpen(true);
@@ -102,10 +103,10 @@ export default function DialogSelect() {
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newTicket),
+        body: JSON.stringify({ ...newTicket, reporter_id: user, assignee_id: newTicket.assignee }),
       };
       try {
-        await fetch(URL, requestOptions);
+        await fetch(`${URL}/ticket`, requestOptions);
       } catch (error) {
         throw new Error(error);
       }
@@ -142,4 +143,6 @@ export default function DialogSelect() {
       </Dialog>
     </Box>
   );
-}
+};
+
+export default RequestBtn;

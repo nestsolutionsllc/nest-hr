@@ -1,14 +1,21 @@
 import { MenuItem, Select, Typography, Box, CircularProgress } from "@mui/material";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Image from "next/image";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import fetchTicket from "./fetch-utility";
 import Assignee from "./TicketAssignee";
 import TicketModal from "./TicketListModal";
 import TicketListStatus from "./TicketListStatus";
-import { ticketType, TicketListModalType } from "./type";
+import { TicketType, TicketListModalType } from "./type";
 
-type props = {
-  curr: ticketType;
-  setCurrent: Dispatch<SetStateAction<ticketType>>;
+const blankProfile =
+  "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80";
+
+type TicketDetailProps = {
+  curr: TicketType;
+  setCurrent: Dispatch<SetStateAction<TicketType>>;
   loading?: string;
   setLoading: Dispatch<SetStateAction<string>>;
   user: string;
@@ -16,8 +23,8 @@ type props = {
 };
 
 const styles = {
-  detailContainer: { border: "solid 1px #dfe1e6", borderRadius: 2, width: 400 },
-  titleContainer: { borderBottom: "solid 1px #dfe1e6", p: 2 },
+  detailContainer: { border: "solid 1px #dfe1e6", boxShadow: 4, borderRadius: 2, width: "100%" },
+  titleContainer: { borderBottom: "solid 1px black", p: 2 },
   bold: { fontWeight: "bold" },
   detailFieldValue: { width: 300, color: "#42526E", fontWeight: "bold" },
   detailFieldContainer: { display: "flex", mt: 3 },
@@ -35,41 +42,35 @@ const styles = {
   p2: { p: 2 },
   flex: { display: "flex" },
   inputContainer: { width: "100%", display: "flex", alignItems: "center" },
+  ticketPriorityContainer: { display: "flex", alignItems: "center" },
+  arrowUp: { color: "red" },
+  line: { color: "orange" },
+  arrowDown: { color: "royalblue" },
+  ml3: { ml: 3 },
 };
 
-const TicketDetail: FC<props> = ({ curr, setCurrent, setLoading, loading, user, setUser }) => {
+const TicketDetail: FC<TicketDetailProps> = ({ curr, setCurrent, setLoading, loading, user, setUser }) => {
   const [modal, setModal] = useState<TicketListModalType>(false);
-  const [priority, setPriority] = useState<ticketType["priority"]>();
+  const [priority, setPriority] = useState<TicketType["priority"]>();
   useEffect(() => {
     setPriority(curr?.priority);
   }, [curr]);
   const change = async (setState, currValue, newValue, name) => {
     setLoading(name);
     setState(newValue);
-    const newData = await (
-      await fetch(`https://secure-taiga-55850.herokuapp.com/ticket/${curr._id}`, {
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "application/json",
+    const newData = await fetchTicket(`${process.env.TICKET_SYSTEM_ENDPOINT_URL}/ticket/${curr._id}`, "PATCH", {
+      [name]: newValue,
+      history: [
+        {
+          note: "",
+          changedBy: { name: user },
+          changed: name,
+          changedFrom: currValue,
+          changedTo: newValue,
         },
-        method: "PATCH",
-        body: JSON.stringify({
-          [name]: newValue,
-          history: [
-            {
-              note: "",
-              changedBy: { name: user },
-              changed: name,
-              changedFrom: currValue,
-              changedTo: newValue,
-            },
-            ...curr.history,
-          ],
-        }),
-      })
-    ).json();
+        ...curr.history,
+      ],
+    });
     setCurrent(newData);
     setLoading("");
   };
@@ -90,11 +91,7 @@ const TicketDetail: FC<props> = ({ curr, setCurrent, setLoading, loading, user, 
             <Typography sx={styles.detailFieldValue}>Reporter</Typography>
             <Box sx={styles.fieldContainerWithImg}>
               <Image
-                src={
-                  curr?.history[0]?.changedBy.imgUrl
-                    ? curr?.history[0]?.changedBy.imgUrl
-                    : "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80"
-                }
+                src={curr?.history[0]?.changedBy.imgUrl ? curr?.history[0]?.changedBy.imgUrl : blankProfile}
                 width={30}
                 height={30}
                 style={styles.img}
@@ -103,7 +100,9 @@ const TicketDetail: FC<props> = ({ curr, setCurrent, setLoading, loading, user, 
             </Box>
           </Box>
           <Box sx={styles.detailFieldContainer}>
-            <Typography sx={styles.detailFieldValue}>Priority</Typography>
+            <Typography data-testid="priorityLow" sx={styles.detailFieldValue}>
+              Priority
+            </Typography>
             {priority && (
               <Box sx={styles.inputContainer}>
                 <Select
@@ -111,18 +110,36 @@ const TicketDetail: FC<props> = ({ curr, setCurrent, setLoading, loading, user, 
                   id="demo-simple-select"
                   value={priority}
                   label="Age"
+                  inputProps={{ "data-testid": "prioritySelect" }}
                   onChange={e => change(setPriority, priority, e.target.value, "priority")}
                 >
-                  <MenuItem value={"low"}>Low</MenuItem>
-                  <MenuItem value={"medium"}>Medium</MenuItem>
-                  <MenuItem value={"high"}>High</MenuItem>
+                  <MenuItem data-testid="priority-select-item" value={"high"}>
+                    <Box sx={styles.ticketPriorityContainer}>
+                      <KeyboardArrowUpIcon sx={styles.arrowUp} />
+                      High
+                    </Box>
+                  </MenuItem>
+                  <MenuItem data-testid="priority-select-item" value={"medium"}>
+                    <Box sx={styles.ticketPriorityContainer}>
+                      <HorizontalRuleIcon sx={styles.line} />
+                      Medium
+                    </Box>
+                  </MenuItem>
+                  <MenuItem value={"low"}>
+                    <Box sx={styles.ticketPriorityContainer}>
+                      <KeyboardArrowDownIcon sx={styles.arrowDown} />
+                      Low
+                    </Box>
+                  </MenuItem>
                 </Select>
-                {loading === "priority" && <CircularProgress size={20} sx={{ ml: 3 }} />}
+                {loading === "priority" && <CircularProgress data-testid="priorityLoading" size={20} sx={styles.ml3} />}
               </Box>
             )}
           </Box>
           <Box sx={styles.detailFieldContainer}>
-            <Typography sx={styles.detailFieldValue}>Status</Typography>
+            <Typography sx={styles.detailFieldValue} data-testid="priority-select-item3">
+              Status
+            </Typography>
             <Box sx={styles.inputContainer}>
               <TicketListStatus ticket={curr} currValue={curr.status} setModal={setModal} />
             </Box>

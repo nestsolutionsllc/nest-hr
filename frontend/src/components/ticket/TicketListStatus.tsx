@@ -1,16 +1,20 @@
 import { useState, FC, Dispatch, SetStateAction } from "react";
-import { FormControl, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { TicketListModalType, ticketType } from "./type";
+import { Box, FormControl, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
+import { TicketListModalType, TicketType } from "./type";
 
-type props = {
+type TicketListStatusProps = {
   currValue: string;
-  ticket: ticketType;
+  ticket: TicketType;
   setModal: Dispatch<SetStateAction<TicketListModalType>>;
-  setSelectedRow?: Dispatch<SetStateAction<ticketType>>;
+  setSelectedRow?: Dispatch<SetStateAction<TicketType>>;
   changeRow?: boolean;
 };
 
-const TicketListStatus: FC<props> = ({ ticket, currValue, setModal, setSelectedRow, changeRow }) => {
+const styles = {
+  itemContainer: { display: "flex", alignItems: "center" },
+};
+
+const TicketListStatus: FC<TicketListStatusProps> = ({ ticket, currValue, setModal, setSelectedRow, changeRow }) => {
   const [value, setValue] = useState<string>(currValue[0]);
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value);
@@ -18,18 +22,41 @@ const TicketListStatus: FC<props> = ({ ticket, currValue, setModal, setSelectedR
     if (changeRow) setSelectedRow(ticket);
   };
   return (
-    <FormControl fullWidth>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={value}
-        label="Age"
-        onChange={handleChange}
-      >
-        <MenuItem value={"open"}>Open</MenuItem>
-        <MenuItem value={"resolved"}>Resolved</MenuItem>
-        <MenuItem value={"rejected"}>Rejected</MenuItem>
-        <MenuItem value={"closed"}>Closed</MenuItem>
+    <FormControl
+      sx={{
+        "& .MuiSvgIcon-root": {
+          color: "white",
+        },
+        width: 150,
+        m: 0,
+        p: 0,
+      }}
+    >
+      <Select labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={handleChange}>
+        <MenuItem value={"open"}>
+          <Box sx={styles.itemContainer}>
+            <Box sx={{ backgroundColor: "royalblue", width: 10, height: 10, borderRadius: 10, mx: 1 }}></Box>
+            <Typography>Open</Typography>
+          </Box>
+        </MenuItem>
+        <MenuItem value={"resolved"}>
+          <Box sx={styles.itemContainer}>
+            <Box sx={{ backgroundColor: "green", width: 10, height: 10, borderRadius: 10, mx: 1 }}></Box>
+            <Typography>Resolved</Typography>
+          </Box>
+        </MenuItem>
+        <MenuItem value={"rejected"}>
+          <Box sx={styles.itemContainer}>
+            <Box sx={{ backgroundColor: "red", width: 10, height: 10, borderRadius: 10, mx: 1 }}></Box>
+            <Typography>Rejected</Typography>
+          </Box>
+        </MenuItem>
+        <MenuItem value={"closed"}>
+          <Box sx={styles.itemContainer}>
+            <Box sx={{ backgroundColor: "orange", width: 10, height: 10, borderRadius: 10, mx: 1 }}></Box>
+            <Typography>Closed</Typography>
+          </Box>
+        </MenuItem>
       </Select>
     </FormControl>
   );
