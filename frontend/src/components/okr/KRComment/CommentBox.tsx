@@ -19,7 +19,6 @@ export const styles = {
     padding: "5px",
     borderRadius: "10px",
     maxHeight: "600px",
-    overflowY: "scroll",
     outline: 0,
   },
   commentContainer: {
@@ -80,11 +79,14 @@ const userId = "me";
 
 const CommentBox: FC<{
   commentDetail: commentDetailType;
-}> = ({ commentDetail }) => {
+  commentDetails: commentDetailType[];
+  setCommentDetails: React.Dispatch<React.SetStateAction<commentDetailType[]>>;
+  ind: number;
+}> = ({ commentDetail, commentDetails, setCommentDetails, ind }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [editing, setEditing] = useState<boolean>(false);
-  const [editedComment, setEditedComment] = useState<string>("");
+  const [editedComment, setEditedComment] = useState<string>(commentDetail.comment);
   return (
     <Box sx={[styles.commentContainer, styles.spaceBetween]}>
       <Box sx={[styles.spaceBetween, styles.flexRow]}>
@@ -103,7 +105,10 @@ const CommentBox: FC<{
             aria-controls={open ? "more-actions" : undefined}
             aria-haspopup={true}
             aria-expanded={open ? "true" : undefined}
-            onClick={event => setAnchorEl(event.currentTarget)}
+            onClick={event => {
+              setAnchorEl(event.currentTarget);
+              setEditedComment(commentDetail.comment);
+            }}
           >
             <MoreVertIcon sx={styles.blackText} />
           </Button>
@@ -120,7 +125,7 @@ const CommentBox: FC<{
         </MenuItem>
         <MenuItem
           onClick={() => {
-            console.log("deleted from db");
+            setCommentDetails([...commentDetails.filter((el, index) => index !== ind)]);
             setAnchorEl(null);
           }}
         >
@@ -145,9 +150,15 @@ const CommentBox: FC<{
       {editing && (
         <Box sx={[styles.buttonContainer, styles.spaceBetween]}>
           <Button
+            disabled={editedComment.trim() === ""}
             variant={"contained"}
             onClick={() => {
-              console.log("updated to db");
+              setCommentDetails(
+                commentDetails.map((el, ind2) => {
+                  if (ind2 !== ind) return el;
+                  return { comment: editedComment, postedAt: el.postedAt, postedBy: el.postedBy };
+                })
+              );
               setEditing(false);
             }}
           >
@@ -157,7 +168,7 @@ const CommentBox: FC<{
             variant={"outlined"}
             onClick={() => {
               setEditing(false);
-              setEditedComment("");
+              setEditedComment(commentDetail.comment);
             }}
           >
             Cancel

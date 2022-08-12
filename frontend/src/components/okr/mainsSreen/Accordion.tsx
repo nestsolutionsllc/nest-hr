@@ -13,11 +13,12 @@ import Details from "./Details";
 
 const style = {
   container: {
-    width: "48%",
-    marginTop: 1,
+    width: "100%",
+    marginTop: "30px",
   },
   shadow: {
     boxShadow: "0 5px 6px -2px #929294",
+    backgroundColor: "#fff",
   },
 };
 
