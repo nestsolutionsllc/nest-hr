@@ -7,6 +7,7 @@ name: API pull request
 env:
   CI: true
   MONGODB_URL: "mongodb://localhost:27017/test"
+  PREVIEW_SLUG: $GITHUB_REF_NAME
 
 defaults:
   run:
