@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactDOMServer from "react-dom/server";
 import { OrgChart } from "d3-org-chart";
 import NodeContent from "./NodeContent";
@@ -17,7 +17,7 @@ const OrganizationalChart = (props: { data: IEmployee[] }) => {
   const handleShow = () => setCardShow(true);
   const handleClose = () => setCardShow(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const toggleDetailsCard = nodeId => {
       handleShow();
       setEmployeeId(nodeId);
