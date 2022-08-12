@@ -4,6 +4,8 @@ import type { Dispatch, SetStateAction } from "react";
 interface AuthContextInterface {
   user?: string;
   setUser: Dispatch<SetStateAction<string>>;
+  userRole: string;
+  setUserRole: Dispatch<SetStateAction<string>>;
 }
 
 const AuthContext = createContext<AuthContextInterface>({} as AuthContextInterface);
@@ -12,8 +14,8 @@ interface AuthProviderProps {
 }
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState("");
-
-  return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
+  const [userRole, setUserRole] = useState("Super Admin");
+  return <AuthContext.Provider value={{ user, setUser, userRole, setUserRole }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = (): AuthContextInterface => useContext(AuthContext);
