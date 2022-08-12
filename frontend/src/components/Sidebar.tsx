@@ -1,7 +1,6 @@
 import React, { Dispatch, FC, SetStateAction } from "react";
 import { useRouter } from "next/router";
 import { Box, Button } from "@mui/material";
-import CalendarIcon from "@mui/icons-material/CalendarToday";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -43,28 +42,6 @@ export const menuItems = [
       {
         title: "Organizational Chart",
         href: "/orgchart",
-      },
-    ],
-  },
-  {
-    title: "Leave",
-    icon: <CalendarIcon />,
-    children: [
-      {
-        title: "Leave Request",
-        href: "/leave/request",
-      },
-      {
-        title: "Leave Status",
-        href: "/leave/status",
-      },
-      {
-        title: "Calendar",
-        href: "/leave/calendar",
-      },
-      {
-        title: "Summary",
-        href: "/leave/summary",
       },
     ],
   },

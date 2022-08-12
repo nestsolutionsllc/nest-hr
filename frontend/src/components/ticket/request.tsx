@@ -35,7 +35,7 @@ type dataType = {
   leaveData: Input[];
   officeData: Input[];
 };
-const type: string[] = ["other", "office", "leave"];
+const ticketTypes: string[] = ["other", "office", "leave"];
 const URL = process.env.TICKET_SYSTEM_ENDPOINT_URL;
 
 const data: dataType = {
@@ -84,7 +84,7 @@ const data: dataType = {
 
 const RequestBtn: React.FC<{ user: string }> = ({ user }) => {
   const [open, setOpen] = React.useState(false);
-  const [currentType, setCurrentType] = React.useState(type[0]);
+  const [currentType, setCurrentType] = React.useState(ticketTypes[0]);
   let newTicket = {
     reporter_id: "jigmee",
     assignee: "bataa",
@@ -97,20 +97,26 @@ const RequestBtn: React.FC<{ user: string }> = ({ user }) => {
     obj[key] = value;
     newTicket = { ...newTicket, ...obj };
   };
-  const getCurrentType = (Type: string) => setCurrentType(Type);
+  const getCurrentType = (type: string) => setCurrentType(type);
   const handleClose = async (event: React.SyntheticEvent<unknown>, reason?: string) => {
+    console.log(newTicket);
+    console.log(user);
     if (reason !== "backdropClick") {
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...newTicket, reporter_id: user, assignee_id: newTicket.assignee }),
+        body: JSON.stringify({
+          ...newTicket,
+          reporter_id: user,
+          assignee_id: newTicket.assignee,
+        }),
       };
       try {
         await fetch(`${URL}/ticket`, requestOptions);
       } catch (error) {
         throw new Error(error);
       }
-      setCurrentType(type[0]);
+      setCurrentType(ticketTypes[0]);
       setOpen(false);
     }
   };
@@ -125,14 +131,14 @@ const RequestBtn: React.FC<{ user: string }> = ({ user }) => {
         <DialogContent sx={styles.customScroll}>
           <Box component="form" sx={styles.modal}>
             <FormController
-              title={"Type"}
+              title={"type"}
               getType={getCurrentType}
               handleFormValuesChange={handleFormValuesChange}
-              selectList={type}
+              selectList={ticketTypes}
             />
-            {currentType === type[0] && <Form inputs={data.orderData} callback={handleFormValuesChange} />}
-            {currentType === type[1] && <Form inputs={data.officeData} callback={handleFormValuesChange} />}
-            {currentType === type[2] && <Form inputs={data.leaveData} callback={handleFormValuesChange} />}
+            {currentType === ticketTypes[0] && <Form inputs={data.orderData} callback={handleFormValuesChange} />}
+            {currentType === ticketTypes[1] && <Form inputs={data.officeData} callback={handleFormValuesChange} />}
+            {currentType === ticketTypes[2] && <Form inputs={data.leaveData} callback={handleFormValuesChange} />}
           </Box>
         </DialogContent>
         <Box sx={styles.line} />
