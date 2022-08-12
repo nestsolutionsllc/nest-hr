@@ -1,8 +1,6 @@
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import EditIcon from "@mui/icons-material/Edit";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { Edit, MoreVert, CheckCircleOutline } from "@mui/icons-material";
 import { NoBorder } from "./styledComponents";
 import KRComment from "../KRComment/KRComment";
 
@@ -38,12 +36,12 @@ const Results = props => {
     <Box sx={style.KR}>
       <Box sx={style.check}>
         <Box mr={1} color="#1990ff">
-          <CheckCircleOutlineIcon />
+          <CheckCircleOutline />
         </Box>
         {edit.resultIndex === index ? (
           <NoBorder
             InputProps={{
-              endAdornment: <EditIcon />,
+              endAdornment: <Edit />,
             }}
             id="standard-basic"
             sx={{ width: "auto" }}
@@ -59,7 +57,7 @@ const Results = props => {
       </Box>
       <Box sx={style.check}>
         <KRComment />
-        <MoreIcon
+        <MoreVert
           onClick={e => {
             e.stopPropagation();
             handleClick(e, index);

@@ -6,7 +6,6 @@ import MockData from "../../components/okr/mockData.json";
 export type OkrListType = typeof MockData.okrData[0];
 
 const Modal: FC = () => {
-  console.log(MockData);
   return (
     <Box>
       {MockData.okrData.map((data, index) => (

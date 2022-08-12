@@ -62,8 +62,6 @@ const LadderInformation: FC<{ type: "description" | "level" }> = ({ type }) => {
     type === "level" ? "Current" : "Technology"
   );
 
-  // console.log(ladderData);
-
   return (
     <Box sx={styles.container}>
       <Box sx={styles.barTop}>

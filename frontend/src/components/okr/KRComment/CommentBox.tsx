@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { TextField, Box, Button, Avatar, Typography, Menu, MenuItem } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
@@ -87,9 +87,6 @@ const CommentBox: FC<{
   const open = Boolean(anchorEl);
   const [editing, setEditing] = useState<boolean>(false);
   const [editedComment, setEditedComment] = useState<string>(commentDetail.comment);
-  useEffect(() => {
-    console.log(editedComment);
-  }, [editedComment]);
   return (
     <Box sx={[styles.commentContainer, styles.spaceBetween]}>
       <Box sx={[styles.spaceBetween, styles.flexRow]}>
