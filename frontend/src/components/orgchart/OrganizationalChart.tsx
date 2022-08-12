@@ -1,9 +1,9 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactDOMServer from "react-dom/server";
-import { OrgChart as OrgTree } from "d3-org-chart";
+import { OrgChart } from "d3-org-chart";
 import NodeContent from "./NodeContent";
-import EmployeeDetails from "./EmployeeDetails";
 import ExpandButton from "./ExpandButton";
+import EmployeeDetails from "./EmployeeDetails";
 import { IEmployee } from "../../interfaces/IEmployee";
 
 const OrganizationalChart = (props: { data: IEmployee[] }) => {
@@ -17,19 +17,19 @@ const OrganizationalChart = (props: { data: IEmployee[] }) => {
   const handleShow = () => setCardShow(true);
   const handleClose = () => setCardShow(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const toggleDetailsCard = nodeId => {
       handleShow();
       setEmployeeId(nodeId);
     };
     if (props.data && d3Container.current) {
       if (!chart) {
-        chart = new OrgTree();
+        chart = new OrgChart();
       }
       chart
         .container(d3Container.current)
         .data(props.data)
-        .nodeWidth(() => 300)
+        .nodeWidth(() => 175)
         .nodeHeight(() => 160)
         .compactMarginBetween(() => 80)
         .onNodeClick(d => {
