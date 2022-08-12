@@ -4,10 +4,115 @@
     - role: stephdewit.nvm
       nvm_version: "latest"
       nvm_node_version: "16"
+  vars_files:
+    - vars/preview.yml
   vars:
     # Obtain a name for this preview from the environment.
-    preview: "{{ lookup('env', 'PREVIEW_SLUG')|default('test', true) }}"
-    project_root: "/home/hr/branch"
-  tasks:
+    preview: "{{ lookup('env', 'GITHUB_HEAD_REF')|default('test', true) }}"
+    project_root: "/home/hr/{{ preview }}"
+    issue_id: "{{ preview | regex_search('^([0-9]+)') }}"
+    port_number: "{{ issue_id | int + 10000 }}"
+
   pre_tasks:
+    - name: Print port number
+      debug:
+        msg: "Issueid: {{ port_number }} {{ preview }}"
     - import_tasks: tasks/code.yml
+  tasks:
+    - name: Installs nginx web server
+      apt: pkg=nginx update_cache=true state=present
+
+    - name: install nodejs
+      apt: name=nodejs
+
+    - name: Install node and set version
+      become: yes
+      become_user: root
+      shell: "source /root/.nvm/nvm.sh && nvm install 16 && nvm use 16 && node -v"
+      args:
+        executable: /bin/bash
+
+    - name: Installs npm
+      apt: pkg=npm update_cache=true # state=present
+
+    - name: Installs yarn
+      command: "npm install -g yarn"
+
+    - name: Installs npm
+      apt: pkg=npm update_cache=true #state=installed
+
+    - name: Install PM2
+      npm:
+        name: pm2
+        global: yes
+
+    - name: Install MongoDB dependency to run server
+      apt:
+        pkg:
+          - gnupg
+
+    - name: Import the public key used by the package management system
+      apt_key:
+        url: "https://www.mongodb.org/static/pgp/server-4.4.asc"
+        state: present
+
+    - name: Add MongoDB repository
+      apt_repository:
+        filename: "/etc/apt/sources.list.d/mongodb-org-4.4.list"
+        repo: "deb https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse"
+        state: present
+        update_cache: yes
+
+    - name: install mongodb
+      apt: pkg=mongodb-org state=present update_cache=yes
+      notify:
+        - restart mongodb
+
+    - name: Install MongoDB dependency to run server
+      apt:
+        pkg:
+          - libc6
+
+    - name: MongoDB directory owner
+      file:
+        path: /var/lib/mongodb
+        owner: mongodb
+        group: mongodb
+        recurse: true
+
+    - name: MongoDB directory owner
+      file:
+        path: /tmp/mongodb-27017.sock
+        owner: mongodb
+        group: mongodb
+        state: touch
+
+    - name: Ensure mongodb is running and and enabled to start automatically on reboots
+      service:
+        name: mongod
+        enabled: yes
+        state: started
+
+    - name: Create nginx sites-available config file
+      become: true
+      template:
+        src: templates/nginx.j2
+        dest: "/etc/nginx/sites-available/{{ preview }}.conf"
+        force: true
+
+    - name: Create .env config file
+      become: true
+      template:
+        src: templates/env.j2
+        dest: "{{ project_root }}/backend/.env"
+
+    - name: Change active directory to backend
+      shell: "source /root/.nvm/nvm.sh && cd {{ project_root }}/backend/ && yarn && yarn build && yarn serve --name {{ preview }} --fresh -f --env=.env"
+      args:
+        executable: /bin/bash
+
+  handlers:
+    - name: restart mongodb
+      service: name=mongodb state=restarted
+    - name: Restart nginx server
+      service: name=nginx state=restarted
