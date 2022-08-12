@@ -1,12 +1,13 @@
 import { Box, Button, CircularProgress, Fade, Modal, TextareaAutosize, Typography } from "@mui/material";
 import { CSSProperties, Dispatch, FC, SetStateAction, useState } from "react";
-import { TicketListModalType, ticketType } from "./type";
+import fetchTicket from "./fetch-utility";
+import { TicketListModalType, TicketType } from "./type";
 
-interface props {
+interface ITicketListModal {
   modal: TicketListModalType;
   setModal: Dispatch<SetStateAction<TicketListModalType>>;
-  selectedRow: ticketType;
-  setSelectedRow?: Dispatch<SetStateAction<ticketType>>;
+  selectedRow: TicketType;
+  setSelectedRow?: Dispatch<SetStateAction<TicketType>>;
   updateList?: boolean;
   user: string;
 }
@@ -38,36 +39,24 @@ const styles = {
   inputArea: { mt: 2 },
 };
 
-const TicketModal: FC<props> = ({ modal, setModal, selectedRow, setSelectedRow, updateList, user }) => {
-  const [loading, setLoading] = useState(false);
+const TicketModal: FC<ITicketListModal> = ({ modal, setModal, selectedRow, setSelectedRow, updateList, user }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [note, setNote] = useState<string>("");
   const change = async () => {
     setLoading(true);
-    const newData = await (
-      await fetch(`https://secure-taiga-55850.herokuapp.com/ticket/${selectedRow._id}`, {
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
+    const newData = await fetchTicket(`${process.env.TICKET_SYSTEM_ENDPOINT_URL}/ticket/${selectedRow._id}`, "PATCH", {
+      status: modal,
+      history: [
+        {
+          note,
+          changedBy: { name: user },
+          changed: "status",
+          changedFrom: selectedRow.status[0],
+          changedTo: modal,
         },
-        method: "PATCH",
-        body: JSON.stringify({
-          status: modal,
-          history: [
-            {
-              note,
-              changedBy: { name: user },
-              changed: "status",
-              changedFrom: selectedRow.status[0],
-              changedTo: modal,
-            },
-            ...selectedRow.history,
-          ],
-        }),
-      })
-    ).json();
+        ...selectedRow.history,
+      ],
+    });
     setLoading(false);
     if (updateList) setSelectedRow(newData);
     setModal(false);

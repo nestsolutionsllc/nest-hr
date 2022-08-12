@@ -32,7 +32,7 @@ const FormController = ({ title, selectList, handleFormValuesChange, getType }: 
   const handleChange = (event: SelectChangeEvent<typeof $value>) => {
     const nextType = selectList[Number(event.target.value) / 10 - 1];
     set$value(Number(event.target.value));
-    getType(nextType);
+    if (getType) getType(nextType);
   };
 
   handleFormValuesChange(title, selectList[$value / 10 - 1]);
