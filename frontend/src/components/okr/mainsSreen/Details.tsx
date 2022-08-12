@@ -42,7 +42,8 @@ const Details = props => {
         return (
           <Results
             el={el.kr}
-            index={index}
+            krIndex={index}
+            okrIndex={ind}
             setCollection={setCollection}
             edit={edit}
             collection={collection}

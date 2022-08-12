@@ -5,6 +5,7 @@ import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import EventSeat from "@mui/icons-material/EventSeat";
+import BarChartIcon from "@mui/icons-material/BarChart";
 
 type IProps = {
   open?: boolean;
@@ -62,6 +63,16 @@ export const menuItems = [
       {
         title: "seat plan",
         href: "/seatplan",
+      },
+    ],
+  },
+  {
+    title: "OKR",
+    icon: <BarChartIcon />,
+    children: [
+      {
+        title: "okr",
+        href: "/okr",
       },
     ],
   },
