@@ -152,7 +152,7 @@ describe("Createing a group Post '/group' API", () => {
           },
         },
       });
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(201);
   });
 });
 

@@ -35,15 +35,6 @@ const createDemoData = async () => {
   await Onboard.deleteMany();
 };
 
-const createDemoData = async () => {
-  demoUser.forEach(async user => {
-    await User.create(user);
-  });
-  demoGroup.forEach(async group => {
-    await Group.create(group);
-  });
-};
-
 const tearDown = async () => {
   await Movie.deleteMany();
   await Ticket.deleteMany();

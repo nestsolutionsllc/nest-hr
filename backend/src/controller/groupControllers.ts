@@ -11,8 +11,6 @@ export const getGroupsService = async (request: Request, response: Response) => 
 };
 
 export const getGroupService = async (request: Request, response: Response) => {
-  console.log("getGroupService is running");
-
   try {
     response.send(await getGroup(request));
   } catch (error) {

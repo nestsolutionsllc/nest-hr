@@ -100,11 +100,11 @@ describe("Testing '/groups' API", () => {
 describe("Testing GET '/group' API", () => {
   it("Testing GET '/group' api", async () => {
     const res = await request(app)
-      .get("/group")
+      .get("/groups")
       .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
     expect(res.status).toBe(200);
     const res1 = await request(app)
-      .get("/group")
+      .get("/groups")
       .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
     expect(res1.status).toBe(403);
   });
@@ -117,7 +117,7 @@ describe("Testing Patch '/group' API", () => {
       .send({});
     expect(res.status).toBe(200);
     const res1 = await request(app)
-      .get("/group")
+      .get("/groups")
       .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
     expect(res1.status).toBe(403);
   });

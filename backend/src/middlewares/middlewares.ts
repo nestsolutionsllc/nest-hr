@@ -7,8 +7,6 @@ const User = db.user;
 
 // Checking token validation
 export const tokenCheck = async (req: Request, res: Response, next: NextFunction) => {
-  console.log("tokenCheck is running");
-
   const token: string | undefined = req.headers.authorization;
 
   if (!token) {
