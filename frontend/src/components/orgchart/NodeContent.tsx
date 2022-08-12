@@ -3,7 +3,11 @@ import { IEmployee } from "../../interfaces/IEmployee";
 import SubContent from "./SubContent";
 
 const NodeContent = (props: { data: IEmployee; _children: [{ data: IEmployee }] }) => {
-  return <SubContent data={props.data} />;
+  return (
+    <div>
+      <SubContent data={props.data} />
+    </div>
+  );
 };
 
 export default NodeContent;
