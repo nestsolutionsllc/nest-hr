@@ -40,13 +40,38 @@ const SeatPlanModal: FC<ModalProps> = ({ showModal, setShowModal, employees, ass
   const [dialogOpen, setDialogOpen] = useState(false);
   const [employee, setEmployee] = useState(null);
 
-  const handleClose = () => {
+  /*
+   * To close modal and clear other states that used on modal
+   *  */
+  const handleModalClose = () => {
     setShowModal(false);
     setModalProcessing(false);
     setDialogOpen(false);
     setEmployee(null);
   };
 
+  /*
+   * To confirm to change position of user the that already have a seat
+   *  */
+  const handleChangeSeat = emp => {
+    setModalProcessing(true);
+    setDialogOpen(true);
+    setEmployee(emp);
+  };
+
+  /*
+   * Assign user to empty seat
+   *  */
+  const handleAssignSeat = emp => {
+    // TODO this response will be used as toast message later
+    // const assignEmployeeRes = assignEmployee(emp);
+    assignEmployee(emp);
+    handleModalClose();
+  };
+
+  /*
+   * To confirm dialog disagree button
+   *  */
   const dialogHandleDisagree = () => {
     if (dialogLoading) return;
     setModalProcessing(false);
@@ -54,23 +79,13 @@ const SeatPlanModal: FC<ModalProps> = ({ showModal, setShowModal, employees, ass
     setEmployee(null);
   };
 
+  /*
+   * To confirm dialog agree button
+   *  */
   const dialogHandleAgree = () => {
     setDialogProcessing(true);
     const assignEmployeeRes = assignEmployee(employee);
-    if (assignEmployeeRes.success) handleClose();
-  };
-
-  const handleChangeSeat = emp => {
-    setModalProcessing(true);
-    setDialogOpen(true);
-    setEmployee(emp);
-  };
-
-  const handleAssignSeat = emp => {
-    // TODO this response will be used as toast message later
-    // const assignEmployeeRes = assignEmployee(emp);
-    assignEmployee(emp);
-    handleClose();
+    if (assignEmployeeRes.success) handleModalClose();
   };
 
   const columns: GridColDef[] = [
@@ -154,7 +169,7 @@ const SeatPlanModal: FC<ModalProps> = ({ showModal, setShowModal, employees, ass
 
       <Modal
         open={showModal}
-        onClose={handleClose}
+        onClose={handleModalClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
