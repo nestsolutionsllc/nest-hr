@@ -19,12 +19,12 @@ export const getUsers = () => {
 export const findUserId = (request: Request | { params: { id: string } }): UserType | null => {
   return User.findOne({ _id: request.params.id }) as unknown as UserType | null;
 };
-export const findUserByName = (request: Request) => {
-  return User.findOne({ name: request.params.name });
-};
-export const findUserByEmail = (request: Request) => {
-  return User.findOne({ email: request.params.email });
-};
+// export const findUserByName = (request: Request) => {
+//   return User.findOne({ name: request.params.name });
+// };
+// export const findUserByEmail = (request: Request) => {
+//   return User.findOne({ email: request.params.email });
+// };
 
 export const updateUser = (request: Request) => {
   if (request.body.action) {

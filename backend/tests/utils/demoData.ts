@@ -66,7 +66,7 @@ export const demoGroup = [
     _id: "62f078947d09e5aa9cb5588c",
     name: "HR-1",
     permissions: {
-      users: { read: true, update: true },
+      users: { read: true, update: true, create: true },
       groups: { read: true, update: true, create: true, delete: true },
       "kpiInfo-all": { read: true, update: true },
       "salary-all": { read: true },

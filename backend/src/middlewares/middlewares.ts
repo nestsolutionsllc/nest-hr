@@ -64,28 +64,3 @@ export const checkPermission =
       next();
     }
   };
-
-// export const authAddtogroup = async (req: Request, res: Response, next: NextFunction) => {
-//   console.log("authAddtogroup is running");
-//   const { token } = req.body;
-//   if (!token) {
-//     res.status(400).send("No token provided!");
-//     return;
-//   }
-//   const userId = parseJwt(token)._id;
-//   try {
-//     const user: UserType | null = await findUserId({ params: { id: userId } });
-//     if (!user) {
-//       res.status(401).json({ message: "User not found!" });
-//       return;
-//     }
-//     if (user.role !== "admin" && user.role !== "hr") {
-//       res.status(401).json({ message: "Unauthorized request" });
-//       return;
-//     }
-//     next();
-//     return;
-//   } catch (err) {
-//     next(err);
-//   }
-// };

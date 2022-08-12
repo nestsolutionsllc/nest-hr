@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { sign } from "jsonwebtoken";
 import db from "../models";
 
 const User = db.user;
-export async function authLogin(req: Request, res: Response) {
+async function authLogin(req: Request, res: Response) {
   const { email, password } = req.body;
 
   const existingUser = await User.findOne({ email, password });
@@ -14,7 +14,7 @@ export async function authLogin(req: Request, res: Response) {
       message: "Invalid User Detail!",
     });
   }
-
+  /* istanbul ignore next */
   const token = sign(
     { _id: existingUser._id, email: existingUser.email, userGroup: existingUser.userGroup },
     process.env.JWT_SECRET || "",
@@ -30,19 +30,20 @@ export async function authLogin(req: Request, res: Response) {
     },
   });
 }
+export default authLogin;
 
 // ---------------------------------Sign Up --------------------------------------------
 
-export const authRegister = (req: Request, res: Response, next: NextFunction) => {
-  User.findOne({ $or: [{ userName: req.body.userName }, { email: req.body.email }] }).exec((err: any, user: any) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }
-    if (user) {
-      res.status(400).send({ message: "Failed! Username is already in use!" });
-      return;
-    }
-    next();
-  });
-};
+// export const authRegister = (req: Request, res: Response, next: NextFunction) => {
+//   User.findOne({ $or: [{ userName: req.body.userName }, { email: req.body.email }] }).exec((err: any, user: any) => {
+//     if (err) {
+//       res.status(500).send({ message: err });
+//       return;
+//     }
+//     if (user) {
+//       res.status(400).send({ message: "Failed! Username is already in use!" });
+//       return;
+//     }
+//     next();
+//   });
+// };

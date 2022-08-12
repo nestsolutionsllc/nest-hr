@@ -85,6 +85,58 @@ describe("Testing '/users' API", () => {
   });
 });
 
+const userId = "62f2140c7d09e5aa9cb55a2d";
+describe("Testing '/user/USERID' API", () => {
+  it("Testing '/user/USERID' API", async () => {
+    const res = await request(app)
+      .get(`/user/${userId}`)
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
+    expect(res.status).toBe(200);
+  });
+});
+
+describe("Testing update user", () => {
+  it("Testing adding user to a group API", async () => {
+    const res = await request(app)
+      .patch("/user")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
+      .send({
+        groupId: ["62f5b2fb77101f8fe15b1523"],
+        userId: "62f2140c7d09e5aa9cb55a1d",
+        action: "push",
+      });
+    expect(res.status).toBe(200);
+  });
+  it("Testing update user info", async () => {
+    const res = await request(app)
+      .patch("/user")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
+      .send({
+        userId: "62f2140c7d09e5aa9cb55a1d",
+        update: { email: "updated email" },
+      });
+    expect(res.status).toBe(200);
+  });
+  it("Testing Creating a user", async () => {
+    const res = await request(app)
+      .post("/user")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
+      .send({
+        userName: "newUser",
+        email: "newUser@gmail.com",
+        password: "newUser",
+        userGroup: ["62e74a8401675f07254517ce"],
+      });
+    // expect(res).toBe(200);
+    expect(res.status).toBe(201);
+  });
+  it("Testing Deleting user a user", async () => {
+    const res = await request(app)
+      .delete("/user")
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
+    expect(res.status).toBe(200);
+  });
+});
 describe("Testing '/groups' API", () => {
   it("Testing GET '/groups' api", async () => {
     const res = await request(app)
