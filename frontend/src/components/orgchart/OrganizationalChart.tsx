@@ -2,12 +2,13 @@ import React, { useState, useRef, useLayoutEffect } from "react";
 import ReactDOMServer from "react-dom/server";
 import { OrgChart } from "d3-org-chart";
 import NodeContent from "./NodeContent";
-import EmployeeDetails from "./EmployeeDetails";
 import ExpandButton from "./ExpandButton";
+import EmployeeDetails from "./EmployeeDetails";
 import { IEmployee } from "../../interfaces/IEmployee";
 
 const OrganizationalChart = (props: { data: IEmployee[] }) => {
   const d3Container = useRef(null);
+
   let chart = null;
 
   const [cardShow, setCardShow] = useState<boolean>(false);
