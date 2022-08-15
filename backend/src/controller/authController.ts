@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { sign } from "jsonwebtoken";
 import db from "../models";
 
@@ -15,11 +15,9 @@ async function authLogin(req: Request, res: Response) {
     });
   }
   /* istanbul ignore next */
-  const token = sign(
-    { _id: existingUser._id, email: existingUser.email, userGroup: existingUser.userGroup },
-    process.env.JWT_SECRET || "",
-    { expiresIn: "365d" }
-  );
+  const token = sign({ _id: existingUser._id, email: existingUser.email }, process.env.JWT_SECRET || "", {
+    expiresIn: "365d",
+  });
 
   return res.status(200).json({
     success: true,
@@ -34,16 +32,18 @@ export default authLogin;
 
 // ---------------------------------Sign Up --------------------------------------------
 
-// export const authRegister = (req: Request, res: Response, next: NextFunction) => {
-//   User.findOne({ $or: [{ userName: req.body.userName }, { email: req.body.email }] }).exec((err: any, user: any) => {
-//     if (err) {
-//       res.status(500).send({ message: err });
-//       return;
-//     }
-//     if (user) {
-//       res.status(400).send({ message: "Failed! Username is already in use!" });
-//       return;
-//     }
-//     next();
-//   });
-// };
+export const authRegister = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await User.findOne({ $or: [{ userName: req.body.userName }, { email: req.body.email }] });
+    if (user) {
+      res.status(400).send({ message: "Failed! Username or email address is already in use!" });
+      return;
+    }
+  } catch (err) {
+    /* istanbul ignore next */
+    res.status(500).send({ message: err });
+    /* istanbul ignore next */
+    return;
+  }
+  next();
+};

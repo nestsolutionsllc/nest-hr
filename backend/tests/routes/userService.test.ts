@@ -11,8 +11,12 @@ afterAll(async () => {
   await tearDown();
 });
 
-describe("Testing Login with fail result", () => {
-  it("Trying Login with wrong information", async () => {
+let userToken: string;
+const wrongToken = `"asdeyJhbGasdasdasdciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmU4OTNhNTc4NGY4OTU3YjE0YTg4ODciLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsInVzZXJHcm91cCI6WyI2MmU3NGE4NDAxNjc1ZjA3MjU0NTE3Y2UiLCI2MmYwNzg5NDdkMDllNWFhOWNiNTU4OGMiLCI2MmYwNzhlZTdkMDllNWFhOWNiNTU4OGQiXSwiaWF0IjoxNjYwMDMyNDQwLCJleHAiOjE2OTE1Njg0NDB9.Te2q_F5H3d2B9qrQb5jT1EDqTgxowTgVDY2tFIkobUo"`;
+let userHasNoPermissionToken: string;
+
+describe("Testing user CRUD", () => {
+  it("Login Service with wrong information", async () => {
     const res = await request(app).post("/login").send({
       email: "notUser@gmail.com",
       password: "notUser",
@@ -20,157 +24,196 @@ describe("Testing Login with fail result", () => {
     expect(res.status).toBe(404);
     expect(JSON.parse(res.text).message).toBe("Invalid User Detail!");
   });
-  it("Trying access '/users' Api without login", async () => {
-    const res = await request(app).get("/users");
-    expect(res.status).toBe(401);
-    expect(JSON.parse(res.text).message).toBe("No authorization token provided!");
-  });
-  it("Trying access users with Expired token", async () => {
-    const res = await request(app).get("/users").set({
-      "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmU4OTNhNTc4NGY4OTU3YjE0YTg4ODciLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsInVzZXJHcm91cCI6WyI2MmU3NGE4NDAxNjc1ZjA3MjU0NTE3Y2UiLCI2MmYwNzg5NDdkMDllNWFhOWNiNTU4OGMiLCI2MmYwNzhlZTdkMDllNWFhOWNiNTU4OGQiXSwiaWF0IjoxNjYwMDI5OTE0LCJleHAiOjE2NjAwMjk5MTR9.WU7AlomJUWJ9PZuSraQIyzBQ_vB5A9aR20uvXzlFBqo",
-    });
-    expect(res.status).toBe(401);
-    expect(JSON.parse(res.text).message).toBe("Expired token");
-  });
-  it("Trying access users with Invalid token -1", async () => {
-    const res = await request(app).get("/users").set({
-      "Content-Type": "application/json",
-      Authorization: "Bearer 7AlomJUWJ9PZuSraQIyzBQ_vB5A9aR20uvXzlFBqo",
-    });
-    expect(res.status).toBe(403);
-    expect(JSON.parse(res.text).message).toBe("Inviled Token");
-  });
-  it("Trying access users with Invalid token -2", async () => {
-    const res = await request(app).get("/users").set({
-      "Content-Type": "application/json",
-      Authorization: "7AlomJUWJ9PZuSraQIyzBQ_vB5A9aR20uvXzlFBqo",
-    });
-    expect(res.status).toBe(403);
-    expect(JSON.parse(res.text).message).toBe("Inviled Token");
-  });
-  it("Trying access users without Authorization", async () => {
-    const res = await request(app).get("/users").set({
-      "Content-Type": "application/json",
-    });
-    expect(res.status).toBe(401);
-    expect(res.text).toBe('{"message":"No authorization token provided!"}');
-  });
-});
 
-let AllowedToken: string;
-let NotAllowedToken: string;
-describe("Testing '/users' API", () => {
-  it("Trying to Login with permitted and not permitted", async () => {
-    const res = await request(app).post("/login").send({ email: "user1@gmail.com", password: "user1" });
+  it("Login Service with wrong information", async () => {
+    const res = await request(app).post("/login").send({
+      email: "notUser@gmail.com",
+      password: "notUser",
+    });
+    expect(res.status).toBe(404);
+    expect(JSON.parse(res.text).message).toBe("Invalid User Detail!");
+  });
+
+  it("Login Service and it should return data with success: true", async () => {
+    const res = await request(app).post("/login").send({
+      email: "user1@gmail.com",
+      password: "user1",
+    });
     expect(res.status).toBe(200);
     const data = JSON.parse(res.text);
-    AllowedToken = data.data.token;
-    const res1 = await request(app).post("/login").send({ email: "user4@gmail.com", password: "user4" });
-    expect(res1.status).toBe(200);
-    const data1 = JSON.parse(res1.text);
-    NotAllowedToken = data1.data.token;
+    userToken = data.data.token;
   });
 
-  it("Testing GET '/users' api", async () => {
+  it("get all users expected success", async () => {
     const res = await request(app)
       .get("/users")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
+      .set({ "Content-Type": "application/json", Authorization: `Bearer ${userToken}` });
     expect(res.status).toBe(200);
-    const res1 = await request(app)
+  });
+
+  it("get all users expected failure by wrong userToken", async () => {
+    const res = await request(app)
       .get("/users")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
-    expect(res1.status).toBe(403);
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${wrongToken}`,
+      });
+    expect(res.status).toBe(403);
   });
-});
 
-const userId = "62f2140c7d09e5aa9cb55a2d";
-describe("Testing '/user/USERID' API", () => {
-  it("Testing '/user/USERID' API", async () => {
+  it("get user by id expected success", async () => {
     const res = await request(app)
-      .get(`/user/${userId}`)
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
+      .get("/user/62e893a5784f8957b14a8887")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      });
     expect(res.status).toBe(200);
   });
-});
 
-describe("Testing update user", () => {
-  it("Testing adding user to a group API", async () => {
+  it("get user by id expected failure by wrong userToken", async () => {
     const res = await request(app)
-      .patch("/user")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
-      .send({
-        groupId: ["62f5b2fb77101f8fe15b1523"],
-        userId: "62f2140c7d09e5aa9cb55a1d",
-        action: "push",
+      .get("/user/62e8f13b40eee4ce60fa373e")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${wrongToken}`,
       });
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(403);
   });
-  it("Testing update user info", async () => {
+
+  it("user register expected failure", async () => {
     const res = await request(app)
-      .patch("/user")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
+      .post("/register")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${wrongToken}`,
+      })
       .send({
-        userId: "62f2140c7d09e5aa9cb55a1d",
-        update: { email: "updated email" },
+        userName: "jvk",
+        email: "jvk@gmail.com",
+        password: "12345",
+        department: "Developer",
       });
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(403);
   });
-  it("Testing Creating a user", async () => {
+
+  it("user register expected failure with username or email already registered", async () => {
     const res = await request(app)
-      .post("/user")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
+      .post("/register")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      })
       .send({
-        userName: "newUser",
-        email: "newUser@gmail.com",
-        password: "newUser",
-        userGroup: ["62e74a8401675f07254517ce"],
+        userName: "jvk",
+        email: "user1@gmail.com",
+        password: "12345",
+        department: "Developer",
       });
-    // expect(res).toBe(200);
+    expect(res.status).toBe(400);
+  });
+
+  it("user register expected success", async () => {
+    const res = await request(app)
+      .post("/register")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      })
+      .send({
+        userName: "jvk",
+        email: "jvk@gmail.com",
+        password: "12345",
+        department: "Developer",
+      });
     expect(res.status).toBe(201);
   });
-  it("Testing Deleting user a user", async () => {
+
+  it("user update expected success", async () => {
+    const res = await request(app)
+      .patch("/user")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      })
+      .send({
+        update: { department: "Manager" },
+      });
+    expect(res.status).toBe(200);
+  });
+
+  it("user update expected failure", async () => {
+    const res = await request(app)
+      .patch("/user")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      })
+      .send({
+        update: "Manager",
+      });
+    expect(res.status).toBe(200);
+  });
+
+  it("Login into user that has no groups", async () => {
+    const res = await request(app).post("/login").send({
+      email: "user4@gmail.com",
+      password: "user4",
+    });
+    const data = JSON.parse(res.text);
+    userHasNoPermissionToken = data.data.token;
+  });
+
+  it("user update expected failure", async () => {
+    const res = await request(app)
+      .patch("/user")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userHasNoPermissionToken}`,
+      })
+      .send({
+        userId: "62e8ca16e385b0a0864164ee",
+        update: { department: "Manager" },
+      });
+    expect(res.status).toBe(403);
+  });
+
+  it("user delete expected failure", async () => {
     const res = await request(app)
       .delete("/user")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userHasNoPermissionToken}`,
+      })
+      .send({
+        userId: "62e8ca16e385b0a0864164ef",
+      });
+    expect(res.status).toBe(403);
+  });
+
+  it("user delete expected success", async () => {
+    const res = await request(app)
+      .delete("/user")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      })
+      .send({
+        userId: "62e8f13b40eee4ce60fa373e",
+      });
     expect(res.status).toBe(200);
   });
-});
-describe("Testing '/groups' API", () => {
-  it("Testing GET '/groups' api", async () => {
+
+  it("is super admin expect true", async () => {
     const res = await request(app)
-      .get("/groups")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
+      .delete("/user")
+      .set({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      })
+      .send({
+        userId: "62e8f13b40eee4ce60fa373e",
+      });
     expect(res.status).toBe(200);
-    const res1 = await request(app)
-      .get("/groups")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
-    expect(res1.status).toBe(403);
-  });
-});
-describe("Testing GET '/group' API", () => {
-  it("Testing GET '/group' api", async () => {
-    const res = await request(app)
-      .get("/groups")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` });
-    expect(res.status).toBe(200);
-    const res1 = await request(app)
-      .get("/groups")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
-    expect(res1.status).toBe(403);
-  });
-});
-describe("Testing Patch '/group' API", () => {
-  it("Testing Patch '/group' api", async () => {
-    const res = await request(app)
-      .patch("/group")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${AllowedToken}` })
-      .send({});
-    expect(res.status).toBe(200);
-    const res1 = await request(app)
-      .get("/groups")
-      .set({ "Content-Type": "application/json", Authorization: `Bearer ${NotAllowedToken}` });
-    expect(res1.status).toBe(403);
   });
 });

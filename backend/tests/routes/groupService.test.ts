@@ -25,15 +25,7 @@ describe("Testing Login with fail result", () => {
     expect(res.status).toBe(401);
     expect(JSON.parse(res.text).message).toBe("No authorization token provided!");
   });
-  it("Trying access users with Expired token", async () => {
-    const res = await request(app).get("/users").set({
-      "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmU4OTNhNTc4NGY4OTU3YjE0YTg4ODciLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsInVzZXJHcm91cCI6WyI2MmU3NGE4NDAxNjc1ZjA3MjU0NTE3Y2UiLCI2MmYwNzg5NDdkMDllNWFhOWNiNTU4OGMiLCI2MmYwNzhlZTdkMDllNWFhOWNiNTU4OGQiXSwiaWF0IjoxNjYwMDI5OTE0LCJleHAiOjE2NjAwMjk5MTR9.WU7AlomJUWJ9PZuSraQIyzBQ_vB5A9aR20uvXzlFBqo",
-    });
-    expect(res.status).toBe(401);
-    expect(JSON.parse(res.text).message).toBe("Expired token");
-  });
+
   it("Trying access users with Invalid token -1", async () => {
     const res = await request(app).get("/users").set({
       "Content-Type": "application/json",

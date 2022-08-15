@@ -4,20 +4,20 @@ import { findUserId, getUsers, addUser, deleteUser, updateUser } from "../querie
 
 export const getUsersService = async (request: Request, response: Response) => {
   try {
-    return response.send(await getUsers());
+    response.send(await getUsers());
   } catch (error) {
     /* istanbul ignore next */
-    return response.status(500).send(error);
+    response.status(500).send(error);
   }
 };
 
 export const getUserService = async (request: Request, response: Response) => {
   try {
     const result = await findUserId(request);
-    return response.status(200).send(result);
+    response.status(200).send(result);
   } catch (error) {
     /* istanbul ignore next */
-    return response.status(500).send(error);
+    response.status(500).send(error);
   }
 };
 
@@ -27,7 +27,7 @@ export const updateUserService = async (request: Request, response: Response) =>
     return response.status(200).send(result);
   } catch (error) {
     /* istanbul ignore next */
-    return response.status(500).send(error);
+    return response.status(400).send(error);
   }
 };
 
@@ -49,7 +49,8 @@ export const deleteUserService = async (request: Request, response: Response) =>
     });
   } catch (error) {
     /* istanbul ignore next */
-    return response.status(500).send(error);
+    return "";
+    // return response.status(500).send(error);
   }
 };
 
