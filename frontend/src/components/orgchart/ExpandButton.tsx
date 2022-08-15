@@ -24,7 +24,16 @@ const styles = {
   },
 };
 
+// interface ExpandButtonProps {
+//   node: {
+//     data: {
+//       _directSubordinates: number;
+//     };
+//     children: IEmployee;
+//   };
+// }
 const ExpandButton = (node: { data: { _directSubordinates: number }; children: IEmployee }) => {
+  console.log(node);
   return (
     <>
       {node && (

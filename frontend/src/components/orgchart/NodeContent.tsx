@@ -1,23 +1,32 @@
-import React from "react";
+import React, { FC } from "react";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import { IEmployee } from "../../interfaces/IEmployee";
 import styles from "./NodeContent.module.css";
 
-const NodeContent = (props: { data: IEmployee; _children: [{ data: IEmployee }] }) => {
+interface NodeContentProps {
+  data: IEmployee;
+  _children: [{ data: IEmployee }];
+}
+
+const NodeContent: FC<NodeContentProps> = ({ data, _children }) => {
+  console.log(_children);
+
   return (
     <div className={styles.container}>
       <div className={styles.node}>
-        <img key={props.data.id} className={styles.userImg} src={props.data.imageUrl} alt="team member" />
+        <div className={styles.textAlign}>
+          <img key={data.id} className={styles.userImg} src={data.imageUrl} alt="team member" />
+        </div>
         <div className={styles.mr15}>
-          <div className={styles.nodeName}>{props.data.givenName}</div>
-          <div className={styles.nodePositionName}>{props.data.positionName}</div>
+          <div className={styles.nodeName}>{data.givenName}</div>
+          <div className={styles.nodePositionName}>{data.positionName}</div>
         </div>
       </div>
 
-      {props.data.department && (
+      {data.department && (
         <div className={styles.nodeDepartment}>
           <ApartmentIcon />
-          <div className={styles.nodeDepartmentName}>{props.data.department}</div>
+          <div className={styles.nodeDepartmentName}>{data.department}</div>
         </div>
       )}
     </div>
