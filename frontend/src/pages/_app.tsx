@@ -5,14 +5,17 @@ import { ThemeProvider } from "@mui/material";
 import { AuthProvider } from "../providers";
 import { theme } from "../theme";
 import MainLayout from "../layouts/MainLayout";
+import { ModalProvider } from "../providers/ModalProvider";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
+        <ModalProvider>
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        </ModalProvider>
       </AuthProvider>
     </ThemeProvider>
   );
