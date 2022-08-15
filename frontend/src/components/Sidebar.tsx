@@ -6,6 +6,7 @@ import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import EventSeat from "@mui/icons-material/EventSeat";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import { useAuth } from "../providers";
 
 type IProps = {
   open?: boolean;
@@ -17,6 +18,7 @@ type IProps = {
 type tabType = {
   title: string;
   href: string;
+  adminOnly?: boolean;
 };
 
 type MenuItemType = {
@@ -33,6 +35,11 @@ export const menuItems = [
       {
         title: "Daily",
         href: "/ticketing/daily",
+      },
+      {
+        title: "Ticketing Form",
+        href: "/ticketing/form",
+        adminOnly: true,
       },
     ],
   },
@@ -154,7 +161,9 @@ const SideBarItemContainer = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
+  const { userRole } = useAuth();
   const hasChildren = menuItem.children.length >= 2;
+
   return (
     <Box sx={styles.sideBarItemContainer}>
       <Button
@@ -196,7 +205,10 @@ const SideBarItemContainer = ({
               disableElevation
               disableRipple
               key={index}
-              sx={styles.listButton}
+              sx={[
+                styles.listButton,
+                tab.adminOnly && userRole !== "Super Admin" ? { display: "none" } : { display: "flex" },
+              ]}
               onClick={async () => {
                 await router.push(tab.href);
                 setOpenTab("");
