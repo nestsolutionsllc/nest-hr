@@ -5,6 +5,13 @@ import db from "../models";
 
 const User = db.user;
 
+// Super admin check
+const isSuperAdmin = async (userId: string) => {
+  const user = await User.findById({ _id: userId }).exec();
+  /* istanbul ignore next */
+  return user?.isSuperAdmin;
+};
+
 // Checking token validation
 export const tokenCheck = async (req: Request, res: Response, next: NextFunction) => {
   const token: string | undefined = req.headers.authorization;
@@ -31,7 +38,24 @@ export const tokenCheck = async (req: Request, res: Response, next: NextFunction
 export const checkPermission =
   ({ module, action }: any) =>
   async (req: Request, res: Response, next: NextFunction) => {
+    /* istanbul ignore next */
+    const superAdmin = await isSuperAdmin(req.body?.user?._id);
+    /* istanbul ignore next */
+    if (superAdmin) {
+      /* istanbul ignore next */
+      next();
+      return;
+    }
+
     let permitted = false;
+    /* istanbul ignore next */
+    if (!res.locals.userId && !req.body?._id) {
+      /* istanbul ignore next */
+      res.status(403).send({
+        message: "User not found",
+      });
+      return;
+    }
 
     // this condition will be usefull if anyone tries to use CheckPermission without tokenCheck
     // if (!res.locals.userId && !req.body?._id)
@@ -54,13 +78,15 @@ export const checkPermission =
     } catch (error) {
       /* istanbul ignore next */
       res.status(500).send(error);
+      /* istanbul ignore next */
+      return;
     }
 
     if (!permitted) {
       res.status(403).send({
         message: "Permission denied",
       });
-    } else {
-      next();
+      return;
     }
+    next();
   };

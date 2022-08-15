@@ -7,22 +7,23 @@ import {
   updateUserService,
 } from "../controller/userControllers";
 import { checkPermission, tokenCheck } from "../middlewares/middlewares";
-import authLogin from "../controller/authController";
+import authLogin, { authRegister } from "../controller/authController";
 
 const userRouter = express.Router();
-
-userRouter.post("/login", authLogin);
-// userRouter.post("/register", [authRegister], createUserService);
-
+// GET
 userRouter.get("/users", [tokenCheck, checkPermission({ module: "users", action: "read" })], getUsersService);
-userRouter.patch("/users", [tokenCheck, checkPermission({ module: "users", action: "update" })], updateUserService);
-
-userRouter.post("/user", [tokenCheck, checkPermission({ module: "users", action: "create" })], createUserService);
-
-userRouter.get("/user/:id", getUserService);
-userRouter.patch("/user", updateUserService);
-userRouter.delete("/user", [tokenCheck, checkPermission({ module: "users", action: "create" })], deleteUserService);
-// userRouter.post("/addtogroup", [authenticateToken], addUserToGroupService);
+userRouter.get("/user/:id", [tokenCheck, checkPermission({ module: "users", action: "read" })], getUserService);
+// POST
+userRouter.post("/login", authLogin);
+userRouter.post(
+  "/register",
+  [tokenCheck, authRegister, checkPermission({ module: "users", action: "create" })],
+  createUserService
+);
+// PATCH
+userRouter.patch("/user", [tokenCheck, checkPermission({ module: "users", action: "update" })], updateUserService);
+// DELETE
+userRouter.delete("/user", [tokenCheck, checkPermission({ module: "users", action: "delete" })], deleteUserService);
 
 // In order to get Token use this API
 export default userRouter;

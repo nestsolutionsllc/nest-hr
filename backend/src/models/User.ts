@@ -6,6 +6,8 @@ const userSchema = new Schema({
   userName: { type: String, required: true },
   email: { type: String, required: true, lowercase: true },
   password: { type: String, required: true },
+  department: { type: String, required: true },
+  isSuperAdmin: { type: Boolean, default: false },
   userGroup: [{ type: mongoose.SchemaTypes.ObjectId, ref: "groups", default: [] }],
   createdAt: { type: Date, default: Date.now, immutable: true },
 });

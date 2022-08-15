@@ -14,6 +14,7 @@
   "author": "Pinecone developers",
   "license": "ISC",
   "dependencies": {
+    "@types/lodash": "^4.14.182",
     "@types/supertest": "^2.0.12",
     "accesscontrol": "^2.2.1",
     "babel-polyfill": "^6.26.0",
